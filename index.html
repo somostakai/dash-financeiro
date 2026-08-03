@@ -197,6 +197,20 @@
   .super-scale b{color:var(--ink)}
   .super-split{display:flex; flex-direction:column; gap:var(--s3); border-top:1px solid var(--rule); padding-top:var(--s4)}
 
+  .insight{
+    margin-top:var(--s4);
+    display:flex; flex-wrap:wrap; align-items:center; gap:var(--s4) var(--s7);
+  }
+  .insight-stats{display:flex; flex-wrap:wrap; gap:var(--s4) var(--s6); flex:1 1 auto; min-width:0}
+  .insight-stats > div{display:flex; flex-direction:column; gap:var(--s1)}
+  .insight-stats b{
+    font-family:var(--mono); font-variant-numeric:tabular-nums;
+    font-size:1.125rem; font-weight:600; color:var(--ink); letter-spacing:-.02em;
+  }
+  .insight-stats b.neg{color:var(--bad)}
+  .insight p{flex:1 1 22rem; min-width:0; margin:0}
+  .insight p b{color:var(--ink-2)}
+
   .hist{display:flex; flex-direction:column; gap:var(--s2)}
   .hist-row{display:grid; grid-template-columns:2.5rem minmax(0,1fr) auto; gap:var(--s3); align-items:center; font-size:.8125rem}
   .hist-row .hm{color:var(--muted); text-transform:capitalize}
@@ -509,23 +523,37 @@
         </div>
       </div>
 
-      <div style="display:flex; flex-direction:column; gap:var(--s4)">
-        <div class="card chart-figure">
-          <p class="eyebrow">Os meses fechados de 2026</p>
-          <div class="hist" id="superHist"></div>
-          <div class="legend">
-            <span class="item"><i class="swatch" style="background:var(--c1)"></i> Dentro dos R$&nbsp;1.500</span>
-            <span class="item"><i class="swatch" style="background:var(--bad)"></i> Estourou</span>
-          </div>
-        </div>
-        <div class="note flag">
-          <b>Metade dos meses estoura.</b> A média de janeiro a agosto é
-          <span class="num">R$&nbsp;1.480,08</span>, quase exatamente o orçamento, mas
-          <b>4 dos 8 meses passaram dos R$&nbsp;1.500</b>. Agosto fechou em
-          <span class="num">R$&nbsp;2.123,53</span>, <span class="num">R$&nbsp;623,53</span> acima.
-          O valor base está certo na média e errado quase todo mês.
+      <div class="card chart-figure">
+        <p class="eyebrow">Os meses fechados de 2026</p>
+        <div class="hist" id="superHist"></div>
+        <div class="legend">
+          <span class="item"><i class="swatch" style="background:var(--c1)"></i> Dentro dos R$&nbsp;1.500</span>
+          <span class="item"><i class="swatch" style="background:var(--bad)"></i> Estourou</span>
         </div>
       </div>
+    </div>
+
+    <div class="note flag insight">
+      <div class="insight-stats">
+        <div>
+          <span class="eyebrow">Média de jan a ago</span>
+          <b class="num">R$&nbsp;1.480,08</b>
+        </div>
+        <div>
+          <span class="eyebrow">Meses acima do teto</span>
+          <b class="num">4 de 8</b>
+        </div>
+        <div>
+          <span class="eyebrow">Maior estouro</span>
+          <b class="num neg">R$&nbsp;623,53</b>
+        </div>
+      </div>
+      <p>
+        <b>A média bate quase exata com o orçamento</b>, mas metade dos meses passa dos
+        R$&nbsp;1.500, e a variação é enorme: de <span class="num">R$&nbsp;627,29</span> em maio a
+        <span class="num">R$&nbsp;2.123,53</span> em agosto. O valor base está certo na média
+        e errado quase todo mês.
+      </p>
     </div>
   </section>
 
