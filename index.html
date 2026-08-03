@@ -83,6 +83,12 @@
   .masthead h1 .yr{color:var(--faint); font-weight:400}
   .masthead-meta{display:flex; flex-direction:column; gap:var(--s1); text-align:right; font-size:.8125rem; color:var(--muted)}
   .masthead-meta strong{color:var(--ink-2); font-weight:600}
+  .masthead-meta .stamp{
+    margin-top:var(--s2); padding-top:var(--s2); border-top:1px solid var(--rule);
+    font-size:.75rem; color:var(--faint);
+  }
+  .masthead-meta .stamp strong{color:var(--ink)}
+  @media (max-width:640px){ .masthead-meta{text-align:left} }
 
   /* ---------- verdict ---------- */
   .verdict{
@@ -253,6 +259,10 @@
       <span><strong>16</strong> contas lançadas · <strong>todas em aberto</strong></span>
       <span>Contas pagas até agora: <strong class="num">R$&nbsp;0,00</strong></span>
       <span>Fonte: aba <strong>Set.</strong> da planilha</span>
+      <span class="stamp">
+        Atualizado em
+        <time datetime="2026-08-03T11:29:00-03:00"><strong class="num">03/08/2026</strong> às <strong class="num">11:29</strong></time>
+      </span>
     </div>
   </div>
 </header>
@@ -570,7 +580,7 @@
         <div class="cmp-row head"><span>Indicador</span><span class="v">Agosto</span><span class="v">Setembro</span><span class="v">Variação</span></div>
         <div class="cmp-row"><span class="lab">Entradas</span><span class="v">22.718,05</span><span class="v">14.965,79</span><span class="v neg">−34,1%</span></div>
         <div class="cmp-row"><span class="lab">Contas</span><span class="v">20.292,55</span><span class="v">16.070,85</span><span class="v pos">−20,8%</span></div>
-        <div class="cmp-row"><span class="lab">Poupança planejada</span><span class="v">2.399,61</span><span class="v">2.300,00</span><span class="v">−4,2%</span></div>
+        <div class="cmp-row"><span class="lab">Poupança planejada</span><span class="v">2.399,61</span><span class="v">2.300,00</span><span class="v neg">−4,2%</span></div>
         <div class="cmp-row"><span class="lab">Saldo real (sem poupança)</span><span class="v pos">+2.425,50</span><span class="v neg">−1.105,06</span><span class="v neg">−3.530,56</span></div>
         <div class="cmp-row"><span class="lab">Saldo da planilha</span><span class="v pos">+25,89</span><span class="v neg">−3.405,06</span><span class="v neg">−3.430,95</span></div>
       </div>
