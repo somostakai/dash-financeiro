@@ -111,11 +111,9 @@
 
   .card{background:var(--surface); border:1px solid var(--rule); border-radius:2px; box-shadow:var(--shadow); padding:var(--s5)}
   .grid{display:grid; gap:var(--s4)}
-  .g-4{grid-template-columns:repeat(4,minmax(0,1fr))}
   .g-2{grid-template-columns:repeat(2,minmax(0,1fr))}
   .g-32{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}
-  @media (max-width:900px){ .g-4{grid-template-columns:repeat(2,minmax(0,1fr))} .g-32,.g-2{grid-template-columns:1fr} }
-  @media (max-width:520px){ .g-4{grid-template-columns:1fr} }
+  @media (max-width:900px){ .g-32,.g-2{grid-template-columns:1fr} }
 
   /* ---------- kpi ---------- */
   .kpi{display:flex; flex-direction:column; gap:var(--s2); padding:var(--s4)}
@@ -186,16 +184,6 @@
   tr > :last-child{padding-right:0}
   td.money{font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap}
   tfoot td{border-top:1px solid var(--rule-strong); border-bottom:0; font-weight:650; padding-top:var(--s3)}
-  .chip{
-    display:inline-flex; align-items:center; gap:6px; font-size:.6875rem; font-weight:650;
-    padding:2px 7px; border-radius:2px; white-space:nowrap;
-  }
-  .chip-ess{background:var(--c1-soft); color:var(--c1)}
-  .chip-nao{background:var(--c2-soft); color:var(--c2)}
-  .chip-pou{background:var(--c3-soft); color:var(--c3)}
-  .chip-open{background:var(--bad-soft); color:var(--bad)}
-  .minibar{display:block; height:4px; border-radius:2px; margin:5px 0 0 auto; background:var(--c1); opacity:.75}
-
   /* ---------- expense ranking ---------- */
   .rank{display:flex; flex-direction:column; gap:var(--s3)}
   .rank-row{display:grid; grid-template-columns:minmax(120px,1.1fr) minmax(0,3fr) auto; gap:var(--s3); align-items:center; font-size:.875rem}
@@ -277,7 +265,7 @@
       <p class="eyebrow">A conta que importa</p>
       <div class="verdict-figure num">R$&nbsp;1.105,06</div>
       <p class="verdict-say">
-        É o que falta entrar em setembro <b>só para pagar as contas</b> — sem guardar um centavo.
+        É o que falta entrar em setembro <b>só para pagar as contas</b>, sem guardar um centavo.
         Isso equivale a faturar <b>7,4% a mais</b> do que o previsto.
         Se a poupança também precisar acontecer, o buraco vai para <b>R$&nbsp;3.405,06</b>.
       </p>
@@ -306,36 +294,6 @@
       </div>
     </div>
   </div>
-
-  <!-- ================= KPIs ================= -->
-  <section aria-labelledby="s-num">
-    <div class="sec-head">
-      <h2 id="s-num">Os números de setembro</h2>
-      <p>Tudo o que a aba <em>Set.</em> já tem lançado, lido de uma vez só.</p>
-    </div>
-    <div class="grid g-4">
-      <div class="card kpi">
-        <span class="eyebrow">Entradas</span>
-        <span class="k-val num">R$&nbsp;14.965,79</span>
-        <span class="k-sub">5 lançamentos · <span class="num">R$&nbsp;13.762,62</span> vêm de @takai (92%)</span>
-      </div>
-      <div class="card kpi">
-        <span class="eyebrow">Contas do mês</span>
-        <span class="k-val num">R$&nbsp;16.070,85</span>
-        <span class="k-sub"><span class="num">107,4%</span> das entradas · <span class="num">R$&nbsp;535,70</span> por dia</span>
-      </div>
-      <div class="card kpi">
-        <span class="eyebrow">Poupança planejada</span>
-        <span class="k-val num">R$&nbsp;2.300,00</span>
-        <span class="k-sub">8 caixinhas · <span class="num">0%</span> coberto pelo caixa atual</span>
-      </div>
-      <div class="card kpi">
-        <span class="eyebrow">Saldo real</span>
-        <span class="k-val num neg">−R$&nbsp;1.105,06</span>
-        <span class="k-sub">Entradas menos contas, poupança de fora</span>
-      </div>
-    </div>
-  </section>
 
   <!-- ================= COMPROMETIMENTO ================= -->
   <section aria-labelledby="s-commit">
@@ -413,7 +371,7 @@
           <h3 style="margin-bottom:var(--s2)">Se a receita não subir, o corte é este</h3>
           <p style="margin:0; font-size:.875rem; color:var(--muted)">
             Para as contas caberem nas entradas, é preciso tirar <b class="num" style="color:var(--ink)">R$&nbsp;1.105,06</b>
-            das despesas de setembro — <span class="num">6,9%</span> do total.
+            das despesas de setembro, ou <span class="num">6,9%</span> do total.
           </p>
         </div>
         <div style="border-top:1px solid var(--rule); padding-top:var(--s4); display:flex; flex-direction:column; gap:var(--s3)">
@@ -431,9 +389,34 @@
           </div>
         </div>
         <p style="margin:0; font-size:.8125rem; color:var(--muted); border-top:1px solid var(--rule); padding-top:var(--s3)">
-          O corte é matematicamente viável sem tocar em nada essencial — mas
+          O corte é matematicamente viável sem tocar em nada essencial, mas
           <b style="color:var(--ink-2)">87% dos não essenciais são a fatura do cartão</b>, então é lá que a decisão acontece.
         </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= AÇÕES ================= -->
+  <section aria-labelledby="s-acao">
+    <div class="sec-head">
+      <h2 id="s-acao">O que fecha a conta</h2>
+      <p>Três caminhos, com o número exato de cada um. Podem ser combinados.</p>
+    </div>
+    <div class="actions">
+      <div class="action">
+        <span class="eyebrow">Caminho 1 · receita</span>
+        <span class="a-val">+R$&nbsp;1.105,06</span>
+        <p>Faturar 7,4% a mais em setembro zera o vermelho das contas. Para as caixinhas também acontecerem, são <b>+R$&nbsp;3.405,06</b> (+22,8%).</p>
+      </div>
+      <div class="action">
+        <span class="eyebrow">Caminho 2 · fatura</span>
+        <span class="a-val">−R$&nbsp;1.105,06</span>
+        <p>Cortar 18,8% da fatura do cartão resolve sozinho. É a única despesa grande do mês que não é contrato fixo.</p>
+      </div>
+      <div class="action">
+        <span class="eyebrow">Caminho 3 · calendário</span>
+        <span class="a-val">R$&nbsp;10.647,79</span>
+        <p>Vence tudo no dia 5. Negociar o vencimento do cartão ou do aluguel não muda o total, mas evita o aperto entre os dias 5 e 17.</p>
       </div>
     </div>
   </section>
@@ -442,7 +425,7 @@
   <section aria-labelledby="s-pou">
     <div class="sec-head">
       <h2 id="s-pou">A poupança, isolada</h2>
-      <p>Quanto falta buscar exclusivamente para guardar — separado das contas, como você pediu.</p>
+      <p>Quanto falta buscar exclusivamente para guardar, separado das contas.</p>
     </div>
     <div class="grid g-32">
       <div class="card">
@@ -511,7 +494,7 @@
           <div class="goal-fill" style="width:45.1%; background:var(--c2)" data-tip="Não essenciais · 45,1% · meta 30%"></div>
           <div class="goal-meta" style="left:30%" data-label="meta 30%"></div>
         </div>
-        <span class="goal-note">Acima da meta em <b class="neg">R$&nbsp;2.253,61</b> — o maior desvio dos três, e o mais controlável.</span>
+        <span class="goal-note">Acima da meta em <b class="neg">R$&nbsp;2.253,61</b>. É o maior desvio dos três, e o mais controlável.</span>
       </div>
 
       <div class="goal-row">
@@ -523,7 +506,7 @@
           <div class="goal-fill" style="width:15.4%; background:var(--c3)" data-tip="Poupança · 15,4% · meta 20%"></div>
           <div class="goal-meta" style="left:20%" data-label="meta 20%"></div>
         </div>
-        <span class="goal-note">Abaixo da meta em <b>R$&nbsp;693,16</b> — e ainda sem caixa para bancar o que já está planejado.</span>
+        <span class="goal-note">Abaixo da meta em <b>R$&nbsp;693,16</b>, e ainda sem caixa para bancar o que já está planejado.</span>
       </div>
     </div>
   </section>
@@ -542,7 +525,7 @@
         <span class="item" style="color:var(--bad)"><i class="swatch" style="background:var(--bad)"></i> A partir do dia 17: descoberto</span>
       </div>
       <p style="margin:0; font-size:.875rem; color:var(--muted)">
-        <b style="color:var(--ink-2)">O dia 5 concentra R$&nbsp;10.647,79</b> — 66% de tudo que vence no mês, incluindo a fatura do cartão.
+        <b style="color:var(--ink-2)">O dia 5 concentra R$&nbsp;10.647,79</b>, ou 66% de tudo que vence no mês, incluindo a fatura do cartão.
         No dia 10, após o aluguel, restam <span class="num">R$&nbsp;355,04</span>. No dia 17 o Simples Nacional derruba o caixa.
       </p>
     </div>
@@ -569,8 +552,8 @@
         </div>
         <div class="note">
           A fatura é uma caixa-preta: ela agrupa gastos que provavelmente são de tipos diferentes.
-          <b>Abrir o cartão por categoria é o único jeito de saber se o problema é excesso ou classificação</b> —
-          hoje ela puxa os não essenciais de 5,8% para 45,1% das entradas.
+          <b>Abrir o cartão por categoria é o único jeito de saber se o problema é excesso ou classificação</b>.
+          Hoje ela puxa os não essenciais de 5,8% para 45,1% das entradas.
         </div>
       </div>
     </div>
@@ -608,84 +591,8 @@
     </div>
   </section>
 
-  <!-- ================= AÇÕES ================= -->
-  <section aria-labelledby="s-acao">
-    <div class="sec-head">
-      <h2 id="s-acao">O que fecha a conta</h2>
-      <p>Três caminhos, com o número exato de cada um. Podem ser combinados.</p>
-    </div>
-    <div class="actions">
-      <div class="action">
-        <span class="eyebrow">Caminho 1 · receita</span>
-        <span class="a-val">+R$&nbsp;1.105,06</span>
-        <p>Faturar 7,4% a mais em setembro zera o vermelho das contas. Para as caixinhas também acontecerem, são <b>+R$&nbsp;3.405,06</b> (+22,8%).</p>
-      </div>
-      <div class="action">
-        <span class="eyebrow">Caminho 2 · fatura</span>
-        <span class="a-val">−R$&nbsp;1.105,06</span>
-        <p>Cortar 18,8% da fatura do cartão resolve sozinho. É a única despesa grande do mês que não é contrato fixo.</p>
-      </div>
-      <div class="action">
-        <span class="eyebrow">Caminho 3 · calendário</span>
-        <span class="a-val">R$&nbsp;10.647,79</span>
-        <p>Vence tudo no dia 5. Negociar o vencimento do cartão ou do aluguel não muda o total, mas evita o aperto entre os dias 5 e 17.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= DETALHE ================= -->
-  <section aria-labelledby="s-det">
-    <div class="sec-head">
-      <h2 id="s-det">Todas as contas de setembro</h2>
-      <p>As 16 linhas da aba <em>Set.</em>, ordenadas por dia de vencimento.</p>
-    </div>
-    <div class="card">
-      <div class="tbl-scroll">
-        <table>
-          <thead>
-            <tr>
-              <th>Dia</th><th>Descrição</th><th>Tipo</th><th>Categoria</th><th>Pagamento</th>
-              <th class="r">Valor</th><th class="r">% do mês</th><th>Status</th>
-            </tr>
-          </thead>
-          <tbody id="contasBody"></tbody>
-          <tfoot>
-            <tr>
-              <td colspan="5">Total · 16 contas, nenhuma paga</td>
-              <td class="r money">R$&nbsp;16.070,85</td>
-              <td class="r money">100%</td>
-              <td><span class="chip chip-open">Em aberto</span></td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-    </div>
-    <div class="grid g-2" style="margin-top:var(--s4)">
-      <div class="card">
-        <div class="tbl-scroll">
-          <table>
-            <caption>Entradas previstas</caption>
-            <thead><tr><th>Origem</th><th class="r">Valor</th><th class="r">% do total</th></tr></thead>
-            <tbody id="entradasBody"></tbody>
-            <tfoot><tr><td>Total</td><td class="r money">R$&nbsp;14.965,79</td><td class="r money">100%</td></tr></tfoot>
-          </table>
-        </div>
-      </div>
-      <div class="note">
-        <b>Como cada número foi obtido.</b>
-        <ul>
-          <li><b>Saldo real</b> = entradas − contas. É o <code>K4:K5</code> da planilha com a poupança devolvida.</li>
-          <li><b>Saldo da planilha</b> (<code>K4:K5</code>) = entradas − poupança − contas, pela fórmula <code>=E4 − O21 − SUM(Set.[Valor])</code>.</li>
-          <li><b>% a mais de receita</b> = falta ÷ entradas previstas.</li>
-          <li><b>Meta de 20%</b> = receita <em>R</em> tal que <em>R</em> − contas = 0,20·<em>R</em>, ou seja <em>R</em> = contas ÷ 0,8.</li>
-          <li>Percentuais de essenciais, não essenciais e poupança usam sempre o <b>total de entradas</b> como base.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
   <footer>
-    Painel gerado a partir da planilha <em>ganhos e gastos mensais [@karol e @tai] — 2026</em>, aba <code>Set.</code>.
+    Painel gerado a partir da planilha <em>ganhos e gastos mensais [@karol e @tai], 2026</em>, aba <code>Set.</code>.
     Valores em reais, projetados: em setembro nenhuma conta está marcada como paga, então tudo aqui é previsão, não realizado.
     Metas 50 / 30 / 20 lidas da aba <code>Início</code>.
   </footer>
@@ -722,14 +629,6 @@
     {dia:21, desc:"Seguro do Carro",    tipo:"Essenciais",     cat:"Contas",     pag:"Pix",     val:147.00}
   ];
 
-  var entradas = [
-    {origem:"@takai",       val:13762.62},
-    {origem:"@outros",      val:759.80},
-    {origem:"@rolezinhos",  val:175.20},
-    {origem:"@gatos",       val:151.51},
-    {origem:"@carro",       val:116.66}
-  ];
-
   var poupanca = [
     {nome:"Portugal e Grécia",                    val:800.00},
     {nome:"Flexível (investimentos médio prazo)", val:500.00},
@@ -749,40 +648,12 @@
     return n;
   }
 
-  var contasBody = document.getElementById("contasBody");
-  contas.forEach(function(c){
-    var share = c.val / CONTAS_TOTAL * 100;
-    var chip = c.tipo === "Essenciais" ? "chip-ess" : "chip-nao";
-    var tr = el("tr");
-    tr.appendChild(el("td","money", String(c.dia)));
-    tr.appendChild(el("td", null, c.desc));
-    tr.appendChild(el("td", null, '<span class="chip '+chip+'">'+c.tipo+'</span>'));
-    tr.appendChild(el("td", null, '<span style="color:var(--muted)">'+c.cat+'</span>'));
-    tr.appendChild(el("td", null, '<span style="color:var(--muted)">'+c.pag+'</span>'));
-    tr.appendChild(el("td","r money", BRL.format(c.val)));
-    var pctCell = el("td","r money", PCT(share));
-    pctCell.innerHTML += '<i class="minibar" style="width:'+share.toFixed(1)+'%; background:'+
-      (c.tipo==="Essenciais" ? "var(--c1)" : "var(--c2)")+'"></i>';
-    tr.appendChild(pctCell);
-    tr.appendChild(el("td", null, '<span class="chip chip-open">Em aberto</span>'));
-    contasBody.appendChild(tr);
-  });
-
-  var entradasBody = document.getElementById("entradasBody");
-  entradas.forEach(function(e){
-    var tr = el("tr");
-    tr.appendChild(el("td", null, e.origem));
-    tr.appendChild(el("td","r money", BRL.format(e.val)));
-    tr.appendChild(el("td","r money", PCT(e.val/ENTRADAS_TOTAL*100)));
-    entradasBody.appendChild(tr);
-  });
-
   var poupBody = document.getElementById("poupBody");
   poupanca.forEach(function(p){
     var tr = el("tr");
     tr.appendChild(el("td", null, p.nome + (p.val === 0 ? ' <span style="color:var(--faint); font-size:.75rem">(sem meta)</span>' : "")));
     tr.appendChild(el("td","r money", BRL.format(p.val)));
-    tr.appendChild(el("td","r money" + (p.val > 0 ? " neg" : ""), p.val > 0 ? BRL.format(p.val) : "—"));
+    tr.appendChild(el("td","r money" + (p.val > 0 ? " neg" : ""), BRL.format(p.val)));
     poupBody.appendChild(tr);
   });
 
