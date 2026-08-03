@@ -172,6 +172,39 @@
   .goal-note{font-size:.8125rem; color:var(--muted)}
   .goal-note b{font-family:var(--mono); font-variant-numeric:tabular-nums; font-weight:600}
 
+  /* ---------- supermercado ---------- */
+  .super-head{display:flex; align-items:flex-start; justify-content:space-between; gap:var(--s4); flex-wrap:wrap}
+  .super-figs{display:flex; flex-direction:column; gap:var(--s2)}
+  .super-val{font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:2rem; font-weight:600; letter-spacing:-.03em; line-height:1}
+  .status{
+    display:inline-flex; align-items:center; gap:6px; font-size:.75rem; font-weight:650;
+    padding:4px 10px; border-radius:2px; white-space:nowrap;
+  }
+  .status::before{content:""; width:7px; height:7px; border-radius:50%; background:currentColor}
+  .status-ok{background:var(--good-soft); color:var(--good)}
+  .status-warn{background:var(--c2-soft); color:var(--c2)}
+  .status-over{background:var(--bad-soft); color:var(--bad)}
+
+  .super-bar{display:flex; flex-direction:column; gap:var(--s2)}
+  .super-track{position:relative; height:30px; background:var(--surface-2); border-radius:2px}
+  .super-fill{height:100%; border-radius:2px}
+  .super-limit{position:absolute; right:0; top:-7px; bottom:-7px; width:2px; background:var(--ink)}
+  .super-limit::after{
+    content:attr(data-label); position:absolute; right:0; top:-17px; white-space:nowrap;
+    font-size:.6875rem; font-weight:700; color:var(--ink); font-family:var(--mono);
+  }
+  .super-scale{display:flex; justify-content:space-between; gap:var(--s3); font-size:.75rem; color:var(--muted)}
+  .super-scale b{color:var(--ink)}
+  .super-split{display:flex; flex-direction:column; gap:var(--s3); border-top:1px solid var(--rule); padding-top:var(--s4)}
+
+  .hist{display:flex; flex-direction:column; gap:var(--s2)}
+  .hist-row{display:grid; grid-template-columns:2.5rem minmax(0,1fr) auto; gap:var(--s3); align-items:center; font-size:.8125rem}
+  .hist-row .hm{color:var(--muted); text-transform:capitalize}
+  .hist-track{position:relative; height:12px}
+  .hist-track i{display:block; height:100%; border-radius:2px; min-width:2px}
+  .hist-track .lim{position:absolute; top:-3px; bottom:-3px; width:1px; background:var(--rule-strong)}
+  .hist-row .hv{font-family:var(--mono); font-variant-numeric:tabular-nums; color:var(--ink-2); white-space:nowrap}
+
   /* ---------- generic table ---------- */
   /* contêineres de rolagem só seguram a largura se puderem encolher */
   .grid > *, .verdict > *, .actions > *, .card, .chart-figure{min-width:0}
@@ -431,6 +464,71 @@
     </div>
   </section>
 
+  <!-- ================= SUPERMERCADO ================= -->
+  <section aria-labelledby="s-super">
+    <div class="sec-head">
+      <h2 id="s-super">Supermercado, quanto já foi</h2>
+      <p>O orçamento de <span class="num">R$&nbsp;1.500,00</span> contra o que já está lançado na aba <em>Supermercado</em> com competência de setembro.</p>
+    </div>
+    <div class="grid g-32" style="align-items:start">
+      <div class="card" style="display:flex; flex-direction:column; gap:var(--s4)">
+        <div class="super-head">
+          <div class="super-figs">
+            <span class="eyebrow">Já lançado em setembro</span>
+            <span class="super-val num">R$&nbsp;400,10</span>
+          </div>
+          <span class="status status-ok">Dentro do orçamento</span>
+        </div>
+
+        <div class="super-bar">
+          <div class="super-track">
+            <div class="super-fill" style="width:26.7%; background:var(--c1)"
+                 data-tip="Lançado em setembro · R$ 400,10 · 26,7% do orçamento"></div>
+            <div class="super-limit" data-label="R$ 1.500,00"></div>
+          </div>
+          <div class="super-scale">
+            <span class="num">R$&nbsp;0</span>
+            <span><b class="num">26,7%</b> consumido</span>
+            <span class="num">R$&nbsp;1.500</span>
+          </div>
+        </div>
+
+        <div class="super-split">
+          <div class="split-row">
+            <span class="lbl">Ainda cabe no orçamento</span>
+            <span class="val num pos">R$&nbsp;1.099,90</span>
+          </div>
+          <div class="split-row">
+            <span class="lbl">Compras lançadas até agora</span>
+            <span class="val num">4</span>
+          </div>
+          <div class="split-row">
+            <span class="lbl">Se setembro repetir agosto</span>
+            <span class="val num neg">R$&nbsp;2.123,53</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:var(--s4)">
+        <div class="card chart-figure">
+          <p class="eyebrow">Os meses fechados de 2026</p>
+          <div class="hist" id="superHist"></div>
+          <div class="legend">
+            <span class="item"><i class="swatch" style="background:var(--c1)"></i> Dentro dos R$&nbsp;1.500</span>
+            <span class="item"><i class="swatch" style="background:var(--bad)"></i> Estourou</span>
+          </div>
+        </div>
+        <div class="note flag">
+          <b>Metade dos meses estoura.</b> A média de janeiro a agosto é
+          <span class="num">R$&nbsp;1.480,08</span>, quase exatamente o orçamento, mas
+          <b>4 dos 8 meses passaram dos R$&nbsp;1.500</b>. Agosto fechou em
+          <span class="num">R$&nbsp;2.123,53</span>, <span class="num">R$&nbsp;623,53</span> acima.
+          O valor base está certo na média e errado quase todo mês.
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= POUPANÇA ================= -->
   <section aria-labelledby="s-pou">
     <div class="sec-head">
@@ -657,6 +755,37 @@
     if(html !== undefined) n.innerHTML = html;
     return n;
   }
+
+  /* ---------- supermercado: meses fechados ---------- */
+  var ORCAMENTO_MERCADO = 1500;
+  var mercadoMeses = [
+    {mes:"jan", val:1358.56}, {mes:"fev", val:2036.65},
+    {mes:"mar", val:904.92},  {mes:"abr", val:2005.98},
+    {mes:"mai", val:627.29},  {mes:"jun", val:1563.21},
+    {mes:"jul", val:1220.47}, {mes:"ago", val:2123.53}
+  ];
+
+  var hist = document.getElementById("superHist");
+  var histMax = mercadoMeses.reduce(function(m,d){ return Math.max(m, d.val); }, ORCAMENTO_MERCADO);
+  mercadoMeses.forEach(function(d){
+    var estourou = d.val > ORCAMENTO_MERCADO;
+    var row = el("div","hist-row");
+    row.appendChild(el("span","hm", d.mes));
+    var track = el("div","hist-track");
+    var bar = el("i");
+    bar.style.width = (d.val / histMax * 100) + "%";
+    bar.style.background = estourou ? "var(--bad)" : "var(--c1)";
+    bar.setAttribute("data-tip", d.mes + " · " + BRL.format(d.val) + " · " +
+      PCT(d.val/ORCAMENTO_MERCADO*100) + " do orçamento" +
+      (estourou ? " · estourou " + BRL.format(d.val - ORCAMENTO_MERCADO) : ""));
+    track.appendChild(bar);
+    var lim = el("span","lim");
+    lim.style.left = (ORCAMENTO_MERCADO / histMax * 100) + "%";
+    track.appendChild(lim);
+    row.appendChild(track);
+    row.appendChild(el("span","hv", BRL.format(d.val)));
+    hist.appendChild(row);
+  });
 
   var poupBody = document.getElementById("poupBody");
   poupanca.forEach(function(p){
