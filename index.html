@@ -1,0 +1,1010 @@
+<title>Painel Financeiro · Setembro 2026</title>
+<style>
+  :root{
+    --paper:#F4F6FA; --surface:#FFFFFF; --surface-2:#EEF1F7;
+    --ink:#131828; --ink-2:#3B4459; --muted:#5A6480; --faint:#8C95AC;
+    --rule:#DFE4EE; --rule-strong:#C6CEDD;
+    --c1:#3D5AC9; --c2:#C2701A; --c3:#00937A;
+    --c1-soft:rgba(61,90,201,.12); --c2-soft:rgba(194,112,26,.12); --c3-soft:rgba(0,147,122,.12);
+    --bad:#C0344A; --bad-soft:rgba(192,52,74,.10); --bad-line:rgba(192,52,74,.28);
+    --good:#00785F; --good-soft:rgba(0,120,95,.10);
+    --warn:#9A6A00;
+    --shadow:0 1px 2px rgba(19,24,40,.05), 0 8px 24px -16px rgba(19,24,40,.22);
+
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono","Roboto Mono",Menlo,Consolas,"Liberation Mono",monospace;
+
+    --s1:.25rem; --s2:.5rem; --s3:.75rem; --s4:1rem; --s5:1.5rem; --s6:2rem; --s7:3rem; --s8:4.5rem;
+    --maxw:1120px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --paper:#0D1120; --surface:#171C2E; --surface-2:#1E2438;
+      --ink:#E9ECF6; --ink-2:#C3CADC; --muted:#98A1BC; --faint:#727C99;
+      --rule:#262D42; --rule-strong:#38415C;
+      --c1:#6E80DE; --c2:#C0812F; --c3:#1E9E81;
+      --c1-soft:rgba(110,128,222,.16); --c2-soft:rgba(192,129,47,.16); --c3-soft:rgba(30,158,129,.16);
+      --bad:#E2697D; --bad-soft:rgba(226,105,125,.13); --bad-line:rgba(226,105,125,.34);
+      --good:#3FBF9E; --good-soft:rgba(63,191,158,.13);
+      --warn:#E0A33C;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -18px rgba(0,0,0,.8);
+    }
+  }
+  :root[data-theme="light"]{
+    --paper:#F4F6FA; --surface:#FFFFFF; --surface-2:#EEF1F7;
+    --ink:#131828; --ink-2:#3B4459; --muted:#5A6480; --faint:#8C95AC;
+    --rule:#DFE4EE; --rule-strong:#C6CEDD;
+    --c1:#3D5AC9; --c2:#C2701A; --c3:#00937A;
+    --c1-soft:rgba(61,90,201,.12); --c2-soft:rgba(194,112,26,.12); --c3-soft:rgba(0,147,122,.12);
+    --bad:#C0344A; --bad-soft:rgba(192,52,74,.10); --bad-line:rgba(192,52,74,.28);
+    --good:#00785F; --good-soft:rgba(0,120,95,.10);
+    --warn:#9A6A00;
+    --shadow:0 1px 2px rgba(19,24,40,.05), 0 8px 24px -16px rgba(19,24,40,.22);
+  }
+  :root[data-theme="dark"]{
+    --paper:#0D1120; --surface:#171C2E; --surface-2:#1E2438;
+    --ink:#E9ECF6; --ink-2:#C3CADC; --muted:#98A1BC; --faint:#727C99;
+    --rule:#262D42; --rule-strong:#38415C;
+    --c1:#6E80DE; --c2:#C0812F; --c3:#1E9E81;
+    --c1-soft:rgba(110,128,222,.16); --c2-soft:rgba(192,129,47,.16); --c3-soft:rgba(30,158,129,.16);
+    --bad:#E2697D; --bad-soft:rgba(226,105,125,.13); --bad-line:rgba(226,105,125,.34);
+    --good:#3FBF9E; --good-soft:rgba(63,191,158,.13);
+    --warn:#E0A33C;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -18px rgba(0,0,0,.8);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--sans); font-size:16px; line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 var(--s5) var(--s8)}
+
+  /* ---------- shared type ---------- */
+  .eyebrow{
+    font-size:.6875rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--faint); margin:0;
+  }
+  .num{font-family:var(--mono); font-variant-numeric:tabular-nums; letter-spacing:-.02em}
+  .neg{color:var(--bad)}
+  .pos{color:var(--good)}
+
+  h1,h2,h3{text-wrap:balance; margin:0}
+  h1{font-family:var(--serif); font-weight:600; font-size:clamp(2rem,5vw,3rem); line-height:1.08; letter-spacing:-.015em}
+  h2{font-family:var(--serif); font-weight:600; font-size:1.5rem; line-height:1.2; letter-spacing:-.01em}
+  h3{font-size:.9375rem; font-weight:650; letter-spacing:-.005em}
+
+  /* ---------- header ---------- */
+  .masthead{border-bottom:1px solid var(--rule); background:var(--surface)}
+  .masthead .wrap{padding-top:var(--s6); padding-bottom:var(--s6); display:flex; flex-wrap:wrap; gap:var(--s5); align-items:flex-end; justify-content:space-between}
+  .masthead-id{display:flex; flex-direction:column; gap:var(--s2)}
+  .masthead h1 .yr{color:var(--faint); font-weight:400}
+  .masthead-meta{display:flex; flex-direction:column; gap:var(--s1); text-align:right; font-size:.8125rem; color:var(--muted)}
+  .masthead-meta strong{color:var(--ink-2); font-weight:600}
+
+  /* ---------- verdict ---------- */
+  .verdict{
+    margin-top:var(--s6); background:var(--surface); border:1px solid var(--rule);
+    border-left:3px solid var(--bad); border-radius:2px; box-shadow:var(--shadow);
+    padding:var(--s5) var(--s5) var(--s5) calc(var(--s5) + var(--s1));
+    display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); gap:var(--s5) var(--s7);
+  }
+  @media (max-width:760px){ .verdict{grid-template-columns:1fr} }
+  .verdict-lead{display:flex; flex-direction:column; gap:var(--s3)}
+  .verdict-figure{font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:clamp(2.25rem,6.5vw,3.5rem); font-weight:600; line-height:1; letter-spacing:-.04em; color:var(--bad)}
+  .verdict-say{font-size:1.0625rem; color:var(--ink-2); max-width:44ch; margin:0}
+  .verdict-say b{color:var(--ink); font-weight:650}
+  .verdict-split{display:flex; flex-direction:column; gap:var(--s3); justify-content:center; border-left:1px solid var(--rule); padding-left:var(--s5)}
+  @media (max-width:760px){ .verdict-split{border-left:0; border-top:1px solid var(--rule); padding-left:0; padding-top:var(--s4)} }
+  .split-row{display:flex; align-items:baseline; justify-content:space-between; gap:var(--s4)}
+  .split-row .lbl{font-size:.8125rem; color:var(--muted)}
+  .split-row .val{font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:1.0625rem; font-weight:600}
+  .split-row.total{border-top:1px solid var(--rule); padding-top:var(--s3); margin-top:var(--s1)}
+  .split-row.total .lbl{color:var(--ink-2); font-weight:600}
+
+  /* ---------- sections ---------- */
+  section{margin-top:var(--s8)}
+  .sec-head{display:flex; flex-direction:column; gap:var(--s2); margin-bottom:var(--s5); padding-bottom:var(--s3); border-bottom:1px solid var(--rule)}
+  .sec-head p{margin:0; color:var(--muted); font-size:.9375rem; max-width:68ch}
+
+  .card{background:var(--surface); border:1px solid var(--rule); border-radius:2px; box-shadow:var(--shadow); padding:var(--s5)}
+  .grid{display:grid; gap:var(--s4)}
+  .g-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .g-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .g-32{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}
+  @media (max-width:900px){ .g-4{grid-template-columns:repeat(2,minmax(0,1fr))} .g-32,.g-2{grid-template-columns:1fr} }
+  @media (max-width:520px){ .g-4{grid-template-columns:1fr} }
+
+  /* ---------- kpi ---------- */
+  .kpi{display:flex; flex-direction:column; gap:var(--s2); padding:var(--s4)}
+  .kpi .k-val{font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:1.5rem; font-weight:600; letter-spacing:-.03em; line-height:1.1}
+  .kpi .k-sub{font-size:.75rem; color:var(--muted); line-height:1.4}
+  .swatch{width:9px; height:9px; border-radius:1px; display:inline-block; flex:0 0 auto}
+  .k-tag{display:flex; align-items:center; gap:var(--s2)}
+
+  /* ---------- commitment bar ---------- */
+  .commit{display:flex; flex-direction:column; gap:var(--s3)}
+  .commit-track{position:relative; height:52px; background:var(--surface-2); border-radius:2px}
+  .commit-fill{position:absolute; inset:0; display:flex; gap:2px; height:100%; width:100%}
+  .commit-seg{height:100%; border-radius:1px; position:relative; cursor:default}
+  .commit-seg:first-child{border-radius:2px 1px 1px 2px}
+  .commit-seg:last-child{border-radius:1px 2px 2px 1px}
+  .commit-line{position:absolute; top:-10px; bottom:-10px; width:2px; background:var(--ink); z-index:3}
+  .commit-line::after{
+    content:attr(data-label); position:absolute; left:8px; top:-8px; white-space:nowrap;
+    font-size:.6875rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink);
+  }
+  .commit-legend{display:flex; flex-wrap:wrap; gap:var(--s2) var(--s5); font-size:.8125rem; color:var(--muted)}
+  .commit-legend span.item{display:flex; align-items:center; gap:var(--s2)}
+  .commit-legend b{color:var(--ink); font-family:var(--mono); font-variant-numeric:tabular-nums; font-weight:600}
+
+  /* ---------- scenario ladder ---------- */
+  .ladder{display:flex; flex-direction:column}
+  .rung{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:var(--s2) var(--s5); align-items:center; padding:var(--s4) 0; border-bottom:1px solid var(--rule)}
+  .rung:last-child{border-bottom:0; padding-bottom:0}
+  .rung:first-child{padding-top:0}
+  .rung-t{display:flex; flex-direction:column; gap:var(--s1)}
+  .rung-t .name{font-weight:650; font-size:.9375rem}
+  .rung-t .desc{font-size:.8125rem; color:var(--muted)}
+  .rung-n{text-align:right; display:flex; flex-direction:column; gap:var(--s1)}
+  .rung-n .gap{font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:1.375rem; font-weight:600; letter-spacing:-.03em}
+  .rung-n .pct{font-size:.75rem; color:var(--muted); font-family:var(--mono); font-variant-numeric:tabular-nums}
+  .rung-bar{grid-column:1/-1; height:6px; background:var(--surface-2); border-radius:3px; overflow:hidden}
+  .rung-bar i{display:block; height:100%; border-radius:3px; background:var(--bad); opacity:.85}
+
+  /* ---------- goal bars (50/30/20) ---------- */
+  .goals{display:flex; flex-direction:column; gap:var(--s5)}
+  .goal-row{display:flex; flex-direction:column; gap:var(--s2)}
+  .goal-top{display:flex; align-items:baseline; justify-content:space-between; gap:var(--s3); flex-wrap:wrap}
+  .goal-top .name{display:flex; align-items:center; gap:var(--s2); font-weight:600; font-size:.875rem}
+  .goal-top .figs{font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:.8125rem; color:var(--muted)}
+  .goal-top .figs b{color:var(--ink); font-weight:600; font-size:.9375rem}
+  .goal-track{position:relative; height:22px; background:var(--surface-2); border-radius:2px}
+  .goal-fill{height:100%; border-radius:2px}
+  .goal-meta{position:absolute; top:-6px; bottom:-6px; width:2px; background:var(--ink-2); z-index:2}
+  .goal-meta::after{content:attr(data-label); position:absolute; left:6px; top:-16px; font-size:.6875rem; font-weight:600; color:var(--ink-2); white-space:nowrap; font-family:var(--mono)}
+  .goal-note{font-size:.8125rem; color:var(--muted)}
+  .goal-note b{font-family:var(--mono); font-variant-numeric:tabular-nums; font-weight:600}
+
+  /* ---------- generic table ---------- */
+  /* contêineres de rolagem só seguram a largura se puderem encolher */
+  .grid > *, .verdict > *, .actions > *, .card, .chart-figure{min-width:0}
+  .tbl-scroll, .chart-hold{min-width:0; max-width:100%}
+
+  .tbl-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
+  table{width:100%; border-collapse:collapse; font-size:.875rem; min-width:520px}
+  caption{text-align:left; font-size:.8125rem; color:var(--muted); padding-bottom:var(--s3)}
+  th{
+    text-align:left; font-size:.6875rem; font-weight:700; letter-spacing:.09em; text-transform:uppercase;
+    color:var(--faint); padding:0 var(--s3) var(--s2) 0; border-bottom:1px solid var(--rule-strong); white-space:nowrap;
+  }
+  td{padding:var(--s3) var(--s3) var(--s3) 0; border-bottom:1px solid var(--rule); vertical-align:baseline}
+  tr:last-child td{border-bottom:0}
+  th.r,td.r{text-align:right; padding-right:var(--s4)}
+  tr > :last-child{padding-right:0}
+  td.money{font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap}
+  tfoot td{border-top:1px solid var(--rule-strong); border-bottom:0; font-weight:650; padding-top:var(--s3)}
+  .chip{
+    display:inline-flex; align-items:center; gap:6px; font-size:.6875rem; font-weight:650;
+    padding:2px 7px; border-radius:2px; white-space:nowrap;
+  }
+  .chip-ess{background:var(--c1-soft); color:var(--c1)}
+  .chip-nao{background:var(--c2-soft); color:var(--c2)}
+  .chip-pou{background:var(--c3-soft); color:var(--c3)}
+  .chip-open{background:var(--bad-soft); color:var(--bad)}
+  .minibar{display:block; height:4px; border-radius:2px; margin:5px 0 0 auto; background:var(--c1); opacity:.75}
+
+  /* ---------- expense ranking ---------- */
+  .rank{display:flex; flex-direction:column; gap:var(--s3)}
+  .rank-row{display:grid; grid-template-columns:minmax(120px,1.1fr) minmax(0,3fr) auto; gap:var(--s3); align-items:center; font-size:.875rem}
+  .rank-row .rname{color:var(--ink-2); overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .rank-bar{height:14px; background:transparent; border-radius:2px}
+  .rank-bar i{display:block; height:100%; border-radius:2px; min-width:2px}
+  .rank-row .rval{font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:.8125rem; color:var(--ink); white-space:nowrap}
+  @media (max-width:560px){ .rank-row{grid-template-columns:minmax(90px,1fr) minmax(0,2fr) auto; font-size:.8125rem} }
+
+  /* ---------- chart ---------- */
+  .chart-figure{display:flex; flex-direction:column; gap:var(--s3)}
+  .chart-hold{overflow-x:auto}
+  svg{display:block; max-width:100%}
+  .legend{display:flex; flex-wrap:wrap; gap:var(--s2) var(--s5); font-size:.8125rem; color:var(--muted)}
+  .legend .item{display:flex; align-items:center; gap:var(--s2)}
+  .legend .line-key{width:14px; height:0; border-top:2px dashed var(--ink-2); display:inline-block}
+
+  /* ---------- comparison ---------- */
+  .cmp-row{display:grid; grid-template-columns:minmax(0,1.2fr) repeat(3,minmax(0,1fr)); gap:var(--s3); align-items:baseline; padding:var(--s3) 0; border-bottom:1px solid var(--rule); font-size:.875rem}
+  .cmp-row:last-child{border-bottom:0}
+  .cmp-row.head{border-bottom:1px solid var(--rule-strong); padding-bottom:var(--s2)}
+  .cmp-row.head span{font-size:.6875rem; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--faint)}
+  .cmp-row .v{font-family:var(--mono); font-variant-numeric:tabular-nums; text-align:right}
+  .cmp-row .lab{color:var(--ink-2)}
+
+  /* ---------- callouts ---------- */
+  .note{
+    background:var(--surface); border:1px solid var(--rule); border-left:3px solid var(--rule-strong);
+    border-radius:2px; padding:var(--s4) var(--s5); font-size:.875rem; color:var(--muted); line-height:1.6;
+  }
+  .note b{color:var(--ink-2)}
+  .note.flag{border-left-color:var(--warn)}
+  .note ul{margin:var(--s2) 0 0; padding-left:1.1rem}
+  .note li{margin-bottom:var(--s1)}
+  .note li::marker{color:var(--faint)}
+
+  .actions{display:grid; gap:var(--s4); grid-template-columns:repeat(3,minmax(0,1fr))}
+  @media (max-width:820px){ .actions{grid-template-columns:1fr} }
+  .action{display:flex; flex-direction:column; gap:var(--s2); padding:var(--s4); background:var(--surface); border:1px solid var(--rule); border-radius:2px}
+  .action .a-val{font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:1.25rem; font-weight:600; letter-spacing:-.03em}
+  .action p{margin:0; font-size:.8125rem; color:var(--muted); line-height:1.5}
+
+  footer{margin-top:var(--s8); padding-top:var(--s5); border-top:1px solid var(--rule); font-size:.75rem; color:var(--faint); line-height:1.6}
+  footer code{font-family:var(--mono); color:var(--muted)}
+
+  /* ---------- tooltip ---------- */
+  #tip{
+    position:fixed; z-index:50; pointer-events:none; opacity:0; transform:translate(-50%,-100%);
+    background:var(--ink); color:var(--paper); font-size:.75rem; line-height:1.4;
+    padding:6px 9px; border-radius:3px; white-space:nowrap; transition:opacity .12s ease;
+    box-shadow:0 6px 20px -8px rgba(0,0,0,.5);
+  }
+  #tip b{font-family:var(--mono); font-variant-numeric:tabular-nums}
+  [data-tip]{cursor:help}
+  :focus-visible{outline:2px solid var(--c1); outline-offset:2px; border-radius:2px}
+  @media (prefers-reduced-motion:reduce){ *{transition:none !important; animation:none !important} }
+</style>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-id">
+      <p class="eyebrow">Ganhos e gastos mensais · @karol e @tai</p>
+      <h1>Setembro <span class="yr">2026</span></h1>
+      <p class="eyebrow" style="color:var(--muted)">Painel do mês seguinte · projeção</p>
+    </div>
+    <div class="masthead-meta">
+      <span><strong>16</strong> contas lançadas · <strong>todas em aberto</strong></span>
+      <span>Contas pagas até agora: <strong class="num">R$&nbsp;0,00</strong></span>
+      <span>Fonte: aba <strong>Set.</strong> da planilha</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ================= VEREDITO ================= -->
+  <div class="verdict">
+    <div class="verdict-lead">
+      <p class="eyebrow">A conta que importa</p>
+      <div class="verdict-figure num">R$&nbsp;1.105,06</div>
+      <p class="verdict-say">
+        É o que falta entrar em setembro <b>só para pagar as contas</b> — sem guardar um centavo.
+        Isso equivale a faturar <b>7,4% a mais</b> do que o previsto.
+        Se a poupança também precisar acontecer, o buraco vai para <b>R$&nbsp;3.405,06</b>.
+      </p>
+    </div>
+    <div class="verdict-split">
+      <p class="eyebrow">Como o saldo da planilha se decompõe</p>
+      <div class="split-row">
+        <span class="lbl">Entradas previstas</span>
+        <span class="val num">R$&nbsp;14.965,79</span>
+      </div>
+      <div class="split-row">
+        <span class="lbl">− Contas do mês</span>
+        <span class="val num">R$&nbsp;16.070,85</span>
+      </div>
+      <div class="split-row">
+        <span class="lbl"><b>= Saldo real (sem poupança)</b></span>
+        <span class="val num neg">−R$&nbsp;1.105,06</span>
+      </div>
+      <div class="split-row">
+        <span class="lbl">− Poupança planejada</span>
+        <span class="val num">R$&nbsp;2.300,00</span>
+      </div>
+      <div class="split-row total">
+        <span class="lbl">= Saldo da planilha <span style="color:var(--faint); font-weight:400">(K4:K5)</span></span>
+        <span class="val num neg">−R$&nbsp;3.405,06</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= KPIs ================= -->
+  <section aria-labelledby="s-num">
+    <div class="sec-head">
+      <h2 id="s-num">Os números de setembro</h2>
+      <p>Tudo o que a aba <em>Set.</em> já tem lançado, lido de uma vez só.</p>
+    </div>
+    <div class="grid g-4">
+      <div class="card kpi">
+        <span class="eyebrow">Entradas</span>
+        <span class="k-val num">R$&nbsp;14.965,79</span>
+        <span class="k-sub">5 lançamentos · <span class="num">R$&nbsp;13.762,62</span> vêm de @takai (92%)</span>
+      </div>
+      <div class="card kpi">
+        <span class="eyebrow">Contas do mês</span>
+        <span class="k-val num">R$&nbsp;16.070,85</span>
+        <span class="k-sub"><span class="num">107,4%</span> das entradas · <span class="num">R$&nbsp;535,70</span> por dia</span>
+      </div>
+      <div class="card kpi">
+        <span class="eyebrow">Poupança planejada</span>
+        <span class="k-val num">R$&nbsp;2.300,00</span>
+        <span class="k-sub">8 caixinhas · <span class="num">0%</span> coberto pelo caixa atual</span>
+      </div>
+      <div class="card kpi">
+        <span class="eyebrow">Saldo real</span>
+        <span class="k-val num neg">−R$&nbsp;1.105,06</span>
+        <span class="k-sub">Entradas menos contas, poupança de fora</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= COMPROMETIMENTO ================= -->
+  <section aria-labelledby="s-commit">
+    <div class="sec-head">
+      <h2 id="s-commit">Quanto da renda já está comprometido</h2>
+      <p>A barra é o que setembro exige. A linha preta é tudo o que entra. O que passa da linha não existe hoje.</p>
+    </div>
+    <div class="card commit">
+      <div class="commit-track" id="commitTrack">
+        <div class="commit-fill">
+          <div class="commit-seg" style="flex:0 0 50.77%; background:var(--c1)"
+               data-tip="Essenciais · R$ 9.327,50 · 62,3% das entradas"></div>
+          <div class="commit-seg" style="flex:0 0 36.71%; background:var(--c2)"
+               data-tip="Não essenciais · R$ 6.743,35 · 45,1% das entradas"></div>
+          <div class="commit-seg" style="flex:1 1 auto; background:var(--c3)"
+               data-tip="Poupança planejada · R$ 2.300,00 · 15,4% das entradas"></div>
+        </div>
+        <div class="commit-line" style="left:81.5%" data-label="Entradas"></div>
+      </div>
+      <div class="commit-legend">
+        <span class="item"><i class="swatch" style="background:var(--c1)"></i> Essenciais <b>R$&nbsp;9.327,50</b></span>
+        <span class="item"><i class="swatch" style="background:var(--c2)"></i> Não essenciais <b>R$&nbsp;6.743,35</b></span>
+        <span class="item"><i class="swatch" style="background:var(--c3)"></i> Poupança <b>R$&nbsp;2.300,00</b></span>
+        <span class="item" style="color:var(--bad)"><b style="color:var(--bad)">122,75%</b> das entradas comprometidos</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= QUANTO FALTA GANHAR ================= -->
+  <section aria-labelledby="s-gap">
+    <div class="sec-head">
+      <h2 id="s-gap">Quanto você ainda precisa ganhar</h2>
+      <p>Três níveis de ambição, do mínimo de sobrevivência até a meta de 20% de poupança definida na aba <em>Início</em>.</p>
+    </div>
+    <div class="grid g-32">
+      <div class="card ladder">
+        <div class="rung">
+          <div class="rung-t">
+            <span class="name">Só fechar as contas</span>
+            <span class="desc">Faturamento necessário: <span class="num">R$&nbsp;16.070,85</span> · sem poupar nada</span>
+          </div>
+          <div class="rung-n">
+            <span class="gap num neg">+R$&nbsp;1.105,06</span>
+            <span class="pct">+7,4% de receita</span>
+          </div>
+          <div class="rung-bar"><i style="width:21.6%"></i></div>
+        </div>
+        <div class="rung">
+          <div class="rung-t">
+            <span class="name">Contas + a poupança que você planejou</span>
+            <span class="desc">Faturamento necessário: <span class="num">R$&nbsp;18.370,85</span> · as 8 caixinhas cheias</span>
+          </div>
+          <div class="rung-n">
+            <span class="gap num neg">+R$&nbsp;3.405,06</span>
+            <span class="pct">+22,8% de receita</span>
+          </div>
+          <div class="rung-bar"><i style="width:66.5%"></i></div>
+        </div>
+        <div class="rung">
+          <div class="rung-t">
+            <span class="name">Contas + meta de 20% de poupança</span>
+            <span class="desc">Faturamento necessário: <span class="num">R$&nbsp;20.088,56</span> · guarda <span class="num">R$&nbsp;4.017,71</span></span>
+          </div>
+          <div class="rung-n">
+            <span class="gap num neg">+R$&nbsp;5.122,77</span>
+            <span class="pct">+34,2% de receita</span>
+          </div>
+          <div class="rung-bar"><i style="width:100%"></i></div>
+        </div>
+      </div>
+
+      <div class="card" style="display:flex; flex-direction:column; gap:var(--s4)">
+        <div>
+          <p class="eyebrow" style="margin-bottom:var(--s2)">Pelo outro lado</p>
+          <h3 style="margin-bottom:var(--s2)">Se a receita não subir, o corte é este</h3>
+          <p style="margin:0; font-size:.875rem; color:var(--muted)">
+            Para as contas caberem nas entradas, é preciso tirar <b class="num" style="color:var(--ink)">R$&nbsp;1.105,06</b>
+            das despesas de setembro — <span class="num">6,9%</span> do total.
+          </p>
+        </div>
+        <div style="border-top:1px solid var(--rule); padding-top:var(--s4); display:flex; flex-direction:column; gap:var(--s3)">
+          <div class="split-row">
+            <span class="lbl">Não essenciais no mês</span>
+            <span class="val num">R$&nbsp;6.743,35</span>
+          </div>
+          <div class="split-row">
+            <span class="lbl">Corte necessário sobre eles</span>
+            <span class="val num">16,4%</span>
+          </div>
+          <div class="split-row">
+            <span class="lbl">Para também bancar a poupança</span>
+            <span class="val num">50,5%</span>
+          </div>
+        </div>
+        <p style="margin:0; font-size:.8125rem; color:var(--muted); border-top:1px solid var(--rule); padding-top:var(--s3)">
+          O corte é matematicamente viável sem tocar em nada essencial — mas
+          <b style="color:var(--ink-2)">87% dos não essenciais são a fatura do cartão</b>, então é lá que a decisão acontece.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= POUPANÇA ================= -->
+  <section aria-labelledby="s-pou">
+    <div class="sec-head">
+      <h2 id="s-pou">A poupança, isolada</h2>
+      <p>Quanto falta buscar exclusivamente para guardar — separado das contas, como você pediu.</p>
+    </div>
+    <div class="grid g-32">
+      <div class="card">
+        <div class="tbl-scroll">
+          <table>
+            <caption>Caixinhas de setembro · nenhuma tem lastro no caixa previsto</caption>
+            <thead>
+              <tr><th>Caixinha</th><th class="r">Meta do mês</th><th class="r">Ainda falta</th></tr>
+            </thead>
+            <tbody id="poupBody"></tbody>
+            <tfoot>
+              <tr>
+                <td>Total a buscar só para poupança</td>
+                <td class="r money">R$&nbsp;2.300,00</td>
+                <td class="r money neg">R$&nbsp;2.300,00</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:var(--s4)">
+        <div class="card kpi" style="padding:var(--s5)">
+          <span class="eyebrow">Falta só para poupar</span>
+          <span class="k-val num neg" style="font-size:2rem">R$&nbsp;2.300,00</span>
+          <span class="k-sub">Como o saldo das contas já é negativo, <b>100% da poupança</b> depende de receita nova.</span>
+        </div>
+        <div class="card kpi" style="padding:var(--s5)">
+          <span class="eyebrow">Distância até a meta de 20%</span>
+          <span class="k-val num">R$&nbsp;693,16</span>
+          <span class="k-sub">O plano guarda <span class="num">15,4%</span> das entradas; a meta da aba <em>Início</em> é <span class="num">20%</span>.</span>
+        </div>
+        <div class="note flag">
+          <b>Atenção ao cálculo da planilha.</b> A célula <code style="font-family:var(--mono)">Q21</code> divide a poupança
+          apenas pela entrada de @takai, mostrando <span class="num">16,7%</span>. Sobre o total de entradas,
+          o percentual real é <span class="num">15,4%</span>.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 50/30/20 ================= -->
+  <section aria-labelledby="s-meta">
+    <div class="sec-head">
+      <h2 id="s-meta">Contra as suas metas 50 / 30 / 20</h2>
+      <p>Cada barra é o valor real como % das entradas do mês. O traço vertical é a meta que você definiu na aba <em>Início</em>.</p>
+    </div>
+    <div class="card goals">
+      <div class="goal-row">
+        <div class="goal-top">
+          <span class="name"><i class="swatch" style="background:var(--c1)"></i> Essenciais</span>
+          <span class="figs"><b>R$&nbsp;9.327,50</b> · 62,3% das entradas</span>
+        </div>
+        <div class="goal-track">
+          <div class="goal-fill" style="width:62.3%; background:var(--c1)" data-tip="Essenciais · 62,3% · meta 50%"></div>
+          <div class="goal-meta" style="left:50%" data-label="meta 50%"></div>
+        </div>
+        <span class="goal-note">Acima da meta em <b class="neg">R$&nbsp;1.844,60</b>. Aluguel e mercado sozinhos são <b>R$&nbsp;5.218,96</b>.</span>
+      </div>
+
+      <div class="goal-row">
+        <div class="goal-top">
+          <span class="name"><i class="swatch" style="background:var(--c2)"></i> Não essenciais</span>
+          <span class="figs"><b>R$&nbsp;6.743,35</b> · 45,1% das entradas</span>
+        </div>
+        <div class="goal-track">
+          <div class="goal-fill" style="width:45.1%; background:var(--c2)" data-tip="Não essenciais · 45,1% · meta 30%"></div>
+          <div class="goal-meta" style="left:30%" data-label="meta 30%"></div>
+        </div>
+        <span class="goal-note">Acima da meta em <b class="neg">R$&nbsp;2.253,61</b> — o maior desvio dos três, e o mais controlável.</span>
+      </div>
+
+      <div class="goal-row">
+        <div class="goal-top">
+          <span class="name"><i class="swatch" style="background:var(--c3)"></i> Poupança</span>
+          <span class="figs"><b>R$&nbsp;2.300,00</b> · 15,4% das entradas</span>
+        </div>
+        <div class="goal-track">
+          <div class="goal-fill" style="width:15.4%; background:var(--c3)" data-tip="Poupança · 15,4% · meta 20%"></div>
+          <div class="goal-meta" style="left:20%" data-label="meta 20%"></div>
+        </div>
+        <span class="goal-note">Abaixo da meta em <b>R$&nbsp;693,16</b> — e ainda sem caixa para bancar o que já está planejado.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CALENDÁRIO DE CAIXA ================= -->
+  <section aria-labelledby="s-cal">
+    <div class="sec-head">
+      <h2 id="s-cal">Quando o dinheiro acaba</h2>
+      <p>Contas acumuladas por dia de vencimento, contra a linha do que entra no mês. O cruzamento é a data em que o caixa vira.</p>
+    </div>
+    <div class="card chart-figure">
+      <div class="chart-hold"><svg id="cashChart" role="img" aria-label="Contas acumuladas de setembro por dia de vencimento cruzando a linha de entradas no dia 17"></svg></div>
+      <div class="legend">
+        <span class="item"><i class="swatch" style="background:var(--c1)"></i> Contas acumuladas</span>
+        <span class="item"><i class="line-key"></i> Entradas do mês (R$&nbsp;14.965,79)</span>
+        <span class="item" style="color:var(--bad)"><i class="swatch" style="background:var(--bad)"></i> A partir do dia 17: descoberto</span>
+      </div>
+      <p style="margin:0; font-size:.875rem; color:var(--muted)">
+        <b style="color:var(--ink-2)">O dia 5 concentra R$&nbsp;10.647,79</b> — 66% de tudo que vence no mês, incluindo a fatura do cartão.
+        No dia 10, após o aluguel, restam <span class="num">R$&nbsp;355,04</span>. No dia 17 o Simples Nacional derruba o caixa.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= ONDE VAI O DINHEIRO ================= -->
+  <section aria-labelledby="s-onde">
+    <div class="sec-head">
+      <h2 id="s-onde">Onde vai o dinheiro</h2>
+      <p>As 16 contas de setembro, da maior para a menor. Duas linhas respondem por 60% do mês.</p>
+    </div>
+    <div class="grid g-32">
+      <div class="card rank" id="rankList"></div>
+      <div style="display:flex; flex-direction:column; gap:var(--s4)">
+        <div class="card kpi">
+          <span class="eyebrow">Concentração</span>
+          <span class="k-val num">59,7%</span>
+          <span class="k-sub">Cartão de crédito + aluguel = <span class="num">R$&nbsp;9.602,31</span> de <span class="num">R$&nbsp;16.070,85</span>.</span>
+        </div>
+        <div class="card kpi">
+          <span class="eyebrow">Fatura do cartão</span>
+          <span class="k-val num" style="color:var(--c2)">R$&nbsp;5.883,35</span>
+          <span class="k-sub">Classificada como <b>não essencial / lazer</b> na planilha. Sozinha, é 87% de todos os não essenciais.</span>
+        </div>
+        <div class="note">
+          A fatura é uma caixa-preta: ela agrupa gastos que provavelmente são de tipos diferentes.
+          <b>Abrir o cartão por categoria é o único jeito de saber se o problema é excesso ou classificação</b> —
+          hoje ela puxa os não essenciais de 5,8% para 45,1% das entradas.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= AGOSTO x SETEMBRO ================= -->
+  <section aria-labelledby="s-cmp">
+    <div class="sec-head">
+      <h2 id="s-cmp">O que mudou de agosto para setembro</h2>
+      <p>Agosto fecha no positivo por pouco. Setembro vira porque a receita cai muito mais rápido do que as contas.</p>
+    </div>
+    <div class="grid g-2">
+      <div class="card">
+        <div class="cmp-row head"><span>Indicador</span><span class="v">Agosto</span><span class="v">Setembro</span><span class="v">Variação</span></div>
+        <div class="cmp-row"><span class="lab">Entradas</span><span class="v">22.718,05</span><span class="v">14.965,79</span><span class="v neg">−34,1%</span></div>
+        <div class="cmp-row"><span class="lab">Contas</span><span class="v">20.292,55</span><span class="v">16.070,85</span><span class="v pos">−20,8%</span></div>
+        <div class="cmp-row"><span class="lab">Poupança planejada</span><span class="v">2.399,61</span><span class="v">2.300,00</span><span class="v">−4,2%</span></div>
+        <div class="cmp-row"><span class="lab">Saldo real (sem poupança)</span><span class="v pos">+2.425,50</span><span class="v neg">−1.105,06</span><span class="v neg">−3.530,56</span></div>
+        <div class="cmp-row"><span class="lab">Saldo da planilha</span><span class="v pos">+25,89</span><span class="v neg">−3.405,06</span><span class="v neg">−3.430,95</span></div>
+      </div>
+      <div class="card chart-figure">
+        <p class="eyebrow">O que o mês exige × o que entra</p>
+        <div class="chart-hold"><svg id="cmpChart" role="img" aria-label="Composição das saídas de agosto e setembro de 2026 comparada às entradas de cada mês"></svg></div>
+        <div class="legend">
+          <span class="item"><i class="swatch" style="background:var(--c1)"></i> Essenciais</span>
+          <span class="item"><i class="swatch" style="background:var(--c2)"></i> Não essenciais</span>
+          <span class="item"><i class="swatch" style="background:var(--c3)"></i> Poupança</span>
+          <span class="item"><i style="width:14px; height:0; border-top:2px solid var(--ink); display:inline-block"></i> Entradas</span>
+        </div>
+        <p style="margin:0; font-size:.875rem; color:var(--muted)">
+          As contas caíram <span class="num">R$&nbsp;4.221,70</span>, mas as entradas caíram
+          <span class="num">R$&nbsp;7.752,26</span>. A diferença entre essas duas quedas é exatamente o tamanho do problema.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= AÇÕES ================= -->
+  <section aria-labelledby="s-acao">
+    <div class="sec-head">
+      <h2 id="s-acao">O que fecha a conta</h2>
+      <p>Três caminhos, com o número exato de cada um. Podem ser combinados.</p>
+    </div>
+    <div class="actions">
+      <div class="action">
+        <span class="eyebrow">Caminho 1 · receita</span>
+        <span class="a-val">+R$&nbsp;1.105,06</span>
+        <p>Faturar 7,4% a mais em setembro zera o vermelho das contas. Para as caixinhas também acontecerem, são <b>+R$&nbsp;3.405,06</b> (+22,8%).</p>
+      </div>
+      <div class="action">
+        <span class="eyebrow">Caminho 2 · fatura</span>
+        <span class="a-val">−R$&nbsp;1.105,06</span>
+        <p>Cortar 18,8% da fatura do cartão resolve sozinho. É a única despesa grande do mês que não é contrato fixo.</p>
+      </div>
+      <div class="action">
+        <span class="eyebrow">Caminho 3 · calendário</span>
+        <span class="a-val">R$&nbsp;10.647,79</span>
+        <p>Vence tudo no dia 5. Negociar o vencimento do cartão ou do aluguel não muda o total, mas evita o aperto entre os dias 5 e 17.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= DETALHE ================= -->
+  <section aria-labelledby="s-det">
+    <div class="sec-head">
+      <h2 id="s-det">Todas as contas de setembro</h2>
+      <p>As 16 linhas da aba <em>Set.</em>, ordenadas por dia de vencimento.</p>
+    </div>
+    <div class="card">
+      <div class="tbl-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Dia</th><th>Descrição</th><th>Tipo</th><th>Categoria</th><th>Pagamento</th>
+              <th class="r">Valor</th><th class="r">% do mês</th><th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="contasBody"></tbody>
+          <tfoot>
+            <tr>
+              <td colspan="5">Total · 16 contas, nenhuma paga</td>
+              <td class="r money">R$&nbsp;16.070,85</td>
+              <td class="r money">100%</td>
+              <td><span class="chip chip-open">Em aberto</span></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+    <div class="grid g-2" style="margin-top:var(--s4)">
+      <div class="card">
+        <div class="tbl-scroll">
+          <table>
+            <caption>Entradas previstas</caption>
+            <thead><tr><th>Origem</th><th class="r">Valor</th><th class="r">% do total</th></tr></thead>
+            <tbody id="entradasBody"></tbody>
+            <tfoot><tr><td>Total</td><td class="r money">R$&nbsp;14.965,79</td><td class="r money">100%</td></tr></tfoot>
+          </table>
+        </div>
+      </div>
+      <div class="note">
+        <b>Como cada número foi obtido.</b>
+        <ul>
+          <li><b>Saldo real</b> = entradas − contas. É o <code>K4:K5</code> da planilha com a poupança devolvida.</li>
+          <li><b>Saldo da planilha</b> (<code>K4:K5</code>) = entradas − poupança − contas, pela fórmula <code>=E4 − O21 − SUM(Set.[Valor])</code>.</li>
+          <li><b>% a mais de receita</b> = falta ÷ entradas previstas.</li>
+          <li><b>Meta de 20%</b> = receita <em>R</em> tal que <em>R</em> − contas = 0,20·<em>R</em>, ou seja <em>R</em> = contas ÷ 0,8.</li>
+          <li>Percentuais de essenciais, não essenciais e poupança usam sempre o <b>total de entradas</b> como base.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Painel gerado a partir da planilha <em>ganhos e gastos mensais [@karol e @tai] — 2026</em>, aba <code>Set.</code>.
+    Valores em reais, projetados: em setembro nenhuma conta está marcada como paga, então tudo aqui é previsão, não realizado.
+    Metas 50 / 30 / 20 lidas da aba <code>Início</code>.
+  </footer>
+</div>
+
+<div id="tip" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  var BRL = new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"});
+  var PCT = function(v,d){ return v.toLocaleString("pt-BR",{minimumFractionDigits:d||1,maximumFractionDigits:d||1}) + "%"; };
+
+  var ENTRADAS_TOTAL = 14965.79;
+  var CONTAS_TOTAL   = 16070.85;
+
+  var contas = [
+    {dia:1,  desc:"Internet",           tipo:"Essenciais",     cat:"Contas",     pag:"Pix",     val:130.00},
+    {dia:5,  desc:"Cartões de Crédito", tipo:"Não Essenciais", cat:"Lazer",      pag:"Crédito", val:5883.35},
+    {dia:5,  desc:"Mercado",            tipo:"Essenciais",     cat:"Mercado",    pag:"Crédito", val:1500.00},
+    {dia:5,  desc:"Gatos",              tipo:"Essenciais",     cat:"Contas",     pag:"Crédito", val:904.64},
+    {dia:5,  desc:"INSS",               tipo:"Essenciais",     cat:"Contas",     pag:"Débito",  val:760.00},
+    {dia:5,  desc:"Wellhub",            tipo:"Essenciais",     cat:"Saúde",      pag:"Crédito", val:439.80},
+    {dia:5,  desc:"Faxina",             tipo:"Não Essenciais", cat:"Outros",     pag:"Pix",     val:440.00},
+    {dia:5,  desc:"Gasolina",           tipo:"Essenciais",     cat:"Transporte", pag:"Crédito", val:300.00},
+    {dia:5,  desc:"Terapia",            tipo:"Não Essenciais", cat:"Saúde",      pag:"Pix",     val:300.00},
+    {dia:5,  desc:"Telefone",           tipo:"Não Essenciais", cat:"Contas",     pag:"Crédito", val:120.00},
+    {dia:7,  desc:"Água",               tipo:"Essenciais",     cat:"Contas",     pag:"Pix",     val:114.00},
+    {dia:10, desc:"Aluguel",            tipo:"Essenciais",     cat:"Contas",     pag:"Pix",     val:3718.96},
+    {dia:17, desc:"Simples Nacional",   tipo:"Essenciais",     cat:"Contas",     pag:"Pix",     val:600.00},
+    {dia:18, desc:"Luz",                tipo:"Essenciais",     cat:"Contas",     pag:"Pix",     val:180.00},
+    {dia:20, desc:"Plano de saúde",     tipo:"Essenciais",     cat:"Saúde",      pag:"Pix",     val:533.10},
+    {dia:21, desc:"Seguro do Carro",    tipo:"Essenciais",     cat:"Contas",     pag:"Pix",     val:147.00}
+  ];
+
+  var entradas = [
+    {origem:"@takai",       val:13762.62},
+    {origem:"@outros",      val:759.80},
+    {origem:"@rolezinhos",  val:175.20},
+    {origem:"@gatos",       val:151.51},
+    {origem:"@carro",       val:116.66}
+  ];
+
+  var poupanca = [
+    {nome:"Portugal e Grécia",                    val:800.00},
+    {nome:"Flexível (investimentos médio prazo)", val:500.00},
+    {nome:"Poupança (longo prazo)",               val:400.00},
+    {nome:"Rolezinhos (dia a dia)",               val:300.00},
+    {nome:"Gatos",                                val:100.00},
+    {nome:"Carro",                                val:100.00},
+    {nome:"Viagenzinhas",                         val:100.00},
+    {nome:"takai",                                val:0.00}
+  ];
+
+  /* ---------- tabelas ---------- */
+  function el(tag, cls, html){
+    var n = document.createElement(tag);
+    if(cls) n.className = cls;
+    if(html !== undefined) n.innerHTML = html;
+    return n;
+  }
+
+  var contasBody = document.getElementById("contasBody");
+  contas.forEach(function(c){
+    var share = c.val / CONTAS_TOTAL * 100;
+    var chip = c.tipo === "Essenciais" ? "chip-ess" : "chip-nao";
+    var tr = el("tr");
+    tr.appendChild(el("td","money", String(c.dia)));
+    tr.appendChild(el("td", null, c.desc));
+    tr.appendChild(el("td", null, '<span class="chip '+chip+'">'+c.tipo+'</span>'));
+    tr.appendChild(el("td", null, '<span style="color:var(--muted)">'+c.cat+'</span>'));
+    tr.appendChild(el("td", null, '<span style="color:var(--muted)">'+c.pag+'</span>'));
+    tr.appendChild(el("td","r money", BRL.format(c.val)));
+    var pctCell = el("td","r money", PCT(share));
+    pctCell.innerHTML += '<i class="minibar" style="width:'+share.toFixed(1)+'%; background:'+
+      (c.tipo==="Essenciais" ? "var(--c1)" : "var(--c2)")+'"></i>';
+    tr.appendChild(pctCell);
+    tr.appendChild(el("td", null, '<span class="chip chip-open">Em aberto</span>'));
+    contasBody.appendChild(tr);
+  });
+
+  var entradasBody = document.getElementById("entradasBody");
+  entradas.forEach(function(e){
+    var tr = el("tr");
+    tr.appendChild(el("td", null, e.origem));
+    tr.appendChild(el("td","r money", BRL.format(e.val)));
+    tr.appendChild(el("td","r money", PCT(e.val/ENTRADAS_TOTAL*100)));
+    entradasBody.appendChild(tr);
+  });
+
+  var poupBody = document.getElementById("poupBody");
+  poupanca.forEach(function(p){
+    var tr = el("tr");
+    tr.appendChild(el("td", null, p.nome + (p.val === 0 ? ' <span style="color:var(--faint); font-size:.75rem">(sem meta)</span>' : "")));
+    tr.appendChild(el("td","r money", BRL.format(p.val)));
+    tr.appendChild(el("td","r money" + (p.val > 0 ? " neg" : ""), p.val > 0 ? BRL.format(p.val) : "—"));
+    poupBody.appendChild(tr);
+  });
+
+  /* ---------- ranking de despesas ---------- */
+  var rank = document.getElementById("rankList");
+  var maxVal = contas.reduce(function(m,c){ return Math.max(m,c.val); },0);
+  contas.slice().sort(function(a,b){ return b.val - a.val; }).forEach(function(c){
+    var row = el("div","rank-row");
+    row.appendChild(el("span","rname", c.desc));
+    var bar = el("div","rank-bar");
+    var fill = el("i");
+    fill.style.width = (c.val / maxVal * 100) + "%";
+    fill.style.background = c.tipo === "Essenciais" ? "var(--c1)" : "var(--c2)";
+    fill.setAttribute("data-tip", c.desc + " · " + BRL.format(c.val) + " · " + PCT(c.val/CONTAS_TOTAL*100) + " do mês · " + c.tipo);
+    bar.appendChild(fill);
+    row.appendChild(bar);
+    row.appendChild(el("span","rval", BRL.format(c.val)));
+    rank.appendChild(row);
+  });
+
+  /* ---------- tooltip ---------- */
+  var tip = document.getElementById("tip");
+  function showTip(e){
+    var t = e.target.closest("[data-tip]");
+    if(!t){ return; }
+    tip.textContent = t.getAttribute("data-tip");
+    tip.style.opacity = "1";
+    var r = t.getBoundingClientRect();
+    tip.style.left = Math.min(Math.max(r.left + r.width/2, 90), window.innerWidth - 90) + "px";
+    tip.style.top  = (r.top - 8) + "px";
+  }
+  function hideTip(){ tip.style.opacity = "0"; }
+  document.addEventListener("mouseover", showTip);
+  document.addEventListener("mouseout", hideTip);
+  document.addEventListener("scroll", hideTip, true);
+
+  /* ---------- gráfico: calendário de caixa ---------- */
+  var SVGNS = "http://www.w3.org/2000/svg";
+  function s(tag, attrs){
+    var n = document.createElementNS(SVGNS, tag);
+    for(var k in attrs){ n.setAttribute(k, attrs[k]); }
+    return n;
+  }
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+  function drawCash(){
+    var svg = document.getElementById("cashChart");
+    while(svg.firstChild){ svg.removeChild(svg.firstChild); }
+
+    var W = Math.max(560, svg.parentNode.clientWidth || 700), H = 300;
+    var m = {t:18, r:16, b:34, l:74};
+    var iw = W - m.l - m.r, ih = H - m.t - m.b;
+    svg.setAttribute("viewBox","0 0 "+W+" "+H);
+    svg.setAttribute("width", W);
+    svg.setAttribute("height", H);
+
+    var byDay = {};
+    contas.forEach(function(c){ byDay[c.dia] = (byDay[c.dia]||0) + c.val; });
+    var days = Object.keys(byDay).map(Number).sort(function(a,b){ return a-b; });
+
+    var pts = [{d:0, v:0}], acc = 0;
+    days.forEach(function(d){ acc += byDay[d]; pts.push({d:d, v:acc}); });
+    pts.push({d:30, v:acc});
+
+    var yMax = Math.max(acc, ENTRADAS_TOTAL) * 1.08;
+    var x = function(d){ return m.l + d/30 * iw; };
+    var y = function(v){ return m.t + ih - (v/yMax) * ih; };
+
+    var gridColor = css("--rule"), inkMuted = css("--faint"), inkStrong = css("--ink-2");
+
+    [0, 4000, 8000, 12000, 16000].forEach(function(v){
+      svg.appendChild(s("line",{x1:m.l, x2:m.l+iw, y1:y(v), y2:y(v), stroke:gridColor, "stroke-width":1}));
+      var lab = s("text",{x:m.l-10, y:y(v)+4, "text-anchor":"end", fill:inkMuted,
+                          "font-size":11, "font-family":css("--mono")});
+      lab.textContent = v === 0 ? "0" : (v/1000) + "k";
+      svg.appendChild(lab);
+    });
+
+    // caminho em degraus
+    var dStep = "M " + x(0) + " " + y(0);
+    for(var i=1;i<pts.length;i++){
+      dStep += " L " + x(pts[i].d) + " " + y(pts[i-1].v) + " L " + x(pts[i].d) + " " + y(pts[i].v);
+    }
+    var area = dStep + " L " + x(30) + " " + y(0) + " Z";
+
+    var grad = s("linearGradient",{id:"cashGrad", x1:"0", y1:"0", x2:"0", y2:"1"});
+    var st1 = s("stop",{offset:"0%", "stop-color":css("--c1"), "stop-opacity":"0.22"});
+    var st2 = s("stop",{offset:"100%", "stop-color":css("--c1"), "stop-opacity":"0.02"});
+    grad.appendChild(st1); grad.appendChild(st2);
+    var defs = s("defs",{}); defs.appendChild(grad); svg.appendChild(defs);
+
+    svg.appendChild(s("path",{d:area, fill:"url(#cashGrad)"}));
+    svg.appendChild(s("path",{d:dStep, fill:"none", stroke:css("--c1"), "stroke-width":2,
+                              "stroke-linejoin":"round", "stroke-linecap":"round"}));
+
+    // linha das entradas
+    svg.appendChild(s("line",{x1:m.l, x2:m.l+iw, y1:y(ENTRADAS_TOTAL), y2:y(ENTRADAS_TOTAL),
+                              stroke:inkStrong, "stroke-width":2, "stroke-dasharray":"5 4"}));
+    var entLab = s("text",{x:m.l+6, y:y(ENTRADAS_TOTAL)-8, "text-anchor":"start", fill:inkStrong,
+                           "font-size":11, "font-weight":"700", "font-family":css("--sans")});
+    entLab.textContent = "Entradas do mês · R$ 14.965,79";
+    svg.appendChild(entLab);
+
+    // zona de descoberto a partir do cruzamento
+    var cross = null;
+    for(var j=1;j<pts.length;j++){
+      if(pts[j].v > ENTRADAS_TOTAL){ cross = pts[j]; break; }
+    }
+    if(cross){
+      svg.appendChild(s("rect",{x:x(cross.d), y:m.t, width:(m.l+iw)-x(cross.d), height:ih,
+                                fill:css("--bad"), opacity:"0.07"}));
+      svg.appendChild(s("line",{x1:x(cross.d), x2:x(cross.d), y1:m.t, y2:m.t+ih,
+                                stroke:css("--bad"), "stroke-width":2}));
+      var cl = s("text",{x:x(cross.d)+7, y:m.t+14, fill:css("--bad"), "font-size":11,
+                         "font-weight":"700", "font-family":css("--sans")});
+      cl.textContent = "dia " + cross.d + " · caixa vira";
+      svg.appendChild(cl);
+    }
+
+    // marcadores por dia com vencimento
+    pts.slice(1, pts.length-1).forEach(function(p){
+      var c = s("circle",{cx:x(p.d), cy:y(p.v), r:4.5, fill:css("--surface"),
+                          stroke:p.v > ENTRADAS_TOTAL ? css("--bad") : css("--c1"), "stroke-width":2});
+      c.setAttribute("data-tip","Dia "+p.d+" · vence "+BRL.format(byDay[p.d])+" · acumulado "+BRL.format(p.v));
+      svg.appendChild(c);
+    });
+
+    [1,5,10,15,20,25,30].forEach(function(d){
+      var t = s("text",{x:x(d), y:H-12, "text-anchor":"middle", fill:inkMuted,
+                        "font-size":11, "font-family":css("--mono")});
+      t.textContent = d;
+      svg.appendChild(t);
+    });
+    var axl = s("text",{x:m.l+iw/2, y:H-0.5, "text-anchor":"middle", fill:inkMuted,
+                        "font-size":10, "font-family":css("--sans")});
+    axl.textContent = "";
+    svg.appendChild(axl);
+  }
+
+  /* ---------- gráfico: agosto x setembro ---------- */
+  function drawCmp(){
+    var svg = document.getElementById("cmpChart");
+    while(svg.firstChild){ svg.removeChild(svg.firstChild); }
+
+    var W = Math.max(320, svg.parentNode.clientWidth || 420), H = 262;
+    var m = {t:20, r:12, b:44, l:12};
+    var iw = W - m.l - m.r, ih = H - m.t - m.b;
+    svg.setAttribute("viewBox","0 0 "+W+" "+H);
+    svg.setAttribute("width", W);
+    svg.setAttribute("height", H);
+
+    // Mesma linguagem da barra de comprometimento: a pilha é o que o mês exige,
+    // o traço em tinta é o que entra.
+    var data = [
+      {mes:"Agosto",   ess:10200.86, nes:10091.69, pou:2399.61, entradas:22718.05},
+      {mes:"Setembro", ess:9327.50,  nes:6743.35,  pou:2300.00, entradas:14965.79}
+    ];
+    var yMax = 25500;
+    var groupW = iw / data.length;
+    var barW = Math.min(64, groupW - 70);
+
+    data.forEach(function(g, gi){
+      var gx = m.l + gi*groupW + groupW/2;
+      var bx = gx - barW/2;
+      var stack = [
+        ["Essenciais",     g.ess, css("--c1")],
+        ["Não essenciais", g.nes, css("--c2")],
+        ["Poupança",       g.pou, css("--c3")]
+      ];
+      var total = g.ess + g.nes + g.pou;
+      var cursor = 0;
+      stack.forEach(function(seg){
+        var h = seg[1]/yMax * ih;
+        var yTop = m.t + ih - (cursor + seg[1])/yMax * ih;
+        // 2px de respiro na cor da superfície entre segmentos
+        var r = s("rect",{x:bx, y:yTop, width:barW, height:Math.max(h-2,1), rx:2, ry:2, fill:seg[2]});
+        r.setAttribute("data-tip", g.mes+" · "+seg[0]+" · "+BRL.format(seg[1]));
+        svg.appendChild(r);
+        cursor += seg[1];
+      });
+
+      // marcador das entradas
+      var ey = m.t + ih - g.entradas/yMax * ih;
+      svg.appendChild(s("line",{x1:bx-9, x2:bx+barW+9, y1:ey, y2:ey,
+                                stroke:css("--ink"), "stroke-width":2}));
+      var hit = s("rect",{x:bx-9, y:ey-7, width:barW+18, height:14, fill:"transparent"});
+      hit.setAttribute("data-tip", g.mes+" · entradas · "+BRL.format(g.entradas));
+      svg.appendChild(hit);
+      // fora da pilha, para o rótulo nunca cair sobre um segmento
+      var el2 = s("text",{x:bx+barW+13, y:ey+4, "text-anchor":"start", fill:css("--ink"),
+                          "font-size":10.5, "font-weight":"700", "font-family":css("--mono")});
+      el2.textContent = (g.entradas/1000).toFixed(1).replace(".",",")+"k";
+      svg.appendChild(el2);
+
+      var ml = s("text",{x:gx, y:H-12, "text-anchor":"middle", fill:css("--muted"),
+                         "font-size":11.5, "font-family":css("--sans"), "font-weight":"600"});
+      ml.textContent = g.mes;
+      svg.appendChild(ml);
+
+      var vl = s("text",{x:gx, y:H-1, "text-anchor":"middle",
+                         fill:g.entradas >= total ? css("--good") : css("--bad"),
+                         "font-size":10, "font-weight":"700", "font-family":css("--sans")});
+      vl.textContent = g.entradas >= total ? "entradas cobrem" : "entradas não cobrem";
+      svg.appendChild(vl);
+    });
+
+    svg.appendChild(s("line",{x1:m.l, x2:m.l+iw, y1:m.t+ih, y2:m.t+ih, stroke:css("--rule-strong"), "stroke-width":1}));
+  }
+
+  function drawAll(){ drawCash(); drawCmp(); }
+  drawAll();
+
+  var rt;
+  window.addEventListener("resize", function(){
+    clearTimeout(rt);
+    rt = setTimeout(drawAll, 150);
+  });
+
+  if(window.matchMedia){
+    var mq = window.matchMedia("(prefers-color-scheme: dark)");
+    if(mq.addEventListener){ mq.addEventListener("change", drawAll); }
+  }
+  new MutationObserver(drawAll).observe(document.documentElement, {attributes:true, attributeFilter:["data-theme"]});
+})();
+</script>
