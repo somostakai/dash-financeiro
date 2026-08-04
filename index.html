@@ -209,6 +209,35 @@
     font-size:1rem; font-weight:600; color:var(--ink); letter-spacing:-.02em;
   }
 
+  /* trecho que só existe se as caixinhas forem consolidadas */
+  .goal-add{
+    position:absolute; top:0; bottom:0; border-radius:2px;
+    background:repeating-linear-gradient(135deg,
+      var(--c1) 0 5px, transparent 5px 10px);
+    opacity:.5;
+  }
+  .swatch-add{
+    background:repeating-linear-gradient(135deg,
+      var(--c1) 0 3px, transparent 3px 6px);
+    opacity:.7;
+  }
+
+  /* redistribuição dos aportes */
+  .realloc{display:flex; flex-direction:column; gap:var(--s4)}
+  .ra-row{display:flex; flex-direction:column; gap:var(--s2)}
+  .ra-top{display:flex; align-items:baseline; justify-content:space-between; gap:var(--s3)}
+  .ra-name{font-size:.875rem; font-weight:650}
+  .ra-note{font-size:.8125rem; color:var(--muted)}
+  .ra-bar{display:flex; gap:2px; height:34px; width:100%}
+  .ra-bar i{height:100%; border-radius:2px; min-width:2px; position:relative}
+  .ra-bar i:first-child{border-radius:2px 1px 1px 2px}
+  .ra-bar i:last-child{border-radius:1px 2px 2px 1px}
+  .ra-lab{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-size:.6875rem; font-weight:700; color:var(--surface); white-space:nowrap; overflow:hidden;
+  }
+  .ra-lab.on-mute{color:var(--ink)}
+
   /* barra de composição das reservas */
   .stackbar{position:relative; display:flex; gap:2px; height:38px; width:100%}
   .stackbar i{height:100%; border-radius:2px; min-width:2px}
@@ -348,7 +377,7 @@
       <span>Fonte: aba <strong>Set.</strong> da planilha</span>
       <span class="stamp">
         Atualizado em
-        <time datetime="2026-08-04T12:13:00-03:00"><strong class="num">04/08/2026</strong> às <strong class="num">12:13</strong></time>
+        <time datetime="2026-08-04T12:34:00-03:00"><strong class="num">04/08/2026</strong> às <strong class="num">12:34</strong></time>
       </span>
     </div>
   </div>
@@ -586,6 +615,95 @@
         R$&nbsp;9.905 por mês. <b>É praticamente o modo essencial</b>, que hoje custa
         R$&nbsp;8.874,63 e já cobre os 6 meses. A conta ainda é conservadora: ela mantém
         INSS e Simples Nacional, que caem junto com o faturamento.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= PLANO DOS 6 MESES ================= -->
+  <section aria-labelledby="s-plano">
+    <div class="sec-head">
+      <h2 id="s-plano">O plano para chegar nos 6 meses</h2>
+      <p>A meta é o Flexível sozinho cobrir 6 meses de modo essencial. Ela não é um número fixo: se recalcula toda vez pela média dos três últimos meses fechados.</p>
+    </div>
+
+    <div class="card surv-card">
+      <div class="surv-head">
+        <div class="super-figs">
+          <span class="eyebrow">Falta no Flexível, se você só for guardando</span>
+          <span class="surv-val num neg">R$&nbsp;9.327,78</span>
+        </div>
+        <div class="surv-burn">
+          <div>
+            <span class="eyebrow">A meta</span>
+            <b class="num">R$&nbsp;53.247,78</b>
+          </div>
+          <div>
+            <span class="eyebrow">Flexível hoje</span>
+            <b class="num">R$&nbsp;43.920,00</b>
+          </div>
+          <div>
+            <span class="eyebrow">Caminho andado</span>
+            <b class="num pos">82,5%</b>
+          </div>
+        </div>
+      </div>
+
+      <div class="goal-track" style="height:38px">
+        <div class="goal-fill" style="width:67.6%; background:var(--c1)"
+             data-tip="Flexível hoje · R$ 43.920,00"></div>
+        <div class="goal-add" style="left:67.6%; width:23.9%"
+             data-tip="Turbo + Poupança, se forem consolidados no Flexível · R$ 15.510,00"></div>
+        <div class="goal-meta" style="left:81.9%" data-label="meta 6 meses"></div>
+      </div>
+      <div class="legend">
+        <span class="item"><i class="swatch" style="background:var(--c1)"></i> Flexível hoje <b class="num" style="color:var(--ink)">R$&nbsp;43.920,00</b></span>
+        <span class="item"><i class="swatch swatch-add"></i> Turbo + Poupança <b class="num" style="color:var(--ink)">R$&nbsp;15.510,00</b></span>
+        <span class="item"><i style="width:14px; height:0; border-top:2px solid var(--ink-2); display:inline-block"></i> A meta</span>
+      </div>
+    </div>
+
+    <div class="card surv-card" style="margin-top:var(--s4)">
+      <div class="surv-head">
+        <span class="eyebrow">Quanto tempo até a meta, conforme o aporte mensal</span>
+        <span class="eyebrow" style="color:var(--muted)">Meses arredondados para cima</span>
+      </div>
+      <div class="runway" id="planoTempo"></div>
+    </div>
+
+    <div class="card surv-card" style="margin-top:var(--s4)">
+      <div class="surv-head">
+        <span class="eyebrow">Como redistribuir os R$&nbsp;2.300 por mês</span>
+        <span class="eyebrow" style="color:var(--muted)">Portugal e Grécia intocado</span>
+      </div>
+      <div class="realloc" id="realloc"></div>
+      <div class="legend">
+        <span class="item"><i class="swatch" style="background:var(--c1)"></i> Flexível</span>
+        <span class="item"><i class="swatch" style="background:var(--c3)"></i> Portugal e Grécia</span>
+        <span class="item"><i class="swatch" style="background:var(--rule-strong)"></i> Demais caixinhas</span>
+      </div>
+    </div>
+
+    <div class="note flag insight">
+      <div class="insight-stats">
+        <div>
+          <span class="eyebrow">Consolidando, você chega</span>
+          <b class="num pos">hoje</b>
+        </div>
+        <div>
+          <span class="eyebrow">Sobra sobre a meta</span>
+          <b class="num pos">R$&nbsp;6.182,22</b>
+        </div>
+        <div>
+          <span class="eyebrow">Horizonte seguinte</span>
+          <b class="num">2,8 anos</b>
+        </div>
+      </div>
+      <p>
+        <b>O dinheiro dos 6 meses já existe, só está em três baldes diferentes.</b>
+        Turbo e Poupança somam R$&nbsp;15.510 e são tão líquidos quanto o Flexível.
+        Juntando os três, a meta é batida hoje. O horizonte seguinte é cobrir 6 meses
+        sem cortar nada, o que pede R$&nbsp;110.239,62 e levaria 2,8 anos guardando
+        R$&nbsp;1.500 por mês.
       </p>
     </div>
   </section>
@@ -950,6 +1068,97 @@
 
     g.appendChild(bars);
     runway.appendChild(g);
+  });
+
+  /* ---------- plano: tempo até a meta ---------- */
+  var META_FLEX = 53247.78;          // 6 meses de queima essencial
+  var FALTA_FLEX = META_FLEX - 43920; // o que falta se nada for consolidado
+  var PT_MAX = 20;                    // escala do gráfico, em meses
+
+  var aportes = [
+    {nome:"Como está hoje",                  detalhe:"só o Flexível",                    val:500},
+    {nome:"Somando a Poupança longo prazo",  detalhe:"a redistribuição proposta",        val:900, rec:true},
+    {nome:"Somando Gatos, Carro e Viagenzinhas", detalhe:"sobram Portugal e Rolezinhos", val:1200},
+    {nome:"Tudo menos Portugal e Grécia",    detalhe:"o máximo possível",                val:1500}
+  ];
+
+  var pt = document.getElementById("planoTempo");
+  aportes.forEach(function(a){
+    var meses = Math.ceil(FALTA_FLEX / a.val);
+    var g = el("div","rw-group");
+
+    var top = el("div","rw-top");
+    var nome = el("span","rw-name", a.nome);
+    if(a.rec){
+      nome.innerHTML += ' <span class="status status-ok" style="font-size:.625rem; padding:2px 7px">recomendado</span>';
+    }
+    top.appendChild(nome);
+    top.appendChild(el("span","rw-sum", BRL.format(a.val) + " por mês"));
+    g.appendChild(top);
+
+    var bars = el("div","rw-bars");
+    var bar = el("div","rw-bar");
+    var track = el("div","rw-track");
+    var fill = el("i");
+    fill.style.width = Math.min(meses / PT_MAX * 100, 100) + "%";
+    fill.style.background = "var(--c1)";
+    fill.setAttribute("data-tip", a.detalhe + " · " + BRL.format(a.val) +
+      " por mês · " + meses + " meses até " + BRL.format(META_FLEX));
+    track.appendChild(fill);
+    bar.appendChild(track);
+    bar.appendChild(el("span", null, meses + " meses"));
+    bars.appendChild(bar);
+
+    g.appendChild(bars);
+    pt.appendChild(g);
+  });
+
+  /* ---------- plano: redistribuição dos aportes ---------- */
+  var APORTE_TOTAL = 2300;
+  var MUTE = "var(--rule-strong)";
+  var alocacoes = [
+    {nome:"Hoje", nota:"Flexível recebe R$ 500 dos R$ 2.300", itens:[
+      {n:"Portugal e Grécia", v:800, c:"var(--c3)"},
+      {n:"Flexível",          v:500, c:"var(--c1)"},
+      {n:"Poupança longo prazo", v:400, c:MUTE},
+      {n:"Rolezinhos",        v:300, c:MUTE},
+      {n:"Gatos",             v:100, c:MUTE},
+      {n:"Carro",             v:100, c:MUTE},
+      {n:"Viagenzinhas",      v:100, c:MUTE}
+    ]},
+    {nome:"Proposta", nota:"os R$ 400 da Poupança longo prazo passam para o Flexível", itens:[
+      {n:"Portugal e Grécia", v:800, c:"var(--c3)"},
+      {n:"Flexível",          v:900, c:"var(--c1)"},
+      {n:"Rolezinhos",        v:300, c:MUTE},
+      {n:"Gatos",             v:100, c:MUTE},
+      {n:"Carro",             v:100, c:MUTE},
+      {n:"Viagenzinhas",      v:100, c:MUTE}
+    ]}
+  ];
+
+  var ra = document.getElementById("realloc");
+  alocacoes.forEach(function(a){
+    var row = el("div","ra-row");
+    var top = el("div","ra-top");
+    top.appendChild(el("span","ra-name", a.nome));
+    top.appendChild(el("span","ra-note", a.nota));
+    row.appendChild(top);
+
+    var bar = el("div","ra-bar");
+    a.itens.forEach(function(it){
+      var seg = el("i");
+      seg.style.flex = "0 0 " + (it.v / APORTE_TOTAL * 100) + "%";
+      seg.style.background = it.c;
+      seg.setAttribute("data-tip", it.n + " · " + BRL.format(it.v) + " por mês");
+      // só rotula quem tem largura para o texto caber
+      if(it.v >= 300){
+        var lab = el("span","ra-lab" + (it.c === MUTE ? " on-mute" : ""), BRL.format(it.v));
+        seg.appendChild(lab);
+      }
+      bar.appendChild(seg);
+    });
+    row.appendChild(bar);
+    ra.appendChild(row);
   });
 
   /* ---------- composição das reservas ---------- */
