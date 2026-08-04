@@ -197,6 +197,27 @@
   .super-scale b{color:var(--ink)}
   .super-split{display:flex; flex-direction:column; gap:var(--s3); border-top:1px solid var(--rule); padding-top:var(--s4)}
 
+  /* ---------- sobrevivência ---------- */
+  .surv-head{display:flex; align-items:flex-start; justify-content:space-between; gap:var(--s4); flex-wrap:wrap}
+  .surv-val{font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:2.5rem; font-weight:600; letter-spacing:-.04em; line-height:1}
+  .surv-val em{font-family:var(--sans); font-style:normal; font-size:1.125rem; font-weight:600; color:var(--muted); letter-spacing:0}
+
+  .runway{display:flex; flex-direction:column; gap:var(--s4); position:relative}
+  .rw-group{display:flex; flex-direction:column; gap:var(--s2)}
+  .rw-top{display:flex; align-items:baseline; justify-content:space-between; gap:var(--s3)}
+  .rw-name{font-size:.875rem; font-weight:650}
+  .rw-sum{font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:.8125rem; color:var(--muted)}
+  .rw-bars{display:flex; flex-direction:column; gap:4px}
+  /* trilho e rótulo em colunas separadas, para o texto nunca cruzar a marca dos 6 meses */
+  .rw-bar{display:grid; grid-template-columns:minmax(0,1fr) 5.25rem; gap:var(--s3); align-items:center}
+  .rw-track{position:relative; height:16px}
+  .rw-track i{display:block; height:100%; border-radius:2px; min-width:2px}
+  .rw-bar > span{
+    font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:.75rem;
+    color:var(--ink-2); white-space:nowrap; text-align:right;
+  }
+  .rw-mark{position:absolute; top:-3px; bottom:-3px; width:0; border-left:2px dashed var(--ink-2); z-index:2}
+
   .insight{
     margin-top:var(--s4);
     display:flex; flex-wrap:wrap; align-items:center; gap:var(--s4) var(--s7);
@@ -226,6 +247,7 @@
 
   .tbl-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
   table{width:100%; border-collapse:collapse; font-size:.875rem; min-width:520px}
+  table.tbl-compact{min-width:0}
   caption{text-align:left; font-size:.8125rem; color:var(--muted); padding-bottom:var(--s3)}
   th{
     text-align:left; font-size:.6875rem; font-weight:700; letter-spacing:.09em; text-transform:uppercase;
@@ -475,6 +497,98 @@
         <span class="a-val">R$&nbsp;10.647,79</span>
         <p>Vence tudo no dia 5. Negociar o vencimento do cartão ou do aluguel não muda o total, mas evita o aperto entre os dias 5 e 17.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- ================= SOBREVIVÊNCIA ================= -->
+  <section aria-labelledby="s-surv">
+    <div class="sec-head">
+      <h2 id="s-surv">Quanto tempo sem receber nada</h2>
+      <p>Se a receita zerar amanhã, quanto tempo as reservas seguram no ritmo de gasto dos últimos três meses. A linha dos 6 meses é a reserva de emergência clássica.</p>
+    </div>
+
+    <div class="grid g-32" style="align-items:start">
+      <div class="card" style="display:flex; flex-direction:column; gap:var(--s5)">
+        <div class="surv-head">
+          <div class="super-figs">
+            <span class="eyebrow">Só o Flexível, mantendo o padrão de vida</span>
+            <span class="surv-val num">2,4 <em>meses</em></span>
+          </div>
+          <span class="status status-warn">2 meses e 12 dias</span>
+        </div>
+
+        <div class="runway" id="runway"></div>
+
+        <div class="legend">
+          <span class="item"><i class="swatch" style="background:var(--c2)"></i> Mantendo o padrão de vida atual</span>
+          <span class="item"><i class="swatch" style="background:var(--c1)"></i> Cortando para o essencial</span>
+          <span class="item"><i style="width:14px; height:0; border-top:2px dashed var(--ink-2); display:inline-block"></i> 6 meses</span>
+        </div>
+
+        <div class="super-split">
+          <div class="split-row">
+            <span class="lbl">Queima mantendo o padrão atual</span>
+            <span class="val num">R$&nbsp;18.373,27</span>
+          </div>
+          <div class="split-row">
+            <span class="lbl">Queima cortando para o essencial</span>
+            <span class="val num">R$&nbsp;8.874,63</span>
+          </div>
+          <div class="split-row">
+            <span class="lbl">Base do cálculo</span>
+            <span class="val" style="font-size:.8125rem; color:var(--muted)">média de junho a agosto</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:var(--s4)">
+      <div class="card">
+        <div class="tbl-scroll">
+          <table class="tbl-compact">
+            <caption>De onde vem cada camada de reserva</caption>
+            <thead><tr><th>Reserva</th><th class="r">Valor</th></tr></thead>
+            <tbody>
+              <tr><td>Flexível</td><td class="r money">R$&nbsp;43.920,00</td></tr>
+              <tr><td>Turbo</td><td class="r money">R$&nbsp;10.050,00</td></tr>
+              <tr><td>Poupança</td><td class="r money">R$&nbsp;5.460,00</td></tr>
+              <tr><td>Investimento</td><td class="r money">R$&nbsp;40.113,00</td></tr>
+              <tr><td>Casinha nova, Artista, Próxima viagem</td><td class="r money">R$&nbsp;3.442,00</td></tr>
+              <tr><td>Fundinhos com a Karol</td><td class="r money">R$&nbsp;1.794,00</td></tr>
+            </tbody>
+            <tfoot><tr><td>Tudo somado</td><td class="r money">R$&nbsp;104.779,00</td></tr></tfoot>
+          </table>
+        </div>
+      </div>
+      <div class="note">
+        <b>Nem tudo é resgatável no mesmo dia.</b> As três primeiras linhas são o dinheiro
+        de acesso rápido, e é por isso que elas formam o cenário do meio. O Investimento e
+        os fundos com destino já definido só entram no <em>tudo somado</em>, que é o cenário
+        de raspar o tacho.
+      </div>
+      </div>
+    </div>
+
+    <div class="note flag insight">
+      <div class="insight-stats">
+        <div>
+          <span class="eyebrow">Teto para durar 6 meses</span>
+          <b class="num">R$&nbsp;9.905,00</b>
+        </div>
+        <div>
+          <span class="eyebrow">Corte necessário</span>
+          <b class="num neg">46%</b>
+        </div>
+        <div>
+          <span class="eyebrow">Modo essencial já dá</span>
+          <b class="num pos">6,7 meses</b>
+        </div>
+      </div>
+      <p>
+        Para as reservas líquidas segurarem os 6 meses, o gasto teria que caber em
+        R$&nbsp;9.905 por mês. <b>É praticamente o modo essencial</b>, que hoje custa
+        R$&nbsp;8.874,63 e já rende 6,7 meses. A conta ainda é conservadora: ela mantém
+        INSS e Simples Nacional, que caem junto com o faturamento.
+      </p>
     </div>
   </section>
 
@@ -783,6 +897,58 @@
     if(html !== undefined) n.innerHTML = html;
     return n;
   }
+
+  /* ---------- sobrevivência: meses de autonomia ---------- */
+  var BURN_ATUAL = 18373.27;   // média jun-ago, todas as contas
+  var BURN_ESSENCIAL = 8874.63; // média jun-ago, só os essenciais
+  var RW_MAX = 12;              // escala do gráfico, em meses
+
+  var reservas = [
+    {nome:"Só o Flexível",              val:43920},
+    {nome:"Flexível + Turbo + Poupança", val:59430},
+    {nome:"Tudo somado",                 val:104779}
+  ];
+
+  function mesesTexto(m){
+    var i = Math.floor(m), d = Math.round((m - i) * 30);
+    return i + (i === 1 ? " mês " : " meses ") + d + "d";
+  }
+
+  var runway = document.getElementById("runway");
+  reservas.forEach(function(r){
+    var g = el("div","rw-group");
+
+    var top = el("div","rw-top");
+    top.appendChild(el("span","rw-name", r.nome));
+    top.appendChild(el("span","rw-sum", BRL.format(r.val)));
+    g.appendChild(top);
+
+    var bars = el("div","rw-bars");
+    [[BURN_ATUAL, "var(--c2)", "padrão atual"], [BURN_ESSENCIAL, "var(--c1)", "só o essencial"]]
+      .forEach(function(cfg){
+        var m = r.val / cfg[0];
+        var bar = el("div","rw-bar");
+
+        var track = el("div","rw-track");
+        var fill = el("i");
+        fill.style.width = Math.min(m / RW_MAX * 100, 100) + "%";
+        fill.style.background = cfg[1];
+        fill.setAttribute("data-tip", r.nome + " · " + cfg[2] + " · " + mesesTexto(m));
+        track.appendChild(fill);
+
+        var mark = el("span","rw-mark");
+        mark.style.left = (6 / RW_MAX * 100) + "%";
+        track.appendChild(mark);
+
+        bar.appendChild(track);
+        bar.appendChild(el("span", null, m.toLocaleString("pt-BR",
+          {minimumFractionDigits:1, maximumFractionDigits:1}) + " meses"));
+        bars.appendChild(bar);
+      });
+
+    g.appendChild(bars);
+    runway.appendChild(g);
+  });
 
   /* ---------- supermercado: meses fechados ---------- */
   var ORCAMENTO_MERCADO = 1500;
