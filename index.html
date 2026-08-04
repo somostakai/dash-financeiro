@@ -60,7 +60,7 @@
     font-family:var(--sans); font-size:16px; line-height:1.55;
     -webkit-font-smoothing:antialiased;
   }
-  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 var(--s5) var(--s8)}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 var(--s5) var(--s8); overflow-x:clip}
 
   /* ---------- shared type ---------- */
   .eyebrow{
@@ -140,6 +140,10 @@
     content:attr(data-label); position:absolute; left:8px; top:-8px; white-space:nowrap;
     font-size:.6875rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink);
   }
+  .commit-line.mark-flip::after,
+  .goal-meta.mark-flip::after,
+  .sb-mark.mark-flip::after{left:auto; right:6px}
+
   .commit-legend{display:flex; flex-wrap:wrap; gap:var(--s2) var(--s5); font-size:.8125rem; color:var(--muted)}
   .commit-legend span.item{display:flex; align-items:center; gap:var(--s2)}
   .commit-legend b{color:var(--ink); font-family:var(--mono); font-variant-numeric:tabular-nums; font-weight:600}
@@ -377,7 +381,7 @@
       <span>Fonte: aba <strong>Set.</strong> da planilha</span>
       <span class="stamp">
         Atualizado em
-        <time datetime="2026-08-04T12:34:00-03:00"><strong class="num">04/08/2026</strong> às <strong class="num">12:34</strong></time>
+        <time datetime="2026-08-04T19:58:00-03:00"><strong class="num">04/08/2026</strong> às <strong class="num">19:58</strong></time>
       </span>
     </div>
   </div>
@@ -389,26 +393,26 @@
   <div class="verdict">
     <div class="verdict-lead">
       <p class="eyebrow">A conta que importa</p>
-      <div class="verdict-figure num">R$&nbsp;1.105,06</div>
+      <div class="verdict-figure num">R$&nbsp;951,36</div>
       <p class="verdict-say">
         É o que falta entrar em setembro <b>só para pagar as contas</b>, sem guardar um centavo.
-        Isso equivale a faturar <b>7,4% a mais</b> do que o previsto.
-        Se a poupança também precisar acontecer, o buraco vai para <b>R$&nbsp;3.405,06</b>.
+        Isso equivale a faturar <b>6,2% a mais</b> do que o previsto.
+        Se a poupança também precisar acontecer, o buraco vai para <b>R$&nbsp;3.251,36</b>.
       </p>
     </div>
     <div class="verdict-split">
       <p class="eyebrow">Como o saldo da planilha se decompõe</p>
       <div class="split-row">
         <span class="lbl">Entradas previstas</span>
-        <span class="val num">R$&nbsp;14.965,79</span>
+        <span class="val num">R$&nbsp;15.255,53</span>
       </div>
       <div class="split-row">
         <span class="lbl">− Contas do mês</span>
-        <span class="val num">R$&nbsp;16.070,85</span>
+        <span class="val num">R$&nbsp;16.206,89</span>
       </div>
       <div class="split-row">
         <span class="lbl"><b>= Saldo real (sem poupança)</b></span>
-        <span class="val num neg">−R$&nbsp;1.105,06</span>
+        <span class="val num neg">−R$&nbsp;951,36</span>
       </div>
       <div class="split-row">
         <span class="lbl">− Poupança planejada</span>
@@ -416,7 +420,7 @@
       </div>
       <div class="split-row total">
         <span class="lbl">= Saldo da planilha <span style="color:var(--faint); font-weight:400">(K4:K5)</span></span>
-        <span class="val num neg">−R$&nbsp;3.405,06</span>
+        <span class="val num neg">−R$&nbsp;3.251,36</span>
       </div>
     </div>
   </div>
@@ -430,20 +434,20 @@
     <div class="card commit">
       <div class="commit-track" id="commitTrack">
         <div class="commit-fill">
-          <div class="commit-seg" style="flex:0 0 50.77%; background:var(--c1)"
-               data-tip="Essenciais · R$ 9.327,50 · 62,3% das entradas"></div>
-          <div class="commit-seg" style="flex:0 0 36.71%; background:var(--c2)"
-               data-tip="Não essenciais · R$ 6.743,35 · 45,1% das entradas"></div>
+          <div class="commit-seg" style="flex:0 0 50.41%; background:var(--c1)"
+               data-tip="Essenciais · R$ 9.328,54 · 61,1% das entradas"></div>
+          <div class="commit-seg" style="flex:0 0 37.17%; background:var(--c2)"
+               data-tip="Não essenciais · R$ 6.878,35 · 45,1% das entradas"></div>
           <div class="commit-seg" style="flex:1 1 auto; background:var(--c3)"
-               data-tip="Poupança planejada · R$ 2.300,00 · 15,4% das entradas"></div>
+               data-tip="Poupança planejada · R$ 2.300,00 · 15,1% das entradas"></div>
         </div>
-        <div class="commit-line" style="left:81.5%" data-label="Entradas"></div>
+        <div class="commit-line mark-flip" style="left:82.4%" data-label="Entradas"></div>
       </div>
       <div class="commit-legend">
-        <span class="item"><i class="swatch" style="background:var(--c1)"></i> Essenciais <b>R$&nbsp;9.327,50</b></span>
-        <span class="item"><i class="swatch" style="background:var(--c2)"></i> Não essenciais <b>R$&nbsp;6.743,35</b></span>
+        <span class="item"><i class="swatch" style="background:var(--c1)"></i> Essenciais <b>R$&nbsp;9.328,54</b></span>
+        <span class="item"><i class="swatch" style="background:var(--c2)"></i> Não essenciais <b>R$&nbsp;6.878,35</b></span>
         <span class="item"><i class="swatch" style="background:var(--c3)"></i> Poupança <b>R$&nbsp;2.300,00</b></span>
-        <span class="item" style="color:var(--bad)"><b style="color:var(--bad)">122,75%</b> das entradas comprometidos</span>
+        <span class="item" style="color:var(--bad)"><b style="color:var(--bad)">121,3%</b> das entradas comprometidos</span>
       </div>
     </div>
   </section>
@@ -459,33 +463,33 @@
         <div class="rung">
           <div class="rung-t">
             <span class="name">Só fechar as contas</span>
-            <span class="desc">Faturamento necessário: <span class="num">R$&nbsp;16.070,85</span> · sem poupar nada</span>
+            <span class="desc">Faturamento necessário: <span class="num">R$&nbsp;16.206,89</span> · sem poupar nada</span>
           </div>
           <div class="rung-n">
-            <span class="gap num neg">+R$&nbsp;1.105,06</span>
-            <span class="pct">+7,4% de receita</span>
+            <span class="gap num neg">+R$&nbsp;951,36</span>
+            <span class="pct">+6,2% de receita</span>
           </div>
-          <div class="rung-bar"><i style="width:21.6%"></i></div>
+          <div class="rung-bar"><i style="width:19.0%"></i></div>
         </div>
         <div class="rung">
           <div class="rung-t">
             <span class="name">Contas + a poupança que você planejou</span>
-            <span class="desc">Faturamento necessário: <span class="num">R$&nbsp;18.370,85</span> · as 8 caixinhas cheias</span>
+            <span class="desc">Faturamento necessário: <span class="num">R$&nbsp;18.506,89</span> · as 8 caixinhas cheias</span>
           </div>
           <div class="rung-n">
-            <span class="gap num neg">+R$&nbsp;3.405,06</span>
-            <span class="pct">+22,8% de receita</span>
+            <span class="gap num neg">+R$&nbsp;3.251,36</span>
+            <span class="pct">+21,3% de receita</span>
           </div>
-          <div class="rung-bar"><i style="width:66.5%"></i></div>
+          <div class="rung-bar"><i style="width:65.0%"></i></div>
         </div>
         <div class="rung">
           <div class="rung-t">
             <span class="name">Contas + meta de 20% de poupança</span>
-            <span class="desc">Faturamento necessário: <span class="num">R$&nbsp;20.088,56</span> · guarda <span class="num">R$&nbsp;4.017,71</span></span>
+            <span class="desc">Faturamento necessário: <span class="num">R$&nbsp;20.258,61</span> · guarda <span class="num">R$&nbsp;4.051,72</span></span>
           </div>
           <div class="rung-n">
-            <span class="gap num neg">+R$&nbsp;5.122,77</span>
-            <span class="pct">+34,2% de receita</span>
+            <span class="gap num neg">+R$&nbsp;5.003,08</span>
+            <span class="pct">+32,8% de receita</span>
           </div>
           <div class="rung-bar"><i style="width:100%"></i></div>
         </div>
@@ -496,27 +500,27 @@
           <p class="eyebrow" style="margin-bottom:var(--s2)">Pelo outro lado</p>
           <h3 style="margin-bottom:var(--s2)">Se a receita não subir, o corte é este</h3>
           <p style="margin:0; font-size:.875rem; color:var(--muted)">
-            Para as contas caberem nas entradas, é preciso tirar <b class="num" style="color:var(--ink)">R$&nbsp;1.105,06</b>
-            das despesas de setembro, ou <span class="num">6,9%</span> do total.
+            Para as contas caberem nas entradas, é preciso tirar <b class="num" style="color:var(--ink)">R$&nbsp;951,36</b>
+            das despesas de setembro, ou <span class="num">5,9%</span> do total.
           </p>
         </div>
         <div style="border-top:1px solid var(--rule); padding-top:var(--s4); display:flex; flex-direction:column; gap:var(--s3)">
           <div class="split-row">
             <span class="lbl">Não essenciais no mês</span>
-            <span class="val num">R$&nbsp;6.743,35</span>
+            <span class="val num">R$&nbsp;6.878,35</span>
           </div>
           <div class="split-row">
             <span class="lbl">Corte necessário sobre eles</span>
-            <span class="val num">16,4%</span>
+            <span class="val num">13,8%</span>
           </div>
           <div class="split-row">
             <span class="lbl">Para também bancar a poupança</span>
-            <span class="val num">50,5%</span>
+            <span class="val num">47,3%</span>
           </div>
         </div>
         <p style="margin:0; font-size:.8125rem; color:var(--muted); border-top:1px solid var(--rule); padding-top:var(--s3)">
           O corte é matematicamente viável sem tocar em nada essencial, mas
-          <b style="color:var(--ink-2)">87% dos não essenciais são a fatura do cartão</b>, então é lá que a decisão acontece.
+          <b style="color:var(--ink-2)">87,5% dos não essenciais são a fatura do cartão</b>, então é lá que a decisão acontece.
         </p>
       </div>
     </div>
@@ -531,17 +535,17 @@
     <div class="actions">
       <div class="action">
         <span class="eyebrow">Caminho 1 · receita</span>
-        <span class="a-val">+R$&nbsp;1.105,06</span>
-        <p>Faturar 7,4% a mais em setembro zera o vermelho das contas. Para as caixinhas também acontecerem, são <b>+R$&nbsp;3.405,06</b> (+22,8%).</p>
+        <span class="a-val">+R$&nbsp;951,36</span>
+        <p>Faturar 6,2% a mais em setembro zera o vermelho das contas. Para as caixinhas também acontecerem, são <b>+R$&nbsp;3.251,36</b> (+21,3%).</p>
       </div>
       <div class="action">
         <span class="eyebrow">Caminho 2 · fatura</span>
-        <span class="a-val">−R$&nbsp;1.105,06</span>
-        <p>Cortar 18,8% da fatura do cartão resolve sozinho. É a única despesa grande do mês que não é contrato fixo.</p>
+        <span class="a-val">−R$&nbsp;951,36</span>
+        <p>Cortar 15,8% da fatura do cartão resolve sozinho. É a única despesa grande do mês que não é contrato fixo.</p>
       </div>
       <div class="action">
         <span class="eyebrow">Caminho 3 · calendário</span>
-        <span class="a-val">R$&nbsp;10.647,79</span>
+        <span class="a-val">R$&nbsp;10.739,94</span>
         <p>Vence tudo no dia 5. Negociar o vencimento do cartão ou do aluguel não muda o total, mas evita o aperto entre os dias 5 e 17.</p>
       </div>
     </div>
@@ -558,16 +562,16 @@
       <div class="surv-head">
         <div class="super-figs">
           <span class="eyebrow">Só o Flexível, mantendo o padrão de vida</span>
-          <span class="surv-val num">2 <em>meses</em></span>
+          <span class="surv-val num">1 <em>mês</em></span>
         </div>
         <div class="surv-burn">
           <div>
             <span class="eyebrow">Queima no padrão atual</span>
-            <b class="num">R$&nbsp;18.373,27</b>
+            <b class="num">R$&nbsp;18.353,15</b>
           </div>
           <div>
             <span class="eyebrow">Queima no modo essencial</span>
-            <b class="num">R$&nbsp;8.874,63</b>
+            <b class="num">R$&nbsp;8.854,51</b>
           </div>
           <div>
             <span class="eyebrow">Base do cálculo</span>
@@ -588,7 +592,7 @@
 
     <div class="card surv-card" style="margin-top:var(--s4)">
       <div class="surv-head">
-        <span class="eyebrow">De onde vêm os R$&nbsp;104.779,00</span>
+        <span class="eyebrow">De onde vêm os R$&nbsp;89.270,00</span>
         <span class="eyebrow" style="color:var(--muted)">Nem tudo é resgatável no mesmo dia</span>
       </div>
       <div class="stackbar" id="reservaBar"></div>
@@ -599,22 +603,23 @@
       <div class="insight-stats">
         <div>
           <span class="eyebrow">Teto para durar 6 meses</span>
-          <b class="num">R$&nbsp;9.905,00</b>
+          <b class="num">R$&nbsp;7.238,33</b>
         </div>
         <div>
           <span class="eyebrow">Corte necessário</span>
-          <b class="num neg">46%</b>
+          <b class="num neg">61%</b>
         </div>
         <div>
-          <span class="eyebrow">Modo essencial já dá</span>
-          <b class="num pos">6 meses</b>
+          <span class="eyebrow">Modo essencial dá hoje</span>
+          <b class="num neg">4 meses</b>
         </div>
       </div>
       <p>
-        Para as reservas de acesso rápido segurarem os 6 meses, o gasto teria que caber em
-        R$&nbsp;9.905 por mês. <b>É praticamente o modo essencial</b>, que hoje custa
-        R$&nbsp;8.874,63 e já cobre os 6 meses. A conta ainda é conservadora: ela mantém
-        INSS e Simples Nacional, que caem junto com o faturamento.
+        Para o dinheiro de acesso rápido segurar 6 meses, o gasto teria que caber em
+        R$&nbsp;7.238,33 por mês. <b>Nem o modo essencial chega lá</b>: ele custa
+        R$&nbsp;8.854,51 e hoje rende 4 meses. A conta é conservadora, porque mantém
+        INSS e Simples Nacional, que caem junto com o faturamento, mas a folga
+        encolheu junto com o Flexível.
       </p>
     </div>
   </section>
@@ -629,42 +634,47 @@
     <div class="card surv-card">
       <div class="surv-head">
         <div class="super-figs">
-          <span class="eyebrow">Falta no Flexível, se você só for guardando</span>
-          <span class="surv-val num neg">R$&nbsp;9.327,78</span>
+          <span class="eyebrow">Falta no Flexível, sem mexer em mais nada</span>
+          <span class="surv-val num neg">R$&nbsp;25.527,06</span>
         </div>
         <div class="surv-burn">
           <div>
             <span class="eyebrow">A meta</span>
-            <b class="num">R$&nbsp;53.247,78</b>
+            <b class="num">R$&nbsp;53.127,06</b>
           </div>
           <div>
             <span class="eyebrow">Flexível hoje</span>
-            <b class="num">R$&nbsp;43.920,00</b>
+            <b class="num">R$&nbsp;27.600,00</b>
           </div>
           <div>
             <span class="eyebrow">Caminho andado</span>
-            <b class="num pos">82,5%</b>
+            <b class="num pos">51,9%</b>
           </div>
         </div>
       </div>
 
       <div class="goal-track" style="height:38px">
-        <div class="goal-fill" style="width:67.6%; background:var(--c1)"
-             data-tip="Flexível hoje · R$ 43.920,00"></div>
-        <div class="goal-add" style="left:67.6%; width:23.9%"
-             data-tip="Turbo + Poupança, se forem consolidados no Flexível · R$ 15.510,00"></div>
-        <div class="goal-meta" style="left:81.9%" data-label="meta 6 meses"></div>
+        <div class="goal-fill" style="width:46.0%; background:var(--c1)"
+             data-tip="Flexível hoje · R$ 27.600,00"></div>
+        <div class="goal-add" style="left:46.0%; width:26.4%"
+             data-tip="Turbo + Poupança, se forem consolidados no Flexível · R$ 15.830,00"></div>
+        <div class="goal-meta mark-flip" style="left:88.5%" data-label="meta 6 meses"></div>
+      </div>
+      <div class="super-scale">
+        <span class="num">R$&nbsp;0</span>
+        <span>consolidando, o caminho andado vai a <b class="num">81,7%</b></span>
+        <span class="num">R$&nbsp;60.000</span>
       </div>
       <div class="legend">
-        <span class="item"><i class="swatch" style="background:var(--c1)"></i> Flexível hoje <b class="num" style="color:var(--ink)">R$&nbsp;43.920,00</b></span>
-        <span class="item"><i class="swatch swatch-add"></i> Turbo + Poupança <b class="num" style="color:var(--ink)">R$&nbsp;15.510,00</b></span>
-        <span class="item"><i style="width:14px; height:0; border-top:2px solid var(--ink-2); display:inline-block"></i> A meta</span>
+        <span class="item"><i class="swatch" style="background:var(--c1)"></i> Flexível hoje <b class="num" style="color:var(--ink)">R$&nbsp;27.600,00</b></span>
+        <span class="item"><i class="swatch swatch-add"></i> Turbo + Poupança <b class="num" style="color:var(--ink)">R$&nbsp;15.830,00</b></span>
+        <span class="item"><i style="width:14px; height:0; border-top:2px solid var(--ink-2); display:inline-block"></i> A meta <b class="num" style="color:var(--ink)">R$&nbsp;53.127,06</b></span>
       </div>
     </div>
 
     <div class="card surv-card" style="margin-top:var(--s4)">
       <div class="surv-head">
-        <span class="eyebrow">Quanto tempo até a meta, conforme o aporte mensal</span>
+        <span class="eyebrow">Depois de consolidar, faltam R$&nbsp;9.697,06. Quanto tempo, conforme o aporte</span>
         <span class="eyebrow" style="color:var(--muted)">Meses arredondados para cima</span>
       </div>
       <div class="runway" id="planoTempo"></div>
@@ -686,24 +696,24 @@
     <div class="note flag insight">
       <div class="insight-stats">
         <div>
-          <span class="eyebrow">Consolidando, você chega</span>
-          <b class="num pos">hoje</b>
+          <span class="eyebrow">Consolidando, falta</span>
+          <b class="num neg">R$&nbsp;9.697,06</b>
         </div>
         <div>
-          <span class="eyebrow">Sobra sobre a meta</span>
-          <b class="num pos">R$&nbsp;6.182,22</b>
+          <span class="eyebrow">Aportando R$ 900 por mês</span>
+          <b class="num">11 meses</b>
         </div>
         <div>
           <span class="eyebrow">Horizonte seguinte</span>
-          <b class="num">2,8 anos</b>
+          <b class="num">3,7 anos</b>
         </div>
       </div>
       <p>
-        <b>O dinheiro dos 6 meses já existe, só está em três baldes diferentes.</b>
-        Turbo e Poupança somam R$&nbsp;15.510 e são tão líquidos quanto o Flexível.
-        Juntando os três, a meta é batida hoje. O horizonte seguinte é cobrir 6 meses
-        sem cortar nada, o que pede R$&nbsp;110.239,62 e levaria 2,8 anos guardando
-        R$&nbsp;1.500 por mês.
+        <b>Consolidar Turbo e Poupança no Flexível encurta o caminho pela metade</b>,
+        de R$&nbsp;25.527,06 para R$&nbsp;9.697,06, sem guardar um real a mais. Do que
+        sobra, R$&nbsp;900 por mês fecham a meta em 11 meses. O horizonte seguinte é
+        cobrir 6 meses sem cortar nada, o que pede R$&nbsp;110.118,90 e levaria
+        3,7 anos guardando R$&nbsp;1.500 por mês.
       </p>
     </div>
   </section>
@@ -719,20 +729,20 @@
         <div class="super-head">
           <div class="super-figs">
             <span class="eyebrow">Já lançado em setembro</span>
-            <span class="super-val num">R$&nbsp;400,10</span>
+            <span class="super-val num">R$&nbsp;480,60</span>
           </div>
           <span class="status status-ok">Dentro do orçamento</span>
         </div>
 
         <div class="super-bar">
           <div class="super-track">
-            <div class="super-fill" style="width:26.7%; background:var(--c1)"
-                 data-tip="Lançado em setembro · R$ 400,10 · 26,7% do orçamento"></div>
+            <div class="super-fill" style="width:32.0%; background:var(--c1)"
+                 data-tip="Lançado em setembro · R$ 480,60 · 32,0% do orçamento"></div>
             <div class="super-limit" data-label="R$ 1.500,00"></div>
           </div>
           <div class="super-scale">
             <span class="num">R$&nbsp;0</span>
-            <span><b class="num">26,7%</b> consumido</span>
+            <span><b class="num">32,0%</b> consumido</span>
             <span class="num">R$&nbsp;1.500</span>
           </div>
         </div>
@@ -740,11 +750,11 @@
         <div class="super-split">
           <div class="split-row">
             <span class="lbl">Ainda cabe no orçamento</span>
-            <span class="val num pos">R$&nbsp;1.099,90</span>
+            <span class="val num pos">R$&nbsp;1.019,40</span>
           </div>
           <div class="split-row">
             <span class="lbl">Compras lançadas até agora</span>
-            <span class="val num">4</span>
+            <span class="val num">5</span>
           </div>
           <div class="split-row">
             <span class="lbl">Se setembro repetir agosto</span>
@@ -820,8 +830,8 @@
         </div>
         <div class="card kpi" style="padding:var(--s5)">
           <span class="eyebrow">Distância até a meta de 20%</span>
-          <span class="k-val num">R$&nbsp;693,16</span>
-          <span class="k-sub">O plano guarda <span class="num">15,4%</span> das entradas; a meta da aba <em>Início</em> é <span class="num">20%</span>.</span>
+          <span class="k-val num">R$&nbsp;751,11</span>
+          <span class="k-sub">O plano guarda <span class="num">15,1%</span> das entradas; a meta da aba <em>Início</em> é <span class="num">20%</span>.</span>
         </div>
         <div class="note flag">
           <b>Atenção ao cálculo da planilha.</b> A célula <code style="font-family:var(--mono)">Q21</code> divide a poupança
@@ -842,37 +852,37 @@
       <div class="goal-row">
         <div class="goal-top">
           <span class="name"><i class="swatch" style="background:var(--c1)"></i> Essenciais</span>
-          <span class="figs"><b>R$&nbsp;9.327,50</b> · 62,3% das entradas</span>
+          <span class="figs"><b>R$&nbsp;9.328,54</b> · 61,1% das entradas</span>
         </div>
         <div class="goal-track">
-          <div class="goal-fill" style="width:62.3%; background:var(--c1)" data-tip="Essenciais · 62,3% · meta 50%"></div>
+          <div class="goal-fill" style="width:62.3%; background:var(--c1)" data-tip="Essenciais · 61,1% · meta 50%"></div>
           <div class="goal-meta" style="left:50%" data-label="meta 50%"></div>
         </div>
-        <span class="goal-note">Acima da meta em <b class="neg">R$&nbsp;1.844,60</b>. Aluguel e mercado sozinhos são <b>R$&nbsp;5.218,96</b>.</span>
+        <span class="goal-note">Acima da meta em <b class="neg">R$&nbsp;1.700,78</b>. Aluguel e mercado sozinhos são <b>R$&nbsp;5.218,96</b>.</span>
       </div>
 
       <div class="goal-row">
         <div class="goal-top">
           <span class="name"><i class="swatch" style="background:var(--c2)"></i> Não essenciais</span>
-          <span class="figs"><b>R$&nbsp;6.743,35</b> · 45,1% das entradas</span>
+          <span class="figs"><b>R$&nbsp;6.878,35</b> · 45,1% das entradas</span>
         </div>
         <div class="goal-track">
           <div class="goal-fill" style="width:45.1%; background:var(--c2)" data-tip="Não essenciais · 45,1% · meta 30%"></div>
           <div class="goal-meta" style="left:30%" data-label="meta 30%"></div>
         </div>
-        <span class="goal-note">Acima da meta em <b class="neg">R$&nbsp;2.253,61</b>. É o maior desvio dos três, e o mais controlável.</span>
+        <span class="goal-note">Acima da meta em <b class="neg">R$&nbsp;2.301,69</b>. É o maior desvio dos três, e o mais controlável.</span>
       </div>
 
       <div class="goal-row">
         <div class="goal-top">
           <span class="name"><i class="swatch" style="background:var(--c3)"></i> Poupança</span>
-          <span class="figs"><b>R$&nbsp;2.300,00</b> · 15,4% das entradas</span>
+          <span class="figs"><b>R$&nbsp;2.300,00</b> · 15,1% das entradas</span>
         </div>
         <div class="goal-track">
-          <div class="goal-fill" style="width:15.4%; background:var(--c3)" data-tip="Poupança · 15,4% · meta 20%"></div>
+          <div class="goal-fill" style="width:15.1%; background:var(--c3)" data-tip="Poupança · 15,1% · meta 20%"></div>
           <div class="goal-meta" style="left:20%" data-label="meta 20%"></div>
         </div>
-        <span class="goal-note">Abaixo da meta em <b>R$&nbsp;693,16</b>, e ainda sem caixa para bancar o que já está planejado.</span>
+        <span class="goal-note">Abaixo da meta em <b>R$&nbsp;751,11</b>, e ainda sem caixa para bancar o que já está planejado.</span>
       </div>
     </div>
   </section>
@@ -887,12 +897,12 @@
       <div class="chart-hold"><svg id="cashChart" role="img" aria-label="Contas acumuladas de setembro por dia de vencimento cruzando a linha de entradas no dia 17"></svg></div>
       <div class="legend">
         <span class="item"><i class="swatch" style="background:var(--c1)"></i> Contas acumuladas</span>
-        <span class="item"><i class="line-key"></i> Entradas do mês (R$&nbsp;14.965,79)</span>
+        <span class="item"><i class="line-key"></i> Entradas do mês (R$&nbsp;15.255,53)</span>
         <span class="item" style="color:var(--bad)"><i class="swatch" style="background:var(--bad)"></i> A partir do dia 17: descoberto</span>
       </div>
       <p style="margin:0; font-size:.875rem; color:var(--muted)">
-        <b style="color:var(--ink-2)">O dia 5 concentra R$&nbsp;10.647,79</b>, ou 66% de tudo que vence no mês, incluindo a fatura do cartão.
-        No dia 10, após o aluguel, restam <span class="num">R$&nbsp;355,04</span>. No dia 17 o Simples Nacional derruba o caixa.
+        <b style="color:var(--ink-2)">O dia 5 concentra R$&nbsp;10.739,94</b>, ou 66,3% de tudo que vence no mês, incluindo a fatura do cartão.
+        No dia 10, após o aluguel, restam <span class="num">R$&nbsp;552,63</span>. No dia 17 o Simples Nacional derruba o caixa.
       </p>
     </div>
   </section>
@@ -908,18 +918,18 @@
       <div style="display:flex; flex-direction:column; gap:var(--s4)">
         <div class="card kpi">
           <span class="eyebrow">Concentração</span>
-          <span class="k-val num">59,7%</span>
-          <span class="k-sub">Cartão de crédito + aluguel = <span class="num">R$&nbsp;9.602,31</span> de <span class="num">R$&nbsp;16.070,85</span>.</span>
+          <span class="k-val num">60,1%</span>
+          <span class="k-sub">Cartão de crédito + aluguel = <span class="num">R$&nbsp;9.737,31</span> de <span class="num">R$&nbsp;16.206,89</span>.</span>
         </div>
         <div class="card kpi">
           <span class="eyebrow">Fatura do cartão</span>
-          <span class="k-val num" style="color:var(--c2)">R$&nbsp;5.883,35</span>
-          <span class="k-sub">Classificada como <b>não essencial / lazer</b> na planilha. Sozinha, é 87% de todos os não essenciais.</span>
+          <span class="k-val num" style="color:var(--c2)">R$&nbsp;6.018,35</span>
+          <span class="k-sub">Classificada como <b>não essencial / lazer</b> na planilha. Sozinha, é 87,5% de todos os não essenciais.</span>
         </div>
         <div class="note">
           A fatura é uma caixa-preta: ela agrupa gastos que provavelmente são de tipos diferentes.
           <b>Abrir o cartão por categoria é o único jeito de saber se o problema é excesso ou classificação</b>.
-          Hoje ela puxa os não essenciais de 5,8% para 45,1% das entradas.
+          Hoje ela puxa os não essenciais de 5,6% para 45,1% das entradas.
         </div>
       </div>
     </div>
@@ -934,11 +944,11 @@
     <div class="grid g-2">
       <div class="card">
         <div class="cmp-row head"><span>Indicador</span><span class="v">Agosto</span><span class="v">Setembro</span><span class="v">Variação</span></div>
-        <div class="cmp-row"><span class="lab">Entradas</span><span class="v">22.718,05</span><span class="v">14.965,79</span><span class="v neg">−34,1%</span></div>
-        <div class="cmp-row"><span class="lab">Contas</span><span class="v">20.292,55</span><span class="v">16.070,85</span><span class="v pos">−20,8%</span></div>
+        <div class="cmp-row"><span class="lab">Entradas</span><span class="v">22.718,05</span><span class="v">15.255,53</span><span class="v neg">−32,9%</span></div>
+        <div class="cmp-row"><span class="lab">Contas</span><span class="v">20.232,19</span><span class="v">16.206,89</span><span class="v pos">−19,9%</span></div>
         <div class="cmp-row"><span class="lab">Poupança planejada</span><span class="v">2.399,61</span><span class="v">2.300,00</span><span class="v neg">−4,2%</span></div>
-        <div class="cmp-row"><span class="lab">Saldo real (sem poupança)</span><span class="v pos">+2.425,50</span><span class="v neg">−1.105,06</span><span class="v neg">−3.530,56</span></div>
-        <div class="cmp-row"><span class="lab">Saldo da planilha</span><span class="v pos">+25,89</span><span class="v neg">−3.405,06</span><span class="v neg">−3.430,95</span></div>
+        <div class="cmp-row"><span class="lab">Saldo real (sem poupança)</span><span class="v pos">+2.485,86</span><span class="v neg">−951,36</span><span class="v neg">−3.437,22</span></div>
+        <div class="cmp-row"><span class="lab">Saldo da planilha</span><span class="v pos">+86,25</span><span class="v neg">−3.251,36</span><span class="v neg">−3.337,61</span></div>
       </div>
       <div class="card chart-figure">
         <p class="eyebrow">O que o mês exige × o que entra</p>
@@ -950,8 +960,8 @@
           <span class="item"><i style="width:14px; height:0; border-top:2px solid var(--ink); display:inline-block"></i> Entradas</span>
         </div>
         <p style="margin:0; font-size:.875rem; color:var(--muted)">
-          As contas caíram <span class="num">R$&nbsp;4.221,70</span>, mas as entradas caíram
-          <span class="num">R$&nbsp;7.752,26</span>. A diferença entre essas duas quedas é exatamente o tamanho do problema.
+          As contas caíram <span class="num">R$&nbsp;4.025,30</span>, mas as entradas caíram
+          <span class="num">R$&nbsp;7.462,52</span>. A diferença entre essas duas quedas é exatamente o tamanho do problema.
         </p>
       </div>
     </div>
@@ -973,26 +983,26 @@
   var BRL = new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"});
   var PCT = function(v,d){ return v.toLocaleString("pt-BR",{minimumFractionDigits:d||1,maximumFractionDigits:d||1}) + "%"; };
 
-  var ENTRADAS_TOTAL = 14965.79;
-  var CONTAS_TOTAL   = 16070.85;
+  var ENTRADAS_TOTAL = 15255.53;
+  var CONTAS_TOTAL   = 16206.89;
 
   var contas = [
     {dia:1,  desc:"Internet",           tipo:"Essenciais",     cat:"Contas",     pag:"Pix",     val:130.00},
-    {dia:5,  desc:"Cartões de Crédito", tipo:"Não Essenciais", cat:"Lazer",      pag:"Crédito", val:5883.35},
+    {dia:5,  desc:"Cartões de Crédito", tipo:"Não Essenciais", cat:"Lazer",      pag:"Crédito", val:6018.35},
     {dia:5,  desc:"Mercado",            tipo:"Essenciais",     cat:"Mercado",    pag:"Crédito", val:1500.00},
     {dia:5,  desc:"Gatos",              tipo:"Essenciais",     cat:"Contas",     pag:"Crédito", val:904.64},
     {dia:5,  desc:"INSS",               tipo:"Essenciais",     cat:"Contas",     pag:"Débito",  val:760.00},
     {dia:5,  desc:"Wellhub",            tipo:"Essenciais",     cat:"Saúde",      pag:"Crédito", val:439.80},
     {dia:5,  desc:"Faxina",             tipo:"Não Essenciais", cat:"Outros",     pag:"Pix",     val:440.00},
-    {dia:5,  desc:"Gasolina",           tipo:"Essenciais",     cat:"Transporte", pag:"Crédito", val:300.00},
+    {dia:5,  desc:"Gasolina",           tipo:"Essenciais",     cat:"Transporte", pag:"Crédito", val:257.15},
     {dia:5,  desc:"Terapia",            tipo:"Não Essenciais", cat:"Saúde",      pag:"Pix",     val:300.00},
     {dia:5,  desc:"Telefone",           tipo:"Não Essenciais", cat:"Contas",     pag:"Crédito", val:120.00},
     {dia:7,  desc:"Água",               tipo:"Essenciais",     cat:"Contas",     pag:"Pix",     val:114.00},
     {dia:10, desc:"Aluguel",            tipo:"Essenciais",     cat:"Contas",     pag:"Pix",     val:3718.96},
     {dia:17, desc:"Simples Nacional",   tipo:"Essenciais",     cat:"Contas",     pag:"Pix",     val:600.00},
-    {dia:18, desc:"Luz",                tipo:"Essenciais",     cat:"Contas",     pag:"Pix",     val:180.00},
+    {dia:18, desc:"Luz",                tipo:"Essenciais",     cat:"Contas",     pag:"Pix",     val:250.00},
     {dia:20, desc:"Plano de saúde",     tipo:"Essenciais",     cat:"Saúde",      pag:"Pix",     val:533.10},
-    {dia:21, desc:"Seguro do Carro",    tipo:"Essenciais",     cat:"Contas",     pag:"Pix",     val:147.00}
+    {dia:21, desc:"Seguro do Carro",    tipo:"Essenciais",     cat:"Contas",     pag:"Pix",     val:120.89}
   ];
 
   var poupanca = [
@@ -1015,14 +1025,14 @@
   }
 
   /* ---------- sobrevivência: meses de autonomia ---------- */
-  var BURN_ATUAL = 18373.27;   // média jun-ago, todas as contas
-  var BURN_ESSENCIAL = 8874.63; // média jun-ago, só os essenciais
+  var BURN_ATUAL = 18353.15;   // média jun-ago, todas as contas
+  var BURN_ESSENCIAL = 8854.51; // média jun-ago, só os essenciais
   var RW_MAX = 12;              // escala do gráfico, em meses
 
   var reservas = [
-    {nome:"Só o Flexível",              val:43920},
-    {nome:"Flexível + Turbo + Poupança", val:59430},
-    {nome:"Tudo somado",                 val:104779}
+    {nome:"Só o Flexível",              val:27600},
+    {nome:"Flexível + Turbo + Poupança", val:43430},
+    {nome:"Tudo somado",                 val:89270}
   ];
 
   // Meses completos: sempre para baixo, porque um mês pela metade não é um mês de folga.
@@ -1071,8 +1081,8 @@
   });
 
   /* ---------- plano: tempo até a meta ---------- */
-  var META_FLEX = 53247.78;          // 6 meses de queima essencial
-  var FALTA_FLEX = META_FLEX - 43920; // o que falta se nada for consolidado
+  var META_FLEX = 53127.06;          // 6 meses de queima essencial
+  var FALTA_FLEX = META_FLEX - 43430;  // já contando Turbo e Poupança consolidados // o que falta se nada for consolidado
   var PT_MAX = 20;                    // escala do gráfico, em meses
 
   var aportes = [
@@ -1147,7 +1157,7 @@
     var bar = el("div","ra-bar");
     a.itens.forEach(function(it){
       var seg = el("i");
-      seg.style.flex = "0 0 " + (it.v / APORTE_TOTAL * 100) + "%";
+      seg.style.flex = "0 1 " + (it.v / APORTE_TOTAL * 100) + "%";
       seg.style.background = it.c;
       seg.setAttribute("data-tip", it.n + " · " + BRL.format(it.v) + " por mês");
       // só rotula quem tem largura para o texto caber
@@ -1162,14 +1172,14 @@
   });
 
   /* ---------- composição das reservas ---------- */
-  var RESERVA_TOTAL = 104779;
+  var RESERVA_TOTAL = 89270;
   var camadas = [
-    {nome:"Flexível",            val:43920, tier:"rapido"},
-    {nome:"Turbo",               val:10050, tier:"rapido"},
-    {nome:"Poupança",            val:5460,  tier:"rapido"},
-    {nome:"Investimento",        val:40113, tier:"investido"},
-    {nome:"Casinha nova, Artista, Próxima viagem", val:3442, tier:"destino"},
-    {nome:"Fundinhos com a Karol",                 val:1794, tier:"destino"}
+    {nome:"Flexível",            val:27600, tier:"rapido"},
+    {nome:"Turbo",               val:10030, tier:"rapido"},
+    {nome:"Poupança",            val:5800,  tier:"rapido"},
+    {nome:"Investimento",        val:40050, tier:"investido"},
+    {nome:"Casinha nova, Artista, Próxima viagem", val:3900, tier:"destino"},
+    {nome:"Fundinhos com a Karol",                 val:1890, tier:"destino"}
   ];
   var tierCor = {rapido:"var(--c1)", investido:"var(--c2)", destino:"var(--c3)"};
   var tierNome = {rapido:"Acesso rápido", investido:"Investido", destino:"Com destino definido"};
@@ -1177,13 +1187,13 @@
   var sb = document.getElementById("reservaBar");
   camadas.forEach(function(c){
     var seg = el("i");
-    seg.style.flex = "0 0 " + (c.val / RESERVA_TOTAL * 100) + "%";
+    seg.style.flex = "0 1 " + (c.val / RESERVA_TOTAL * 100) + "%";
     seg.style.background = tierCor[c.tier];
     seg.setAttribute("data-tip", c.nome + " · " + BRL.format(c.val) + " · " +
       PCT(c.val/RESERVA_TOTAL*100) + " do total · " + tierNome[c.tier]);
     sb.appendChild(seg);
   });
-  [[43920, "Só o Flexível"], [59430, "Acesso rápido"]].forEach(function(mk){
+  [[27600, "Só o Flexível"], [43430, "Acesso rápido"]].forEach(function(mk){
     var mark = el("span","sb-mark");
     mark.style.left = (mk[0] / RESERVA_TOTAL * 100) + "%";
     mark.setAttribute("data-label", mk[1]);
@@ -1191,7 +1201,7 @@
   });
 
   var sbLeg = document.getElementById("reservaLegend");
-  [["rapido", 59430], ["investido", 40113], ["destino", 5236]].forEach(function(t){
+  [["rapido", 43430], ["investido", 40050], ["destino", 5790]].forEach(function(t){
     var item = el("span","item");
     var sw = el("i","swatch");
     sw.style.background = tierCor[t[0]];
@@ -1340,7 +1350,7 @@
                               stroke:inkStrong, "stroke-width":2, "stroke-dasharray":"5 4"}));
     var entLab = s("text",{x:m.l+6, y:y(ENTRADAS_TOTAL)-8, "text-anchor":"start", fill:inkStrong,
                            "font-size":11, "font-weight":"700", "font-family":css("--sans")});
-    entLab.textContent = "Entradas do mês · R$ 14.965,79";
+    entLab.textContent = "Entradas do mês · R$ 15.255,53";
     svg.appendChild(entLab);
 
     // zona de descoberto a partir do cruzamento
@@ -1394,8 +1404,8 @@
     // Mesma linguagem da barra de comprometimento: a pilha é o que o mês exige,
     // o traço em tinta é o que entra.
     var data = [
-      {mes:"Agosto",   ess:10200.86, nes:10091.69, pou:2399.61, entradas:22718.05},
-      {mes:"Setembro", ess:9327.50,  nes:6743.35,  pou:2300.00, entradas:14965.79}
+      {mes:"Agosto",   ess:10140.50, nes:10091.69, pou:2399.61, entradas:22718.05},
+      {mes:"Setembro", ess:9328.54,  nes:6878.35,  pou:2300.00, entradas:15255.53}
     ];
     var yMax = 25500;
     var groupW = iw / data.length;
