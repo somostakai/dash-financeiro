@@ -198,9 +198,27 @@
   .super-split{display:flex; flex-direction:column; gap:var(--s3); border-top:1px solid var(--rule); padding-top:var(--s4)}
 
   /* ---------- sobrevivência ---------- */
-  .surv-head{display:flex; align-items:flex-start; justify-content:space-between; gap:var(--s4); flex-wrap:wrap}
+  .surv-card{display:flex; flex-direction:column; gap:var(--s5)}
+  .surv-head{display:flex; align-items:flex-end; justify-content:space-between; gap:var(--s4) var(--s6); flex-wrap:wrap}
   .surv-val{font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:2.5rem; font-weight:600; letter-spacing:-.04em; line-height:1}
   .surv-val em{font-family:var(--sans); font-style:normal; font-size:1.125rem; font-weight:600; color:var(--muted); letter-spacing:0}
+  .surv-burn{display:flex; flex-wrap:wrap; gap:var(--s4) var(--s6)}
+  .surv-burn > div{display:flex; flex-direction:column; gap:var(--s1)}
+  .surv-burn b{
+    font-family:var(--mono); font-variant-numeric:tabular-nums;
+    font-size:1rem; font-weight:600; color:var(--ink); letter-spacing:-.02em;
+  }
+
+  /* barra de composição das reservas */
+  .stackbar{position:relative; display:flex; gap:2px; height:38px; width:100%}
+  .stackbar i{height:100%; border-radius:2px; min-width:2px}
+  .stackbar i:first-child{border-radius:2px 1px 1px 2px}
+  .stackbar i:last-child{border-radius:1px 2px 2px 1px}
+  .sb-mark{position:absolute; top:-9px; bottom:-9px; width:2px; background:var(--ink); z-index:3}
+  .sb-mark::after{
+    content:attr(data-label); position:absolute; left:6px; top:-9px; white-space:nowrap;
+    font-size:.6875rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--ink);
+  }
 
   .runway{display:flex; flex-direction:column; gap:var(--s4); position:relative}
   .rw-group{display:flex; flex-direction:column; gap:var(--s2)}
@@ -330,7 +348,7 @@
       <span>Fonte: aba <strong>Set.</strong> da planilha</span>
       <span class="stamp">
         Atualizado em
-        <time datetime="2026-08-03T11:29:00-03:00"><strong class="num">03/08/2026</strong> às <strong class="num">11:29</strong></time>
+        <time datetime="2026-08-04T12:13:00-03:00"><strong class="num">04/08/2026</strong> às <strong class="num">12:13</strong></time>
       </span>
     </div>
   </div>
@@ -507,65 +525,45 @@
       <p>Se a receita zerar amanhã, quanto tempo as reservas seguram no ritmo de gasto dos últimos três meses. A linha dos 6 meses é a reserva de emergência clássica.</p>
     </div>
 
-    <div class="grid g-32" style="align-items:start">
-      <div class="card" style="display:flex; flex-direction:column; gap:var(--s5)">
-        <div class="surv-head">
-          <div class="super-figs">
-            <span class="eyebrow">Só o Flexível, mantendo o padrão de vida</span>
-            <span class="surv-val num">2,4 <em>meses</em></span>
-          </div>
-          <span class="status status-warn">2 meses e 12 dias</span>
+    <div class="card surv-card">
+      <div class="surv-head">
+        <div class="super-figs">
+          <span class="eyebrow">Só o Flexível, mantendo o padrão de vida</span>
+          <span class="surv-val num">2 <em>meses</em></span>
         </div>
-
-        <div class="runway" id="runway"></div>
-
-        <div class="legend">
-          <span class="item"><i class="swatch" style="background:var(--c2)"></i> Mantendo o padrão de vida atual</span>
-          <span class="item"><i class="swatch" style="background:var(--c1)"></i> Cortando para o essencial</span>
-          <span class="item"><i style="width:14px; height:0; border-top:2px dashed var(--ink-2); display:inline-block"></i> 6 meses</span>
-        </div>
-
-        <div class="super-split">
-          <div class="split-row">
-            <span class="lbl">Queima mantendo o padrão atual</span>
-            <span class="val num">R$&nbsp;18.373,27</span>
+        <div class="surv-burn">
+          <div>
+            <span class="eyebrow">Queima no padrão atual</span>
+            <b class="num">R$&nbsp;18.373,27</b>
           </div>
-          <div class="split-row">
-            <span class="lbl">Queima cortando para o essencial</span>
-            <span class="val num">R$&nbsp;8.874,63</span>
+          <div>
+            <span class="eyebrow">Queima no modo essencial</span>
+            <b class="num">R$&nbsp;8.874,63</b>
           </div>
-          <div class="split-row">
-            <span class="lbl">Base do cálculo</span>
-            <span class="val" style="font-size:.8125rem; color:var(--muted)">média de junho a agosto</span>
+          <div>
+            <span class="eyebrow">Base do cálculo</span>
+            <b style="font-size:.875rem; font-weight:600">jun a ago</b>
           </div>
         </div>
       </div>
 
-      <div style="display:flex; flex-direction:column; gap:var(--s4)">
-      <div class="card">
-        <div class="tbl-scroll">
-          <table class="tbl-compact">
-            <caption>De onde vem cada camada de reserva</caption>
-            <thead><tr><th>Reserva</th><th class="r">Valor</th></tr></thead>
-            <tbody>
-              <tr><td>Flexível</td><td class="r money">R$&nbsp;43.920,00</td></tr>
-              <tr><td>Turbo</td><td class="r money">R$&nbsp;10.050,00</td></tr>
-              <tr><td>Poupança</td><td class="r money">R$&nbsp;5.460,00</td></tr>
-              <tr><td>Investimento</td><td class="r money">R$&nbsp;40.113,00</td></tr>
-              <tr><td>Casinha nova, Artista, Próxima viagem</td><td class="r money">R$&nbsp;3.442,00</td></tr>
-              <tr><td>Fundinhos com a Karol</td><td class="r money">R$&nbsp;1.794,00</td></tr>
-            </tbody>
-            <tfoot><tr><td>Tudo somado</td><td class="r money">R$&nbsp;104.779,00</td></tr></tfoot>
-          </table>
-        </div>
+      <div class="runway" id="runway"></div>
+
+      <div class="legend">
+        <span class="item"><i class="swatch" style="background:var(--c2)"></i> Mantendo o padrão de vida atual</span>
+        <span class="item"><i class="swatch" style="background:var(--c1)"></i> Cortando para o essencial</span>
+        <span class="item"><i style="width:14px; height:0; border-top:2px dashed var(--ink-2); display:inline-block"></i> 6 meses</span>
+        <span class="item" style="color:var(--faint)">Passe o mouse para ver os dias</span>
       </div>
-      <div class="note">
-        <b>Nem tudo é resgatável no mesmo dia.</b> As três primeiras linhas são o dinheiro
-        de acesso rápido, e é por isso que elas formam o cenário do meio. O Investimento e
-        os fundos com destino já definido só entram no <em>tudo somado</em>, que é o cenário
-        de raspar o tacho.
+    </div>
+
+    <div class="card surv-card" style="margin-top:var(--s4)">
+      <div class="surv-head">
+        <span class="eyebrow">De onde vêm os R$&nbsp;104.779,00</span>
+        <span class="eyebrow" style="color:var(--muted)">Nem tudo é resgatável no mesmo dia</span>
       </div>
-      </div>
+      <div class="stackbar" id="reservaBar"></div>
+      <div class="legend" id="reservaLegend"></div>
     </div>
 
     <div class="note flag insight">
@@ -580,13 +578,13 @@
         </div>
         <div>
           <span class="eyebrow">Modo essencial já dá</span>
-          <b class="num pos">6,7 meses</b>
+          <b class="num pos">6 meses</b>
         </div>
       </div>
       <p>
-        Para as reservas líquidas segurarem os 6 meses, o gasto teria que caber em
+        Para as reservas de acesso rápido segurarem os 6 meses, o gasto teria que caber em
         R$&nbsp;9.905 por mês. <b>É praticamente o modo essencial</b>, que hoje custa
-        R$&nbsp;8.874,63 e já rende 6,7 meses. A conta ainda é conservadora: ela mantém
+        R$&nbsp;8.874,63 e já cobre os 6 meses. A conta ainda é conservadora: ela mantém
         INSS e Simples Nacional, que caem junto com o faturamento.
       </p>
     </div>
@@ -909,9 +907,14 @@
     {nome:"Tudo somado",                 val:104779}
   ];
 
-  function mesesTexto(m){
+  // Meses completos: sempre para baixo, porque um mês pela metade não é um mês de folga.
+  function mesesCheios(m){
+    var i = Math.floor(m);
+    return i + (i === 1 ? " mês" : " meses");
+  }
+  function mesesDetalhe(m){
     var i = Math.floor(m), d = Math.round((m - i) * 30);
-    return i + (i === 1 ? " mês " : " meses ") + d + "d";
+    return mesesCheios(m) + " e " + d + (d === 1 ? " dia" : " dias");
   }
 
   var runway = document.getElementById("runway");
@@ -933,7 +936,7 @@
         var fill = el("i");
         fill.style.width = Math.min(m / RW_MAX * 100, 100) + "%";
         fill.style.background = cfg[1];
-        fill.setAttribute("data-tip", r.nome + " · " + cfg[2] + " · " + mesesTexto(m));
+        fill.setAttribute("data-tip", r.nome + " · " + cfg[2] + " · " + mesesDetalhe(m));
         track.appendChild(fill);
 
         var mark = el("span","rw-mark");
@@ -941,13 +944,54 @@
         track.appendChild(mark);
 
         bar.appendChild(track);
-        bar.appendChild(el("span", null, m.toLocaleString("pt-BR",
-          {minimumFractionDigits:1, maximumFractionDigits:1}) + " meses"));
+        bar.appendChild(el("span", null, mesesCheios(m)));
         bars.appendChild(bar);
       });
 
     g.appendChild(bars);
     runway.appendChild(g);
+  });
+
+  /* ---------- composição das reservas ---------- */
+  var RESERVA_TOTAL = 104779;
+  var camadas = [
+    {nome:"Flexível",            val:43920, tier:"rapido"},
+    {nome:"Turbo",               val:10050, tier:"rapido"},
+    {nome:"Poupança",            val:5460,  tier:"rapido"},
+    {nome:"Investimento",        val:40113, tier:"investido"},
+    {nome:"Casinha nova, Artista, Próxima viagem", val:3442, tier:"destino"},
+    {nome:"Fundinhos com a Karol",                 val:1794, tier:"destino"}
+  ];
+  var tierCor = {rapido:"var(--c1)", investido:"var(--c2)", destino:"var(--c3)"};
+  var tierNome = {rapido:"Acesso rápido", investido:"Investido", destino:"Com destino definido"};
+
+  var sb = document.getElementById("reservaBar");
+  camadas.forEach(function(c){
+    var seg = el("i");
+    seg.style.flex = "0 0 " + (c.val / RESERVA_TOTAL * 100) + "%";
+    seg.style.background = tierCor[c.tier];
+    seg.setAttribute("data-tip", c.nome + " · " + BRL.format(c.val) + " · " +
+      PCT(c.val/RESERVA_TOTAL*100) + " do total · " + tierNome[c.tier]);
+    sb.appendChild(seg);
+  });
+  [[43920, "Só o Flexível"], [59430, "Acesso rápido"]].forEach(function(mk){
+    var mark = el("span","sb-mark");
+    mark.style.left = (mk[0] / RESERVA_TOTAL * 100) + "%";
+    mark.setAttribute("data-label", mk[1]);
+    sb.appendChild(mark);
+  });
+
+  var sbLeg = document.getElementById("reservaLegend");
+  [["rapido", 59430], ["investido", 40113], ["destino", 5236]].forEach(function(t){
+    var item = el("span","item");
+    var sw = el("i","swatch");
+    sw.style.background = tierCor[t[0]];
+    item.appendChild(sw);
+    item.appendChild(document.createTextNode(" " + tierNome[t[0]] + " "));
+    var b = el("b", null, BRL.format(t[1]));
+    b.style.cssText = "color:var(--ink); font-family:var(--mono); font-variant-numeric:tabular-nums; font-weight:600";
+    item.appendChild(b);
+    sbLeg.appendChild(item);
   });
 
   /* ---------- supermercado: meses fechados ---------- */
