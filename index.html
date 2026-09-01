@@ -9,6 +9,8 @@
     --bad:#A63A2A; --bad-soft:rgba(166,58,42,.10); --bad-line:rgba(166,58,42,.28);
     --good:#2E6B4A; --good-soft:rgba(46,107,74,.10);
     --warn:#96601A;
+    --tint-blush:#F7E7DE; --tint-sage:#E9EDE2; --tint-sand:#F4EAD9;
+    --track:rgba(31,31,31,.08);
     --shadow:0 1px 2px rgba(31,31,31,.05), 0 8px 24px -16px rgba(31,31,31,.22);
 
     --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;
@@ -16,6 +18,7 @@
     --mono:ui-monospace,"SF Mono","JetBrains Mono","Roboto Mono",Menlo,Consolas,"Liberation Mono",monospace;
 
     --s1:.25rem; --s2:.5rem; --s3:.75rem; --s4:1rem; --s5:1.5rem; --s6:2rem; --s7:3rem; --s8:4.5rem;
+    --r-card:20px; --r-bar:999px; --r-chip:999px;
     --maxw:1120px;
   }
   @media (prefers-color-scheme:dark){
@@ -28,6 +31,8 @@
     --bad:#E08472; --bad-soft:rgba(224,132,114,.13); --bad-line:rgba(224,132,114,.34);
     --good:#6FBF8F; --good-soft:rgba(111,191,143,.13);
     --warn:#D9A05A;
+    --tint-blush:#2E2420; --tint-sage:#23271F; --tint-sand:#2E2A22;
+    --track:rgba(252,251,247,.10);
     --shadow:0 1px 2px rgba(0,0,0,.45), 0 10px 30px -18px rgba(0,0,0,.85);
     }
   }
@@ -40,6 +45,8 @@
     --bad:#A63A2A; --bad-soft:rgba(166,58,42,.10); --bad-line:rgba(166,58,42,.28);
     --good:#2E6B4A; --good-soft:rgba(46,107,74,.10);
     --warn:#96601A;
+    --tint-blush:#F7E7DE; --tint-sage:#E9EDE2; --tint-sand:#F4EAD9;
+    --track:rgba(31,31,31,.08);
     --shadow:0 1px 2px rgba(31,31,31,.05), 0 8px 24px -16px rgba(31,31,31,.22);
   }
   :root[data-theme="dark"]{
@@ -51,6 +58,8 @@
     --bad:#E08472; --bad-soft:rgba(224,132,114,.13); --bad-line:rgba(224,132,114,.34);
     --good:#6FBF8F; --good-soft:rgba(111,191,143,.13);
     --warn:#D9A05A;
+    --tint-blush:#2E2420; --tint-sage:#23271F; --tint-sand:#2E2A22;
+    --track:rgba(252,251,247,.10);
     --shadow:0 1px 2px rgba(0,0,0,.45), 0 10px 30px -18px rgba(0,0,0,.85);
   }
 
@@ -92,9 +101,9 @@
 
   /* ---------- verdict ---------- */
   .verdict{
-    margin-top:var(--s6); background:var(--surface); border:1px solid var(--rule);
-    border-left:3px solid var(--bad); border-radius:2px; box-shadow:var(--shadow);
-    padding:var(--s5) var(--s5) var(--s5) calc(var(--s5) + var(--s1));
+    margin-top:var(--s6); background:var(--tint-blush); border:0;
+    border-radius:var(--r-card);
+    padding:var(--s6);
     display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); gap:var(--s5) var(--s7);
   }
   @media (max-width:760px){ .verdict{grid-template-columns:1fr} }
@@ -115,7 +124,10 @@
   .sec-head{display:flex; flex-direction:column; gap:var(--s2); margin-bottom:var(--s5); padding-bottom:var(--s3); border-bottom:1px solid var(--rule)}
   .sec-head p{margin:0; color:var(--muted); font-size:.9375rem; max-width:68ch}
 
-  .card{background:var(--surface); border:1px solid var(--rule); border-radius:2px; box-shadow:var(--shadow); padding:var(--s5)}
+  .card{background:var(--card-bg,var(--surface)); border:0; border-radius:var(--r-card); padding:var(--s5)}
+  .t-blush{--card-bg:var(--tint-blush)}
+  .t-sage{--card-bg:var(--tint-sage)}
+  .t-sand{--card-bg:var(--tint-sand)}
   .grid{display:grid; gap:var(--s4)}
   .g-2{grid-template-columns:repeat(2,minmax(0,1fr))}
   .g-32{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}
@@ -130,11 +142,11 @@
 
   /* ---------- commitment bar ---------- */
   .commit{display:flex; flex-direction:column; gap:var(--s3)}
-  .commit-track{position:relative; height:52px; background:var(--surface-2); border-radius:2px}
+  .commit-track{position:relative; height:52px; background:var(--track); border-radius:var(--r-bar)}
   .commit-fill{position:absolute; inset:0; display:flex; gap:2px; height:100%; width:100%}
-  .commit-seg{height:100%; border-radius:1px; position:relative; cursor:default}
-  .commit-seg:first-child{border-radius:2px 1px 1px 2px}
-  .commit-seg:last-child{border-radius:1px 2px 2px 1px}
+  .commit-seg{height:100%; border-radius:3px; position:relative; cursor:default}
+  .commit-seg:first-child{border-radius:var(--r-bar) 3px 3px var(--r-bar)}
+  .commit-seg:last-child{border-radius:3px var(--r-bar) var(--r-bar) 3px}
   .commit-line{position:absolute; top:-10px; bottom:-10px; width:2px; background:var(--ink); z-index:3}
   .commit-line::after{
     content:attr(data-label); position:absolute; left:8px; top:-8px; white-space:nowrap;
@@ -159,8 +171,8 @@
   .rung-n{text-align:right; display:flex; flex-direction:column; gap:var(--s1)}
   .rung-n .gap{font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:1.375rem; font-weight:600; letter-spacing:-.03em}
   .rung-n .pct{font-size:.75rem; color:var(--muted); font-family:var(--mono); font-variant-numeric:tabular-nums}
-  .rung-bar{grid-column:1/-1; height:6px; background:var(--surface-2); border-radius:3px; overflow:hidden}
-  .rung-bar i{display:block; height:100%; border-radius:3px; background:var(--bad); opacity:.85}
+  .rung-bar{grid-column:1/-1; height:8px; background:var(--track); border-radius:var(--r-bar); overflow:hidden}
+  .rung-bar i{display:block; height:100%; border-radius:var(--r-bar); background:var(--bad); opacity:.9}
 
   /* ---------- goal bars (50/30/20) ---------- */
   .goals{display:flex; flex-direction:column; gap:var(--s5)}
@@ -169,8 +181,8 @@
   .goal-top .name{display:flex; align-items:center; gap:var(--s2); font-weight:600; font-size:.875rem}
   .goal-top .figs{font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:.8125rem; color:var(--muted)}
   .goal-top .figs b{color:var(--ink); font-weight:600; font-size:.9375rem}
-  .goal-track{position:relative; height:22px; background:var(--surface-2); border-radius:2px}
-  .goal-fill{height:100%; border-radius:2px}
+  .goal-track{position:relative; height:24px; background:var(--track); border-radius:var(--r-bar)}
+  .goal-fill{height:100%; border-radius:var(--r-bar)}
   .goal-meta{position:absolute; top:-6px; bottom:-6px; width:2px; background:var(--ink-2); z-index:2}
   .goal-meta::after{content:attr(data-label); position:absolute; left:6px; top:-16px; font-size:.6875rem; font-weight:600; color:var(--ink-2); white-space:nowrap; font-family:var(--mono)}
   .goal-note{font-size:.8125rem; color:var(--muted)}
@@ -182,7 +194,7 @@
   .super-val{font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:2rem; font-weight:600; letter-spacing:-.03em; line-height:1}
   .status{
     display:inline-flex; align-items:center; gap:6px; font-size:.75rem; font-weight:650;
-    padding:4px 10px; border-radius:2px; white-space:nowrap;
+    padding:5px 12px; border-radius:var(--r-chip); white-space:nowrap;
   }
   .status::before{content:""; width:7px; height:7px; border-radius:50%; background:currentColor}
   .status-ok{background:var(--good-soft); color:var(--good)}
@@ -190,8 +202,8 @@
   .status-over{background:var(--bad-soft); color:var(--bad)}
 
   .super-bar{display:flex; flex-direction:column; gap:var(--s2)}
-  .super-track{position:relative; height:30px; background:var(--surface-2); border-radius:2px}
-  .super-fill{height:100%; border-radius:2px}
+  .super-track{position:relative; height:32px; background:var(--track); border-radius:var(--r-bar)}
+  .super-fill{height:100%; border-radius:var(--r-bar)}
   .super-limit{position:absolute; right:0; top:-7px; bottom:-7px; width:2px; background:var(--ink)}
   .super-limit[style*="left"]::after{left:auto; right:6px}
   .super-limit::after{
@@ -216,7 +228,7 @@
 
   /* trecho que só existe se as caixinhas forem consolidadas */
   .goal-add{
-    position:absolute; top:0; bottom:0; border-radius:2px;
+    position:absolute; top:0; bottom:0; border-radius:var(--r-bar);
     background:repeating-linear-gradient(135deg,
       var(--c1) 0 5px, transparent 5px 10px);
     opacity:.5;
@@ -227,27 +239,11 @@
     opacity:.7;
   }
 
-  /* redistribuição dos aportes */
-  .realloc{display:flex; flex-direction:column; gap:var(--s4)}
-  .ra-row{display:flex; flex-direction:column; gap:var(--s2)}
-  .ra-top{display:flex; align-items:baseline; justify-content:space-between; gap:var(--s3)}
-  .ra-name{font-size:.875rem; font-weight:650}
-  .ra-note{font-size:.8125rem; color:var(--muted)}
-  .ra-bar{display:flex; gap:2px; height:34px; width:100%}
-  .ra-bar i{height:100%; border-radius:2px; min-width:2px; position:relative}
-  .ra-bar i:first-child{border-radius:2px 1px 1px 2px}
-  .ra-bar i:last-child{border-radius:1px 2px 2px 1px}
-  .ra-lab{
-    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
-    font-size:.6875rem; font-weight:700; color:var(--surface); white-space:nowrap; overflow:hidden;
-  }
-  .ra-lab.on-mute{color:var(--ink)}
-
   /* barra de composição das reservas */
   .stackbar{position:relative; display:flex; gap:2px; height:38px; width:100%}
-  .stackbar i{height:100%; border-radius:2px; min-width:2px}
-  .stackbar i:first-child{border-radius:2px 1px 1px 2px}
-  .stackbar i:last-child{border-radius:1px 2px 2px 1px}
+  .stackbar i{height:100%; border-radius:3px; min-width:3px}
+  .stackbar i:first-child{border-radius:var(--r-bar) 3px 3px var(--r-bar)}
+  .stackbar i:last-child{border-radius:3px var(--r-bar) var(--r-bar) 3px}
   .sb-mark{position:absolute; top:-9px; bottom:-9px; width:2px; background:var(--ink); z-index:3}
   .sb-mark::after{
     content:attr(data-label); position:absolute; left:6px; top:-9px; white-space:nowrap;
@@ -263,7 +259,7 @@
   /* trilho e rótulo em colunas separadas, para o texto nunca cruzar a marca dos 6 meses */
   .rw-bar{display:grid; grid-template-columns:minmax(0,1fr) 5.25rem; gap:var(--s3); align-items:center}
   .rw-track{position:relative; height:16px}
-  .rw-track i{display:block; height:100%; border-radius:2px; min-width:2px}
+  .rw-track i{display:block; height:100%; border-radius:var(--r-bar); min-width:3px}
   .rw-bar > span{
     font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:.75rem;
     color:var(--ink-2); white-space:nowrap; text-align:right;
@@ -288,7 +284,7 @@
   .hist-row{display:grid; grid-template-columns:2.5rem minmax(0,1fr) auto; gap:var(--s3); align-items:center; font-size:.8125rem}
   .hist-row .hm{color:var(--muted); text-transform:capitalize}
   .hist-track{position:relative; height:12px}
-  .hist-track i{display:block; height:100%; border-radius:2px; min-width:2px}
+  .hist-track i{display:block; height:100%; border-radius:var(--r-bar); min-width:3px}
   .hist-track .lim{position:absolute; top:-3px; bottom:-3px; width:1px; background:var(--rule-strong)}
   .hist-row .hv{font-family:var(--mono); font-variant-numeric:tabular-nums; color:var(--ink-2); white-space:nowrap}
 
@@ -316,7 +312,7 @@
   .rank-row{display:grid; grid-template-columns:minmax(120px,1.1fr) minmax(0,3fr) auto; gap:var(--s3); align-items:center; font-size:.875rem}
   .rank-row .rname{color:var(--ink-2); overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
   .rank-bar{height:14px; background:transparent; border-radius:2px}
-  .rank-bar i{display:block; height:100%; border-radius:2px; min-width:2px}
+  .rank-bar i{display:block; height:100%; border-radius:var(--r-bar); min-width:3px}
   .rank-row .rval{font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:.8125rem; color:var(--ink); white-space:nowrap}
   @media (max-width:560px){ .rank-row{grid-template-columns:minmax(90px,1fr) minmax(0,2fr) auto; font-size:.8125rem} }
 
@@ -338,8 +334,9 @@
 
   /* ---------- callouts ---------- */
   .note{
-    background:var(--surface); border:1px solid var(--rule); border-left:3px solid var(--rule-strong);
-    border-radius:2px; padding:var(--s4) var(--s5); font-size:.875rem; color:var(--muted); line-height:1.6;
+    background:var(--card-bg,var(--tint-sand)); border:0; border-left:4px solid var(--rule-strong);
+    border-radius:var(--r-card); padding:var(--s5) var(--s5) var(--s5) var(--s5);
+    font-size:.875rem; color:var(--muted); line-height:1.6;
   }
   .note b{color:var(--ink-2)}
   .note.flag{border-left-color:var(--warn)}
@@ -349,7 +346,7 @@
 
   .actions{display:grid; gap:var(--s4); grid-template-columns:repeat(3,minmax(0,1fr))}
   @media (max-width:820px){ .actions{grid-template-columns:1fr} }
-  .action{display:flex; flex-direction:column; gap:var(--s2); padding:var(--s4); background:var(--surface); border:1px solid var(--rule); border-radius:2px}
+  .action{display:flex; flex-direction:column; gap:var(--s2); padding:var(--s5); background:var(--card-bg,var(--surface)); border:0; border-radius:var(--r-card)}
   .action .a-val{font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:1.25rem; font-weight:600; letter-spacing:-.03em}
   .action p{margin:0; font-size:.8125rem; color:var(--muted); line-height:1.5}
 
@@ -432,7 +429,7 @@
       <h2 id="s-commit">Quanto da renda já está comprometido</h2>
       <p>A barra é o que outubro exige. A linha preta é tudo o que entra. O que passa da linha não existe hoje.</p>
     </div>
-    <div class="card commit">
+    <div class="card commit t-sage">
       <div class="commit-track" id="commitTrack">
         <div class="commit-fill">
           <div class="commit-seg" style="flex:0 0 49.99%; background:var(--c1)"
@@ -459,8 +456,7 @@
       <h2 id="s-gap">Quanto você ainda precisa ganhar</h2>
       <p>Três níveis de ambição, do mínimo de sobrevivência até a meta de 20% de poupança definida na aba <em>Início</em>.</p>
     </div>
-    <div class="grid g-32">
-      <div class="card ladder">
+    <div class="card ladder t-blush">
         <div class="rung">
           <div class="rung-t">
             <span class="name">Só fechar as contas</span>
@@ -494,61 +490,6 @@
           </div>
           <div class="rung-bar"><i style="width:100%"></i></div>
         </div>
-      </div>
-
-      <div class="card" style="display:flex; flex-direction:column; gap:var(--s4)">
-        <div>
-          <p class="eyebrow" style="margin-bottom:var(--s2)">Pelo outro lado</p>
-          <h3 style="margin-bottom:var(--s2)">Se a receita não subir, o corte é este</h3>
-          <p style="margin:0; font-size:.875rem; color:var(--muted)">
-            Para as contas caberem nas entradas, é preciso tirar <b class="num" style="color:var(--ink)">R$&nbsp;1.281,48</b>
-            das despesas de outubro, ou <span class="num">7,9%</span> do total.
-          </p>
-        </div>
-        <div style="border-top:1px solid var(--rule); padding-top:var(--s4); display:flex; flex-direction:column; gap:var(--s3)">
-          <div class="split-row">
-            <span class="lbl">Não essenciais no mês</span>
-            <span class="val num">R$&nbsp;6.932,19</span>
-          </div>
-          <div class="split-row">
-            <span class="lbl">Corte necessário sobre eles</span>
-            <span class="val num">18,5%</span>
-          </div>
-          <div class="split-row">
-            <span class="lbl">Para também bancar a poupança</span>
-            <span class="val num">51,7%</span>
-          </div>
-        </div>
-        <p style="margin:0; font-size:.8125rem; color:var(--muted); border-top:1px solid var(--rule); padding-top:var(--s3)">
-          O corte é matematicamente viável sem tocar em nada essencial, mas
-          <b style="color:var(--ink-2)">83,6% dos não essenciais são a fatura do cartão</b>, então é lá que a decisão acontece.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= AÇÕES ================= -->
-  <section aria-labelledby="s-acao">
-    <div class="sec-head">
-      <h2 id="s-acao">O que fecha a conta</h2>
-      <p>Três caminhos, com o número exato de cada um. Podem ser combinados.</p>
-    </div>
-    <div class="actions">
-      <div class="action">
-        <span class="eyebrow">Caminho 1 · receita</span>
-        <span class="a-val">+R$&nbsp;1.281,48</span>
-        <p>Faturar 8,6% a mais em outubro zera o vermelho das contas. Para as caixinhas também acontecerem, são <b>+R$&nbsp;3.581,48</b> (+24,1%).</p>
-      </div>
-      <div class="action">
-        <span class="eyebrow">Caminho 2 · fatura</span>
-        <span class="a-val">−R$&nbsp;1.281,48</span>
-        <p>Cortar 22,1% da fatura do cartão resolve sozinho. É a única despesa grande do mês que não é contrato fixo.</p>
-      </div>
-      <div class="action">
-        <span class="eyebrow">Caminho 3 · calendário</span>
-        <span class="a-val">R$&nbsp;10.581,99</span>
-        <p>Vence tudo no dia 5. Negociar o vencimento do cartão ou do aluguel não muda o total, mas evita o aperto entre os dias 5 e 17.</p>
-      </div>
     </div>
   </section>
 
@@ -559,7 +500,7 @@
       <p>Se a receita zerar amanhã, quanto tempo as reservas seguram no ritmo de gasto dos últimos três meses. A linha dos 6 meses é a reserva de emergência clássica.</p>
     </div>
 
-    <div class="card surv-card">
+    <div class="card surv-card t-sage">
       <div class="surv-head">
         <div class="super-figs">
           <span class="eyebrow">Só o Flexível, mantendo o padrão de vida</span>
@@ -591,7 +532,7 @@
       </div>
     </div>
 
-    <div class="card surv-card" style="margin-top:var(--s4)">
+    <div class="card surv-card t-blush" style="margin-top:var(--s4)">
       <div class="surv-head">
         <span class="eyebrow">De onde vêm os R$&nbsp;89.936,00</span>
         <span class="eyebrow" style="color:var(--muted)">Nem tudo é resgatável no mesmo dia</span>
@@ -632,7 +573,7 @@
       <p>A meta é o Flexível sozinho cobrir 6 meses de modo essencial. Ela não é um número fixo: se recalcula toda vez pela média dos três últimos meses fechados.</p>
     </div>
 
-    <div class="card surv-card">
+    <div class="card surv-card t-sage">
       <div class="surv-head">
         <div class="super-figs">
           <span class="eyebrow">Falta no Flexível, sem mexer em mais nada</span>
@@ -673,25 +614,12 @@
       </div>
     </div>
 
-    <div class="card surv-card" style="margin-top:var(--s4)">
+    <div class="card surv-card t-blush" style="margin-top:var(--s4)">
       <div class="surv-head">
         <span class="eyebrow">Depois de consolidar, faltam R$&nbsp;7.924,54. Quanto tempo, conforme o aporte</span>
         <span class="eyebrow" style="color:var(--muted)">Meses arredondados para cima</span>
       </div>
       <div class="runway" id="planoTempo"></div>
-    </div>
-
-    <div class="card surv-card" style="margin-top:var(--s4)">
-      <div class="surv-head">
-        <span class="eyebrow">Como redistribuir os R$&nbsp;2.300 por mês</span>
-        <span class="eyebrow" style="color:var(--muted)">Portugal e Grécia intocado</span>
-      </div>
-      <div class="realloc" id="realloc"></div>
-      <div class="legend">
-        <span class="item"><i class="swatch" style="background:var(--c1)"></i> Flexível</span>
-        <span class="item"><i class="swatch" style="background:var(--c3)"></i> Portugal e Grécia</span>
-        <span class="item"><i class="swatch" style="background:var(--rule-strong)"></i> Demais caixinhas</span>
-      </div>
     </div>
 
     <div class="note flag insight">
@@ -726,7 +654,7 @@
       <p>O orçamento de <span class="num">R$&nbsp;1.500,00</span> contra o que já está lançado na aba <em>Supermercado</em> com competência de outubro.</p>
     </div>
     <div class="grid g-32" style="align-items:start">
-      <div class="card" style="display:flex; flex-direction:column; gap:var(--s4)">
+      <div class="card t-sage" style="display:flex; flex-direction:column; gap:var(--s4)">
         <div class="super-head">
           <div class="super-figs">
             <span class="eyebrow">Já lançado em outubro</span>
@@ -764,7 +692,7 @@
         </div>
       </div>
 
-      <div class="card chart-figure">
+      <div class="card chart-figure t-blush">
         <p class="eyebrow">Os meses fechados de 2026</p>
         <div class="hist" id="superHist"></div>
         <div class="legend">
@@ -797,58 +725,13 @@
     </div>
   </section>
 
-  <!-- ================= POUPANÇA ================= -->
-  <section aria-labelledby="s-pou">
-    <div class="sec-head">
-      <h2 id="s-pou">A poupança, isolada</h2>
-      <p>Quanto falta buscar exclusivamente para guardar, separado das contas.</p>
-    </div>
-    <div class="grid g-32">
-      <div class="card">
-        <div class="tbl-scroll">
-          <table>
-            <caption>Caixinhas de outubro · nenhuma tem lastro no caixa previsto</caption>
-            <thead>
-              <tr><th>Caixinha</th><th class="r">Meta do mês</th><th class="r">Ainda falta</th></tr>
-            </thead>
-            <tbody id="poupBody"></tbody>
-            <tfoot>
-              <tr>
-                <td>Total a buscar só para poupança</td>
-                <td class="r money">R$&nbsp;2.300,00</td>
-                <td class="r money neg">R$&nbsp;2.300,00</td>
-              </tr>
-            </tfoot>
-          </table>
-        </div>
-      </div>
-      <div style="display:flex; flex-direction:column; gap:var(--s4)">
-        <div class="card kpi" style="padding:var(--s5)">
-          <span class="eyebrow">Falta só para poupar</span>
-          <span class="k-val num neg" style="font-size:2rem">R$&nbsp;2.300,00</span>
-          <span class="k-sub">Como o saldo das contas já é negativo, <b>100% da poupança</b> depende de receita nova.</span>
-        </div>
-        <div class="card kpi" style="padding:var(--s5)">
-          <span class="eyebrow">Distância até a meta de 20%</span>
-          <span class="k-val num">R$&nbsp;675,49</span>
-          <span class="k-sub">O plano guarda <span class="num">15,5%</span> das entradas; a meta da aba <em>Início</em> é <span class="num">20%</span>.</span>
-        </div>
-        <div class="note flag">
-          <b>Atenção ao cálculo da planilha.</b> A célula <code style="font-family:var(--mono)">Q21</code> divide a poupança
-          apenas pela entrada de @takai, mostrando <span class="num">16,7%</span>. Sobre o total de entradas,
-          o percentual real é <span class="num">15,4%</span>.
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ================= 50/30/20 ================= -->
   <section aria-labelledby="s-meta">
     <div class="sec-head">
       <h2 id="s-meta">Contra as suas metas 50 / 30 / 20</h2>
       <p>Cada barra é o valor real como % das entradas do mês. O traço vertical é a meta que você definiu na aba <em>Início</em>.</p>
     </div>
-    <div class="card goals">
+    <div class="card goals t-sand">
       <div class="goal-row">
         <div class="goal-top">
           <span class="name"><i class="swatch" style="background:var(--c1)"></i> Essenciais</span>
@@ -887,26 +770,6 @@
     </div>
   </section>
 
-  <!-- ================= CALENDÁRIO DE CAIXA ================= -->
-  <section aria-labelledby="s-cal">
-    <div class="sec-head">
-      <h2 id="s-cal">Quando o dinheiro acaba</h2>
-      <p>Contas acumuladas por dia de vencimento, contra a linha do que entra no mês. O cruzamento é a data em que o caixa vira.</p>
-    </div>
-    <div class="card chart-figure">
-      <div class="chart-hold"><svg id="cashChart" role="img" aria-label="Contas acumuladas de outubro por dia de vencimento cruzando a linha de entradas no dia 17"></svg></div>
-      <div class="legend">
-        <span class="item"><i class="swatch" style="background:var(--c1)"></i> Contas acumuladas</span>
-        <span class="item"><i class="line-key"></i> Entradas do mês (R$&nbsp;14.877,45)</span>
-        <span class="item" style="color:var(--bad)"><i class="swatch" style="background:var(--bad)"></i> A partir do dia 17: descoberto</span>
-      </div>
-      <p style="margin:0; font-size:.875rem; color:var(--muted)">
-        <b style="color:var(--ink-2)">O dia 5 concentra R$&nbsp;10.581,99</b>, ou 65,5% de tudo que vence no mês, incluindo a fatura do cartão.
-        Depois do aluguel, no dia 10, sobram <span class="num">R$&nbsp;222,51</span>. O caixa vira no dia 17, com o Simples Nacional.
-      </p>
-    </div>
-  </section>
-
   <!-- ================= ONDE VAI O DINHEIRO ================= -->
   <section aria-labelledby="s-onde">
     <div class="sec-head">
@@ -914,14 +777,14 @@
       <p>As 16 contas de outubro, da maior para a menor. Duas linhas respondem por quase 60% do mês.</p>
     </div>
     <div class="grid g-32">
-      <div class="card rank" id="rankList"></div>
+      <div class="card rank t-sage" id="rankList"></div>
       <div style="display:flex; flex-direction:column; gap:var(--s4)">
-        <div class="card kpi">
+        <div class="card kpi t-blush">
           <span class="eyebrow">Concentração</span>
           <span class="k-val num">58,9%</span>
           <span class="k-sub">Cartão de crédito + aluguel = <span class="num">R$&nbsp;9.511,15</span> de <span class="num">R$&nbsp;16.158,93</span>.</span>
         </div>
-        <div class="card kpi">
+        <div class="card kpi t-sand">
           <span class="eyebrow">Fatura do cartão</span>
           <span class="k-val num" style="color:var(--c2)">R$&nbsp;5.792,19</span>
           <span class="k-sub">Classificada como <b>não essencial / lazer</b> na planilha. Sozinha, é 83,6% de todos os não essenciais.</span>
@@ -942,7 +805,7 @@
       <p>Os dois meses fecham no vermelho. Outubro alivia de leve porque as contas recuam um pouco mais do que as entradas.</p>
     </div>
     <div class="grid g-2">
-      <div class="card">
+      <div class="card t-sage">
         <div class="cmp-row head"><span>Indicador</span><span class="v">Setembro</span><span class="v">Outubro</span><span class="v">Variação</span></div>
         <div class="cmp-row"><span class="lab">Entradas</span><span class="v">17.745,47</span><span class="v">14.877,45</span><span class="v neg">−16,2%</span></div>
         <div class="cmp-row"><span class="lab">Contas</span><span class="v">19.248,09</span><span class="v">16.158,93</span><span class="v pos">−16,1%</span></div>
@@ -950,7 +813,7 @@
         <div class="cmp-row"><span class="lab">Saldo real (sem poupança)</span><span class="v neg">−1.502,62</span><span class="v neg">−1.281,48</span><span class="v pos">+221,14</span></div>
         <div class="cmp-row"><span class="lab">Saldo da planilha</span><span class="v neg">−3.802,62</span><span class="v neg">−3.581,48</span><span class="v pos">+221,14</span></div>
       </div>
-      <div class="card chart-figure">
+      <div class="card chart-figure t-blush">
         <p class="eyebrow">O que o mês exige × o que entra</p>
         <div class="chart-hold"><svg id="cmpChart" role="img" aria-label="Composição das saídas de setembro e outubro de 2026 comparada às entradas de cada mês"></svg></div>
         <div class="legend">
@@ -1006,18 +869,6 @@
     {dia:21, desc:"Seguro do Carro",    tipo:"Essenciais",     cat:"Contas",     pag:"Pix",     val:120.89}
   ];
 
-  var poupanca = [
-    {nome:"Portugal e Grécia",                    val:800.00},
-    {nome:"Flexível (investimentos médio prazo)", val:500.00},
-    {nome:"Poupança (longo prazo)",               val:400.00},
-    {nome:"Rolezinhos (dia a dia)",               val:300.00},
-    {nome:"Gatos",                                val:100.00},
-    {nome:"Carro",                                val:100.00},
-    {nome:"Viagenzinhas",                         val:100.00},
-    {nome:"takai",                                val:0.00}
-  ];
-
-  /* ---------- tabelas ---------- */
   function el(tag, cls, html){
     var n = document.createElement(tag);
     if(cls) n.className = cls;
@@ -1124,54 +975,6 @@
     pt.appendChild(g);
   });
 
-  /* ---------- plano: redistribuição dos aportes ---------- */
-  var APORTE_TOTAL = 2300;
-  var MUTE = "var(--rule-strong)";
-  var alocacoes = [
-    {nome:"Hoje", nota:"Flexível recebe R$ 500 dos R$ 2.300", itens:[
-      {n:"Portugal e Grécia", v:800, c:"var(--c3)"},
-      {n:"Flexível",          v:500, c:"var(--c1)"},
-      {n:"Poupança longo prazo", v:400, c:MUTE},
-      {n:"Rolezinhos",        v:300, c:MUTE},
-      {n:"Gatos",             v:100, c:MUTE},
-      {n:"Carro",             v:100, c:MUTE},
-      {n:"Viagenzinhas",      v:100, c:MUTE}
-    ]},
-    {nome:"Proposta", nota:"os R$ 400 da Poupança longo prazo passam para o Flexível", itens:[
-      {n:"Portugal e Grécia", v:800, c:"var(--c3)"},
-      {n:"Flexível",          v:900, c:"var(--c1)"},
-      {n:"Rolezinhos",        v:300, c:MUTE},
-      {n:"Gatos",             v:100, c:MUTE},
-      {n:"Carro",             v:100, c:MUTE},
-      {n:"Viagenzinhas",      v:100, c:MUTE}
-    ]}
-  ];
-
-  var ra = document.getElementById("realloc");
-  alocacoes.forEach(function(a){
-    var row = el("div","ra-row");
-    var top = el("div","ra-top");
-    top.appendChild(el("span","ra-name", a.nome));
-    top.appendChild(el("span","ra-note", a.nota));
-    row.appendChild(top);
-
-    var bar = el("div","ra-bar");
-    a.itens.forEach(function(it){
-      var seg = el("i");
-      seg.style.flex = "0 1 " + (it.v / APORTE_TOTAL * 100) + "%";
-      seg.style.background = it.c;
-      seg.setAttribute("data-tip", it.n + " · " + BRL.format(it.v) + " por mês");
-      // só rotula quem tem largura para o texto caber
-      if(it.v >= 300){
-        var lab = el("span","ra-lab" + (it.c === MUTE ? " on-mute" : ""), BRL.format(it.v));
-        seg.appendChild(lab);
-      }
-      bar.appendChild(seg);
-    });
-    row.appendChild(bar);
-    ra.appendChild(row);
-  });
-
   /* ---------- composição das reservas ---------- */
   var RESERVA_TOTAL = 89936;
   var camadas = [
@@ -1246,15 +1049,6 @@
     hist.appendChild(row);
   });
 
-  var poupBody = document.getElementById("poupBody");
-  poupanca.forEach(function(p){
-    var tr = el("tr");
-    tr.appendChild(el("td", null, p.nome + (p.val === 0 ? ' <span style="color:var(--faint); font-size:.75rem">(sem meta)</span>' : "")));
-    tr.appendChild(el("td","r money", BRL.format(p.val)));
-    tr.appendChild(el("td","r money" + (p.val > 0 ? " neg" : ""), BRL.format(p.val)));
-    poupBody.appendChild(tr);
-  });
-
   /* ---------- ranking de despesas ---------- */
   var rank = document.getElementById("rankList");
   var maxVal = contas.reduce(function(m,c){ return Math.max(m,c.val); },0);
@@ -1288,7 +1082,7 @@
   document.addEventListener("mouseout", hideTip);
   document.addEventListener("scroll", hideTip, true);
 
-  /* ---------- gráfico: calendário de caixa ---------- */
+  /* ---------- utilitários de SVG ---------- */
   var SVGNS = "http://www.w3.org/2000/svg";
   function s(tag, attrs){
     var n = document.createElementNS(SVGNS, tag);
@@ -1296,100 +1090,6 @@
     return n;
   }
   function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
-
-  function drawCash(){
-    var svg = document.getElementById("cashChart");
-    while(svg.firstChild){ svg.removeChild(svg.firstChild); }
-
-    var W = Math.max(560, svg.parentNode.clientWidth || 700), H = 300;
-    var m = {t:18, r:16, b:34, l:74};
-    var iw = W - m.l - m.r, ih = H - m.t - m.b;
-    svg.setAttribute("viewBox","0 0 "+W+" "+H);
-    svg.setAttribute("width", W);
-    svg.setAttribute("height", H);
-
-    var byDay = {};
-    contas.forEach(function(c){ byDay[c.dia] = (byDay[c.dia]||0) + c.val; });
-    var days = Object.keys(byDay).map(Number).sort(function(a,b){ return a-b; });
-
-    var pts = [{d:0, v:0}], acc = 0;
-    days.forEach(function(d){ acc += byDay[d]; pts.push({d:d, v:acc}); });
-    pts.push({d:30, v:acc});
-
-    var yMax = Math.max(acc, ENTRADAS_TOTAL) * 1.08;
-    var x = function(d){ return m.l + d/30 * iw; };
-    var y = function(v){ return m.t + ih - (v/yMax) * ih; };
-
-    var gridColor = css("--rule"), inkMuted = css("--faint"), inkStrong = css("--ink-2");
-
-    [0, 4000, 8000, 12000, 16000].forEach(function(v){
-      svg.appendChild(s("line",{x1:m.l, x2:m.l+iw, y1:y(v), y2:y(v), stroke:gridColor, "stroke-width":1}));
-      var lab = s("text",{x:m.l-10, y:y(v)+4, "text-anchor":"end", fill:inkMuted,
-                          "font-size":11, "font-family":css("--mono")});
-      lab.textContent = v === 0 ? "0" : (v/1000) + "k";
-      svg.appendChild(lab);
-    });
-
-    // caminho em degraus
-    var dStep = "M " + x(0) + " " + y(0);
-    for(var i=1;i<pts.length;i++){
-      dStep += " L " + x(pts[i].d) + " " + y(pts[i-1].v) + " L " + x(pts[i].d) + " " + y(pts[i].v);
-    }
-    var area = dStep + " L " + x(30) + " " + y(0) + " Z";
-
-    var grad = s("linearGradient",{id:"cashGrad", x1:"0", y1:"0", x2:"0", y2:"1"});
-    var st1 = s("stop",{offset:"0%", "stop-color":css("--c1"), "stop-opacity":"0.22"});
-    var st2 = s("stop",{offset:"100%", "stop-color":css("--c1"), "stop-opacity":"0.02"});
-    grad.appendChild(st1); grad.appendChild(st2);
-    var defs = s("defs",{}); defs.appendChild(grad); svg.appendChild(defs);
-
-    svg.appendChild(s("path",{d:area, fill:"url(#cashGrad)"}));
-    svg.appendChild(s("path",{d:dStep, fill:"none", stroke:css("--c1"), "stroke-width":2,
-                              "stroke-linejoin":"round", "stroke-linecap":"round"}));
-
-    // linha das entradas
-    svg.appendChild(s("line",{x1:m.l, x2:m.l+iw, y1:y(ENTRADAS_TOTAL), y2:y(ENTRADAS_TOTAL),
-                              stroke:inkStrong, "stroke-width":2, "stroke-dasharray":"5 4"}));
-    var entLab = s("text",{x:m.l+6, y:y(ENTRADAS_TOTAL)-8, "text-anchor":"start", fill:inkStrong,
-                           "font-size":11, "font-weight":"700", "font-family":css("--sans")});
-    entLab.textContent = "Entradas do mês · R$ 14.877,45";
-    svg.appendChild(entLab);
-
-    // zona de descoberto a partir do cruzamento
-    var cross = null;
-    for(var j=1;j<pts.length;j++){
-      if(pts[j].v > ENTRADAS_TOTAL){ cross = pts[j]; break; }
-    }
-    if(cross){
-      svg.appendChild(s("rect",{x:x(cross.d), y:m.t, width:(m.l+iw)-x(cross.d), height:ih,
-                                fill:css("--bad"), opacity:"0.07"}));
-      svg.appendChild(s("line",{x1:x(cross.d), x2:x(cross.d), y1:m.t, y2:m.t+ih,
-                                stroke:css("--bad"), "stroke-width":2}));
-      var cl = s("text",{x:x(cross.d)+7, y:m.t+14, fill:css("--bad"), "font-size":11,
-                         "font-weight":"700", "font-family":css("--sans")});
-      cl.textContent = "dia " + cross.d + " · caixa vira";
-      svg.appendChild(cl);
-    }
-
-    // marcadores por dia com vencimento
-    pts.slice(1, pts.length-1).forEach(function(p){
-      var c = s("circle",{cx:x(p.d), cy:y(p.v), r:4.5, fill:css("--surface"),
-                          stroke:p.v > ENTRADAS_TOTAL ? css("--bad") : css("--c1"), "stroke-width":2});
-      c.setAttribute("data-tip","Dia "+p.d+" · vence "+BRL.format(byDay[p.d])+" · acumulado "+BRL.format(p.v));
-      svg.appendChild(c);
-    });
-
-    [1,5,10,15,20,25,30].forEach(function(d){
-      var t = s("text",{x:x(d), y:H-12, "text-anchor":"middle", fill:inkMuted,
-                        "font-size":11, "font-family":css("--mono")});
-      t.textContent = d;
-      svg.appendChild(t);
-    });
-    var axl = s("text",{x:m.l+iw/2, y:H-0.5, "text-anchor":"middle", fill:inkMuted,
-                        "font-size":10, "font-family":css("--sans")});
-    axl.textContent = "";
-    svg.appendChild(axl);
-  }
 
   /* ---------- gráfico: setembro x outubro ---------- */
   function drawCmp(){
@@ -1461,7 +1161,7 @@
     svg.appendChild(s("line",{x1:m.l, x2:m.l+iw, y1:m.t+ih, y2:m.t+ih, stroke:css("--rule-strong"), "stroke-width":1}));
   }
 
-  function drawAll(){ drawCash(); drawCmp(); }
+  function drawAll(){ drawCmp(); }
   drawAll();
 
   var rt;
