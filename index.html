@@ -292,7 +292,7 @@
   .hist-row .hm{color:var(--muted); text-transform:capitalize}
   .hist-track{position:relative; height:12px}
   .hist-track i{display:block; height:100%; border-radius:var(--r-bar); min-width:3px}
-  .hist-track .lim{position:absolute; top:-3px; bottom:-3px; width:1px; background:var(--rule-strong)}
+  .hist-track .lim{position:absolute; top:-4px; bottom:-4px; width:2px; background:var(--ink-2)}
   .hist-row .hv{font-family:var(--mono); font-variant-numeric:tabular-nums; color:var(--ink-2); white-space:nowrap}
 
   /* ---------- generic table ---------- */
@@ -706,11 +706,11 @@
       </div>
 
       <div class="card chart-figure t-sage">
-        <p class="eyebrow">Os meses fechados de 2026</p>
+        <p class="eyebrow">Quanto foi de mercado em cada mês de 2026</p>
         <div class="hist" id="superHist"></div>
         <div class="legend">
-          <span class="item"><i class="swatch" style="background:var(--c1)"></i> Dentro do teto</span>
-          <span class="item"><i class="swatch" style="background:var(--c2)"></i> Acima do teto</span>
+          <span class="item"><i class="swatch" style="background:var(--c1)"></i> Gasto do mês</span>
+          <span class="item"><i style="width:2px; height:14px; background:var(--ink-2); display:inline-block"></i> Teto de R$&nbsp;1.500</span>
         </div>
       </div>
     </div>
@@ -1052,7 +1052,7 @@
     var track = el("div","hist-track");
     var bar = el("i");
     bar.style.width = (d.val / histMax * 100) + "%";
-    bar.style.background = estourou ? "var(--c2)" : "var(--c1)";
+    bar.style.background = "var(--c1)";
     bar.setAttribute("data-tip", d.mes + " · " + BRL.format(d.val) + " · " +
       PCT(d.val/ORCAMENTO_MERCADO*100) + " do orçamento" +
       (estourou ? " · estourou " + BRL.format(d.val - ORCAMENTO_MERCADO) : ""));
