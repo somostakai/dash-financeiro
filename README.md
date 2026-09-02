@@ -17,6 +17,7 @@ Basta abrir no navegador. Funciona em tema claro e escuro.
 | Estou dentro das minhas metas 50/30/20? | Seção "Contra as suas metas" |
 | Quando o caixa vira no mês? | Seção "Quando o dinheiro acaba" |
 | O que mudou em relação ao mês corrente? | Seção "O que mudou de agosto para setembro" |
+| Quanto ainda cabe em cada teto de gasto diário? | Seção "Quanto ainda cabe em cada teto" |
 
 ## As duas leituras do saldo
 
@@ -41,3 +42,14 @@ A célula `Q21` divide a poupança apenas pela entrada de `@takai` (célula `C9`
 resultando em 16,7%. Sobre o total de entradas, o percentual real de setembro é
 15,4%. O painel usa sempre o total de entradas como base, para que essenciais,
 não essenciais e poupança sejam comparáveis entre si.
+
+## Os tetos de gasto diário
+
+A aba **Gastos Diários** guarda seis blocos (não essenciais, essenciais,
+rolezinhos, empresa, supermercado e repasses), cada um com um mês por seção e
+uma coluna por dia. Abaixo dos dias vêm quatro linhas de resumo: teto da frente,
+parcelas já contratadas, disponível total e disponível por dia.
+
+O painel lê essas linhas e mostra o supermercado em detalhe (parcelas contra
+lançamentos do dia a dia) e os outros quatro tetos em uma escala única, para que
+quem passou do teto apareça passando dele.

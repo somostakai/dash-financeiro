@@ -292,8 +292,15 @@
   .hist-row .hm{color:var(--muted); text-transform:capitalize}
   .hist-track{position:relative; height:12px}
   .hist-track i{display:block; height:100%; border-radius:var(--r-bar); min-width:3px}
-  .hist-track .lim{position:absolute; top:-4px; bottom:-4px; width:2px; background:var(--ink-2)}
+  .hist-track .lim{position:absolute; top:-4px; bottom:-4px; width:2px; background:var(--ink-2); margin-left:-2px}
   .hist-row .hv{font-family:var(--mono); font-variant-numeric:tabular-nums; color:var(--ink-2); white-space:nowrap}
+
+  .tetos-list{display:flex; flex-direction:column; gap:var(--s4)}
+  .tetos-row{display:flex; flex-direction:column; gap:7px}
+  .tetos-top{display:flex; justify-content:space-between; align-items:baseline; gap:var(--s3); font-size:.8125rem}
+  .tetos-top .nm{color:var(--ink-2)}
+  .tetos-top .nm small{color:var(--faint); font-size:.75rem; margin-left:6px}
+  .tetos-top .vl{font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap}
 
   /* ---------- generic table ---------- */
   /* contêineres de rolagem só seguram a largura se puderem encolher */
@@ -387,7 +394,7 @@
       <span>Fonte: aba <strong>Out.</strong> da planilha</span>
       <span class="stamp">
         Atualizado em
-        <time datetime="2026-09-02T17:52:00-03:00"><strong class="num">02/09/2026</strong> às <strong class="num">17:52</strong></time>
+        <time datetime="2026-09-02T18:06:00-03:00"><strong class="num">02/09/2026</strong> às <strong class="num">18:06</strong></time>
       </span>
     </div>
   </div>
@@ -705,6 +712,89 @@
     </div>
   </section>
 
+  <!-- ================= TETOS DO MÊS ================= -->
+  <section aria-labelledby="s-tetos">
+    <div class="sec-head">
+      <span class="sec-tag">Tetos</span>
+      <h2 id="s-tetos">Quanto ainda cabe em cada teto</h2>
+      <p>Da aba <em>Gastos Diários</em>. Cada teto já nasce descontando as parcelas contratadas antes do mês começar, e o que sobra é dividido pelos dias que faltam.</p>
+    </div>
+
+    <div class="grid g-32">
+      <div class="card t-sage" style="display:flex; flex-direction:column; gap:var(--s5); justify-content:space-between">
+        <div class="super-head">
+          <div class="super-figs">
+            <span class="eyebrow">Supermercado, ainda cabe</span>
+            <span class="super-val num pos">R$&nbsp;1.320,98</span>
+          </div>
+          <span class="status status-ok">R$&nbsp;45,95 por dia</span>
+        </div>
+
+        <div class="super-bar">
+          <div class="super-track">
+            <div class="super-fill" style="position:absolute; left:0; width:9.7%; background:var(--c2)"
+                 data-tip="Parcelas já contratadas · R$ 144,76"></div>
+            <div class="super-fill" style="position:absolute; left:9.7%; width:2.3%; background:var(--c1)"
+                 data-tip="Lançado no dia a dia · R$ 34,26"></div>
+            <div class="super-limit" data-label="R$&nbsp;1.500,00"></div>
+          </div>
+          <div class="super-scale">
+            <span class="num">R$&nbsp;0</span>
+            <span><b class="num">11,9%</b> comprometido</span>
+            <span class="num">R$&nbsp;1.500</span>
+          </div>
+        </div>
+
+        <div class="super-split">
+          <div class="split-row">
+            <span class="lbl"><i class="swatch" style="background:var(--c2)"></i> Parcelas já contratadas</span>
+            <span class="val num">R$&nbsp;144,76</span>
+          </div>
+          <div class="split-row">
+            <span class="lbl"><i class="swatch" style="background:var(--c1)"></i> Lançado no dia a dia</span>
+            <span class="val num">R$&nbsp;34,26</span>
+          </div>
+          <div class="split-row">
+            <span class="lbl">Total comprometido</span>
+            <span class="val num">R$&nbsp;179,02</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card t-blush">
+        <p class="eyebrow" style="margin-bottom:var(--s4)">Os outros tetos de outubro</p>
+        <div class="tetos-list" id="tetos"></div>
+        <div class="legend" style="margin-top:var(--s4)">
+          <span class="item"><i class="swatch" style="background:var(--c1)"></i> Comprometido</span>
+          <span class="item"><i style="width:2px; height:14px; background:var(--ink-2); display:inline-block"></i> O teto</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="note flag insight">
+      <div class="insight-stats">
+        <div>
+          <span class="eyebrow">Soma dos tetos</span>
+          <b class="num">R$&nbsp;4.833,00</b>
+        </div>
+        <div>
+          <span class="eyebrow">Já comprometido</span>
+          <b class="num">R$&nbsp;4.763,86</b>
+        </div>
+        <div>
+          <span class="eyebrow">Livre no mês inteiro</span>
+          <b class="num neg">R$&nbsp;69,14</b>
+        </div>
+      </div>
+      <p>
+        <b>As parcelas comem quase tudo antes do mês começar.</b> Somando os cinco tetos, sobram
+        R$&nbsp;69,14 para outubro inteiro, e isso sem ninguém ter gasto quase nada ainda. Dois tetos já
+        nascem estourados: empresa e não essenciais, esse último em <span class="num">402%</span> do
+        que foi combinado.
+      </p>
+    </div>
+  </section>
+
   <!-- ================= ONDE VAI O DINHEIRO ================= -->
   <section aria-labelledby="s-onde">
     <div class="sec-head">
@@ -965,6 +1055,46 @@
     b.style.cssText = "color:var(--ink); font-family:var(--mono); font-variant-numeric:tabular-nums; font-weight:600";
     item.appendChild(b);
     sbLeg.appendChild(item);
+  });
+
+  /* ---------- tetos do mês, da aba Gastos Diários ---------- */
+  var tetos = [
+    {nome:"Rolezinhos",        teto:1000, comprometido:228.52,  dia:26.60},
+    {nome:"Essenciais do dia", teto:800,  comprometido:194.00,  dia:20.90},
+    {nome:"Empresa",           teto:800,  comprometido:1214.61, dia:-14.30},
+    {nome:"Não essenciais",    teto:733,  comprometido:2947.71, dia:-76.37}
+  ];
+  var tbox = document.getElementById("tetos");
+  // escala única para as quatro linhas, para que quem passou do teto apareça passando dele
+  var tMax = tetos.reduce(function(m,t){ return Math.max(m, t.teto, t.comprometido); }, 0);
+  tetos.forEach(function(t){
+    var disp = t.teto - t.comprometido;
+    var pct  = t.comprometido / t.teto * 100;
+    var row = el("div","tetos-row");
+    var top = el("div","tetos-top");
+    var nm = el("span","nm", t.nome);
+    var tt = document.createElement("small");
+    tt.textContent = "teto " + BRL.format(t.teto);
+    nm.appendChild(tt);
+    top.appendChild(nm);
+    var track = el("div","hist-track");
+    var bar = el("i");
+    bar.style.width = (t.comprometido / tMax * 100) + "%";
+    bar.style.background = "var(--c1)";
+    bar.setAttribute("data-tip", t.nome + " · teto " + BRL.format(t.teto) + " · comprometido " +
+      BRL.format(t.comprometido) + " (" + PCT(pct) + ")" +
+      (disp < 0 ? " · estourou " + BRL.format(-disp) : " · livre " + BRL.format(disp)));
+    track.appendChild(bar);
+    var lim = el("span","lim");
+    lim.style.left = (t.teto / tMax * 100) + "%";
+    lim.setAttribute("data-tip", "Teto de " + t.nome + " · " + BRL.format(t.teto));
+    track.appendChild(lim);
+    var v = el("span","vl" + (disp < 0 ? " neg" : " pos"), BRL.format(disp));
+    v.setAttribute("data-tip", disp < 0 ? "Já passou do teto" : "Ainda cabe " + BRL.format(t.dia) + " por dia");
+    top.appendChild(v);
+    row.appendChild(top);
+    row.appendChild(track);
+    tbox.appendChild(row);
   });
 
   /* ---------- ranking de despesas ---------- */
