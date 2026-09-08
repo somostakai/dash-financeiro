@@ -25,9 +25,9 @@ A célula `K4:K5` da aba `Set.` calcula `entradas − poupança − contas`, ou 
 o saldo negativo já embute a poupança planejada. O painel separa as duas
 leituras, que respondem a perguntas diferentes:
 
-- **Saldo real** = entradas − contas = **−R$ 1.105,06**, o que falta para as contas fecharem
-- **Poupança descoberta** = **R$ 2.300,00**, o que falta buscar só para guardar
-- **Saldo da planilha** (`K4:K5`) = **−R$ 3.405,06**, a soma dos dois
+- **Saldo real** = entradas − contas = **−R$ 2.056,41**, o que falta para as contas fecharem
+- **Poupança planejada** = **R$ 3.000,00**, o que falta buscar só para guardar
+- **Saldo da planilha** (`K4:K5`) = **−R$ 5.056,41**, a soma dos dois
 
 ## Atualizar para outro mês
 
@@ -39,9 +39,15 @@ seções.
 ## Observação sobre a planilha
 
 A célula `Q21` divide a poupança apenas pela entrada de `@takai` (célula `C9`),
-resultando em 16,7%. Sobre o total de entradas, o percentual real de setembro é
-15,4%. O painel usa sempre o total de entradas como base, para que essenciais,
+resultando em 23,6%. Sobre o total de entradas, o percentual real de outubro é
+20,9%. O painel usa sempre o total de entradas como base, para que essenciais,
 não essenciais e poupança sejam comparáveis entre si.
+
+Na aba `Gastos Diários`, a linha *Disponível (dia)* usa
+`=(disponível - SUM(C:AF))/COUNTBLANK(C:AF)`. Isso desconta de novo o que já foi
+lançado e divide por um intervalo que começa em `C` (vazia) e para em `AF`, duas
+colunas antes do fim do mês. O painel refaz a conta como disponível ÷ dias que
+faltam até o último dia do bloco.
 
 ## Os tetos de gasto diário
 
