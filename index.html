@@ -116,7 +116,7 @@
   @media (max-width:760px){ .verdict{grid-template-columns:1fr} }
   .verdict-lead{display:flex; flex-direction:column; gap:var(--s3)}
   .verdict-figure{font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:clamp(2.25rem,6.5vw,3.5rem); font-weight:600; line-height:1; letter-spacing:-.04em; color:var(--bad)}
-  .verdict-say{font-size:1.0625rem; color:var(--ink-2); max-width:46ch; margin:0; text-wrap:pretty}
+  .verdict-say{font-size:1.0625rem; color:var(--ink-2); margin:0; text-wrap:pretty}
   .verdict-say b{color:var(--ink); font-weight:650}
   .verdict-split{display:flex; flex-direction:column; gap:var(--s3); justify-content:center; border-left:1px solid var(--rule); padding-left:var(--s5)}
   @media (max-width:760px){ .verdict-split{border-left:0; border-top:1px solid var(--rule); padding-left:0; padding-top:var(--s4)} }
@@ -129,7 +129,7 @@
   /* ---------- sections ---------- */
   section{margin-top:var(--s7); padding-top:var(--s6); border-top:1px solid var(--rule)}
   .sec-head{display:flex; flex-direction:column; gap:var(--s3); margin-bottom:var(--s5)}
-  .sec-head p{margin:0; color:var(--muted); font-size:.9375rem; max-width:76ch; text-wrap:pretty}
+  .sec-head p{margin:0; color:var(--muted); font-size:.9375rem; text-wrap:pretty}
 
   .card{background:var(--card-bg,var(--surface)); border:0; border-radius:var(--r-card); padding:var(--s5)}
   .t-blush{--card-bg:var(--tint-blush)}
@@ -394,7 +394,7 @@
       <span>Fonte: aba <strong>Out.</strong> da planilha</span>
       <span class="stamp">
         Atualizado em
-        <time datetime="2026-09-08T16:35:00-03:00"><strong class="num">08/09/2026</strong> às <strong class="num">16:35</strong></time>
+        <time datetime="2026-09-08T16:43:00-03:00"><strong class="num">08/09/2026</strong> às <strong class="num">16:43</strong></time>
       </span>
     </div>
   </div>
@@ -521,7 +521,7 @@
     <div class="card surv-card t-sage">
       <div class="surv-head">
         <div class="super-figs">
-          <span class="eyebrow">Só o Capital de giro, mantendo o padrão de vida</span>
+          <span class="eyebrow">Capital de giro e Salário, no padrão de vida</span>
           <span class="surv-val num">0 <em>meses</em></span>
         </div>
         <div class="surv-burn">
@@ -563,11 +563,11 @@
       <div class="insight-stats">
         <div>
           <span class="eyebrow">Teto para durar 6 meses</span>
-          <b class="num">R$&nbsp;4.445,15</b>
+          <b class="num">R$&nbsp;5.397,34</b>
         </div>
         <div>
           <span class="eyebrow">Corte necessário</span>
-          <b class="num neg">76%</b>
+          <b class="num neg">71%</b>
         </div>
         <div>
           <span class="eyebrow">Modo essencial dá hoje</span>
@@ -576,10 +576,10 @@
       </div>
       <p>
         Para o dinheiro de acesso rápido segurar 6 meses, o gasto teria que caber em
-        R$&nbsp;4.445,15 por mês. <b>Nem o modo essencial chega lá</b>: ele custa
-        R$&nbsp;8.801,13 e hoje rende 3 meses. O teto caiu porque o Flexível virou
-        <b>Capital de giro</b> e encolheu R$&nbsp;4.344,32 na virada, saindo de
-        R$&nbsp;14.451,00 para R$&nbsp;10.106,68.
+        R$&nbsp;5.397,34 por mês. <b>Nem o modo essencial chega lá</b>: ele custa
+        R$&nbsp;8.801,13 e hoje rende 3 meses. O Flexível virou <b>Capital de giro</b> e
+        parte dele passou para o <b>Salário de outubro</b>, então os dois contam juntos:
+        R$&nbsp;15.819,77, R$&nbsp;1.268,77 a mais do que na leitura anterior.
       </p>
     </div>
   </section>
@@ -589,14 +589,14 @@
     <div class="sec-head">
       <span class="sec-tag">Poupança</span>
       <h2 id="s-plano">O plano para chegar nos 6 meses</h2>
-      <p>A meta é o Capital de giro sozinho cobrir 6 meses de modo essencial. Ela não é um número fixo: se recalcula toda vez pela média dos três últimos meses fechados.</p>
+      <p>A meta é o Capital de giro, somado ao Salário de outubro, cobrir 6 meses de modo essencial. Ela não é um número fixo: se recalcula toda vez pela média dos três últimos meses fechados.</p>
     </div>
 
     <div class="card surv-card t-sage">
       <div class="surv-head">
         <div class="super-figs">
-          <span class="eyebrow">Falta no Capital de giro, sem mexer em mais nada</span>
-          <span class="surv-val num neg">R$&nbsp;42.700,12</span>
+          <span class="eyebrow">Falta juntar, sem mexer em mais nada</span>
+          <span class="surv-val num neg">R$&nbsp;36.987,03</span>
         </div>
         <div class="surv-burn">
           <div>
@@ -604,30 +604,30 @@
             <b class="num">R$&nbsp;52.806,80</b>
           </div>
           <div>
-            <span class="eyebrow">Capital de giro hoje</span>
-            <b class="num">R$&nbsp;10.106,68</b>
+            <span class="eyebrow">Capital de giro e Salário</span>
+            <b class="num">R$&nbsp;15.819,77</b>
           </div>
           <div>
             <span class="eyebrow">Caminho andado</span>
-            <b class="num neg">19,1%</b>
+            <b class="num neg">30,0%</b>
           </div>
         </div>
       </div>
 
       <div class="goal-track" style="height:38px">
-        <div class="goal-fill" style="width:16.8%; background:var(--c1)"
-             data-tip="Capital de giro hoje · R$ 10.106,68"></div>
-        <div class="goal-add" style="left:16.8%; width:27.6%"
+        <div class="goal-fill" style="width:26.4%; background:var(--c1)"
+             data-tip="Capital de giro + Salário de outubro · R$ 15.819,77"></div>
+        <div class="goal-add" style="left:26.4%; width:27.6%"
              data-tip="Turbo + Poupança, se forem consolidados no Capital de giro · R$ 16.564,24"></div>
         <div class="goal-meta mark-flip" style="left:88.0%" data-label="meta 6 meses"></div>
       </div>
       <div class="super-scale">
         <span class="num">R$&nbsp;0</span>
-        <span>consolidando, o caminho andado vai a <b class="num">50,5%</b></span>
+        <span>consolidando, o caminho andado vai a <b class="num">61,3%</b></span>
         <span class="num">R$&nbsp;60.000</span>
       </div>
       <div class="legend">
-        <span class="item"><i class="swatch" style="background:var(--c1)"></i> Capital de giro hoje <b class="num" style="color:var(--ink)">R$&nbsp;10.106,68</b></span>
+        <span class="item"><i class="swatch" style="background:var(--c1)"></i> Capital de giro e Salário <b class="num" style="color:var(--ink)">R$&nbsp;15.819,77</b></span>
         <span class="item"><i class="swatch swatch-add"></i> Turbo + Poupança <b class="num" style="color:var(--ink)">R$&nbsp;16.564,24</b></span>
         <span class="item"><i style="width:14px; height:0; border-top:2px solid var(--ink-2); display:inline-block"></i> A meta <b class="num" style="color:var(--ink)">R$&nbsp;52.806,80</b></span>
       </div>
@@ -635,7 +635,7 @@
 
     <div class="card surv-card t-blush" style="margin-top:var(--s4)">
       <div class="surv-head">
-        <span class="eyebrow">Depois de consolidar, faltam R$&nbsp;26.135,88. Quanto tempo, conforme o aporte</span>
+        <span class="eyebrow">Depois de consolidar, faltam R$&nbsp;20.422,79. Quanto tempo, conforme o aporte</span>
         <span class="eyebrow" style="color:var(--muted)">Meses arredondados para cima</span>
       </div>
       <div class="runway" id="planoTempo"></div>
@@ -645,23 +645,23 @@
       <div class="insight-stats">
         <div>
           <span class="eyebrow">Consolidando, falta</span>
-          <b class="num neg">R$&nbsp;26.135,88</b>
+          <b class="num neg">R$&nbsp;20.422,79</b>
         </div>
         <div>
           <span class="eyebrow">Aportando R$ 900 por mês</span>
-          <b class="num">30 meses</b>
+          <b class="num">23 meses</b>
         </div>
         <div>
           <span class="eyebrow">Horizonte seguinte</span>
-          <b class="num">4,6 anos</b>
+          <b class="num">4,3 anos</b>
         </div>
       </div>
       <p>
         <b>Consolidar Turbo e Poupança no Capital de giro tira R$&nbsp;16.564,24 do
-        caminho</b>, de R$&nbsp;42.700,12 para R$&nbsp;26.135,88, sem guardar um real a
-        mais. Do que sobra, R$&nbsp;900 por mês fecham a meta em 30 meses. O horizonte
+        caminho</b>, de R$&nbsp;36.987,03 para R$&nbsp;20.422,79, sem guardar um real a
+        mais. Do que sobra, R$&nbsp;900 por mês fecham a meta em 23 meses. O horizonte
         seguinte é cobrir 6 meses sem cortar nada, o que pede R$&nbsp;109.798,62 e
-        levaria 4,6 anos guardando R$&nbsp;1.500 por mês.
+        levaria 4,3 anos guardando R$&nbsp;1.500 por mês.
       </p>
     </div>
   </section>
@@ -923,9 +923,9 @@
   var RW_MAX = 12;              // escala do gráfico, em meses
 
   var reservas = [
-    {nome:"Só o Capital de giro",                val:10106.68},
-    {nome:"Capital de giro + Turbo + Poupança",  val:26670.92},
-    {nome:"Tudo somado",                         val:79899.84}
+    {nome:"Capital de giro + Salário de outubro", val:15819.77},
+    {nome:"Somando Turbo e Poupança",             val:32384.01},
+    {nome:"Tudo somado",                          val:79899.84}
   ];
 
   // Meses completos: sempre para baixo, porque um mês pela metade não é um mês de folga.
@@ -975,8 +975,8 @@
 
   /* ---------- plano: tempo até a meta ---------- */
   var META_FLEX = 52806.80;          // 6 meses de queima essencial
-  var FALTA_FLEX = META_FLEX - 26670.92;  // já contando Turbo e Poupança consolidados
-  var PT_MAX = 60;                        // escala do gráfico, em meses
+  var FALTA_FLEX = META_FLEX - 32384.01;  // já contando Turbo e Poupança consolidados
+  var PT_MAX = 48;                        // escala do gráfico, em meses
 
   var aportes = [
     {nome:"Como está hoje",                  detalhe:"só o aporte do Flexível",          val:500},
@@ -1019,12 +1019,12 @@
   /* ---------- composição das reservas ---------- */
   var RESERVA_TOTAL = 79899.84;
   var camadas = [
-    {nome:"Capital de giro",     val:10106.68, tier:"rapido"},
+    {nome:"Capital de giro + Salário de outubro", val:15819.77, tier:"rapido"},
     {nome:"Turbo",               val:10220.66, tier:"rapido"},
     {nome:"Poupança",            val:6343.58,  tier:"rapido"},
     {nome:"Investimento",        val:40698.67, tier:"investido"},
-    {nome:"Salário de outubro, Casa, Próxima viagem, Artista", val:10266.25, tier:"destino"},
-    {nome:"Fundinhos com a Karol",                             val:2264.00,  tier:"destino"}
+    {nome:"Casa, Próxima viagem, Artista", val:4553.16, tier:"destino"},
+    {nome:"Fundinhos com a Karol",         val:2264.00, tier:"destino"}
   ];
   var tierCor = {rapido:"var(--c1)", investido:"var(--c2)", destino:"var(--c3)"};
   var tierNome = {rapido:"Acesso rápido", investido:"Investido", destino:"Com destino definido"};
@@ -1038,7 +1038,7 @@
       PCT(c.val/RESERVA_TOTAL*100) + " do total · " + tierNome[c.tier]);
     sb.appendChild(seg);
   });
-  [[10106.68, "Só o Capital de giro"], [26670.92, "Acesso rápido"]].forEach(function(mk){
+  [[15819.77, "Capital de giro e Salário"], [32384.01, "Acesso rápido"]].forEach(function(mk){
     var mark = el("span","sb-mark");
     mark.style.left = (mk[0] / RESERVA_TOTAL * 100) + "%";
     mark.setAttribute("data-label", mk[1]);
@@ -1046,7 +1046,7 @@
   });
 
   var sbLeg = document.getElementById("reservaLegend");
-  [["rapido", 26670.92], ["investido", 40698.67], ["destino", 12530.25]].forEach(function(t){
+  [["rapido", 32384.01], ["investido", 40698.67], ["destino", 6817.16]].forEach(function(t){
     var item = el("span","item");
     var sw = el("i","swatch");
     sw.style.background = tierCor[t[0]];
