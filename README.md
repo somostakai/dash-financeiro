@@ -25,9 +25,9 @@ A célula `K4:K5` da aba `Set.` calcula `entradas − poupança − contas`, ou 
 o saldo negativo já embute a poupança planejada. O painel separa as duas
 leituras, que respondem a perguntas diferentes:
 
-- **Saldo real** = entradas − contas = **−R$ 2.063,92**, o que falta para as contas fecharem
+- **Saldo real** = entradas − contas = **−R$ 2.247,36**, o que falta para as contas fecharem
 - **Poupança planejada** = **R$ 3.000,00**, o que falta buscar só para guardar
-- **Saldo da planilha** (`K4:K5`) = **−R$ 5.063,92**, a soma dos dois
+- **Saldo da planilha** (`K4:K5`) = **−R$ 5.247,36**, a soma dos dois
 
 ## Atualizar para outro mês
 
