@@ -25,9 +25,9 @@ A célula `K4:K5` da aba `Set.` calcula `entradas − poupança − contas`, ou 
 o saldo negativo já embute a poupança planejada. O painel separa as duas
 leituras, que respondem a perguntas diferentes:
 
-- **Saldo real** = entradas − contas = **−R$ 2.247,36**, o que falta para as contas fecharem
-- **Poupança planejada** = **R$ 3.000,00**, o que falta buscar só para guardar
-- **Saldo da planilha** (`K4:K5`) = **−R$ 5.247,36**, a soma dos dois
+- **Saldo real** = entradas − contas = **−R$ 2.433,52**, o que falta para as contas fecharem
+- **Poupança planejada** = **R$ 3.100,00**, o que falta buscar só para guardar
+- **Saldo da planilha** (`K4:K5`) = **−R$ 5.533,52**, a soma dos dois
 
 ## Atualizar para outro mês
 
@@ -39,8 +39,8 @@ seções.
 ## Observação sobre a planilha
 
 A célula `Q21` divide a poupança apenas pela entrada de `@takai` (célula `C9`),
-resultando em 23,4%. Sobre o total de entradas, o percentual real de outubro é
-20,8%. O painel usa sempre o total de entradas como base, para que essenciais,
+resultando em 23,6%. Sobre as entradas líquidas de repasses, o percentual real de
+outubro é 21,0%. O painel usa sempre o total de entradas como base, para que essenciais,
 não essenciais e poupança sejam comparáveis entre si.
 
 Na aba `Gastos Diários`, a linha *Disponível (dia)* usa
@@ -59,3 +59,20 @@ parcelas já contratadas, disponível total e disponível por dia.
 O painel lê essas linhas e mostra o supermercado em detalhe (parcelas contra
 lançamentos do dia a dia) e os outros quatro tetos em uma escala única, para que
 quem passou do teto apareça passando dele.
+
+## Os repasses
+
+A partir de outubro a planilha deixa `Repasses` e `INSS Gladys` sem `Tipo`, então
+o `SUMIFS` das metas não os conta. Eles somam R$ 2.087,80 e batem exatamente com
+as duas entradas `@repasses`: o dinheiro entra só para sair.
+
+O painel trata isso em dois lugares:
+
+- **totais e veredito** ficam brutos, iguais à planilha, porque esse caixa
+  precisa mesmo entrar para poder sair
+- **metas 50/30/20** usam a base líquida, entradas menos repasses
+  (R$ 14.727,32), que é a única forma de essenciais, não essenciais e poupança
+  serem comparáveis entre si
+
+Na barra de comprometimento e no ranking os repasses aparecem em cinza neutro,
+separados das duas categorias reais.
