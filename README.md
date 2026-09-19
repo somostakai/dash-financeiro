@@ -25,7 +25,7 @@ A célula `K4:K5` da aba `Set.` calcula `entradas − poupança − contas`, ou 
 o saldo negativo já embute a poupança planejada. O painel separa as duas
 leituras, que respondem a perguntas diferentes:
 
-- **Saldo real** = entradas − contas = **−R$ 2.433,52**, o que falta para as contas fecharem
+- **Saldo real** = entradas − contas, sem repasses = **−R$ 2.433,52**, o que falta para as contas fecharem
 - **Poupança planejada** = **R$ 3.100,00**, o que falta buscar só para guardar
 - **Saldo da planilha** (`K4:K5`) = **−R$ 5.533,52**, a soma dos dois
 
@@ -66,13 +66,13 @@ A partir de outubro a planilha deixa `Repasses` e `INSS Gladys` sem `Tipo`, ent�
 o `SUMIFS` das metas não os conta. Eles somam R$ 2.087,80 e batem exatamente com
 as duas entradas `@repasses`: o dinheiro entra só para sair.
 
-O painel trata isso em dois lugares:
+São compras de outras pessoas que caem no cartão e são reembolsadas, então o
+painel tira as duas pontas de todas as contas:
 
-- **totais e veredito** ficam brutos, iguais à planilha, porque esse caixa
-  precisa mesmo entrar para poder sair
-- **metas 50/30/20** usam a base líquida, entradas menos repasses
-  (R$ 14.727,32), que é a única forma de essenciais, não essenciais e poupança
-  serem comparáveis entre si
+- **entradas** R$ 16.815,12 − R$ 2.087,80 = **R$ 14.727,32**
+- **contas** R$ 19.248,64 − R$ 2.087,80 = **R$ 17.160,84**
+- **saldo real** não muda, porque os dois lados se cancelam
 
-Na barra de comprometimento e no ranking os repasses aparecem em cinza neutro,
-separados das duas categorias reais.
+O bloco do veredito mostra as duas linhas do abatimento, para reconciliar com
+`E4` e `I2` da planilha. Setembro não tem repasses, então a comparação entre os
+dois meses continua direta.
