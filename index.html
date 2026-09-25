@@ -396,7 +396,7 @@
       <span>Fonte: aba <strong>Out.</strong> da planilha</span>
       <span class="stamp">
         Atualizado em
-        <time datetime="2026-09-25T15:54:00-03:00"><strong class="num">25/09/2026</strong> às <strong class="num">15:54</strong></time>
+        <time datetime="2026-09-25T16:12:00-03:00"><strong class="num">25/09/2026</strong> às <strong class="num">16:12</strong></time>
       </span>
     </div>
   </div>
@@ -1215,10 +1215,14 @@
       ml.textContent = g.mes;
       svg.appendChild(ml);
 
-      var vl = s("text",{x:gx, y:H-1, "text-anchor":"middle",
-                         fill:g.entradas >= total ? css("--good") : css("--bad"),
+      // Três estados, porque cobrir as contas e cobrir a poupança são perguntas diferentes.
+      var contas = g.ess + g.nes;
+      var estado = g.entradas >= total ? ["entradas cobrem tudo", css("--good")]
+                 : g.entradas >= contas ? ["falta só a poupança", css("--warn")]
+                 : ["não cobrem as contas", css("--bad")];
+      var vl = s("text",{x:gx, y:H-1, "text-anchor":"middle", fill:estado[1],
                          "font-size":10, "font-weight":"700", "font-family":css("--sans")});
-      vl.textContent = g.entradas >= total ? "entradas cobrem" : "entradas não cobrem";
+      vl.textContent = estado[0];
       svg.appendChild(vl);
     });
 
