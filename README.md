@@ -25,9 +25,9 @@ A célula `K4:K5` da aba `Set.` calcula `entradas − poupança − contas`, ou 
 o saldo negativo já embute a poupança planejada. O painel separa as duas
 leituras, que respondem a perguntas diferentes:
 
-- **Saldo real** = entradas − contas, sem repasses = **+R$ 1.024,32**, o que sobra depois das contas
+- **Saldo real** = entradas − contas, sem repasses = **+R$ 696,66**, o que sobra depois das contas
 - **Poupança planejada** = **R$ 3.100,00**, o que falta buscar só para guardar
-- **Saldo da planilha** (`K4:K5`) = **−R$ 2.075,68**, a sobra menos a poupança
+- **Saldo da planilha** (`K4:K5`) = **−R$ 2.403,34**, a sobra menos a poupança
 
 ## Atualizar para outro mês
 
@@ -69,8 +69,8 @@ as duas entradas `@repasses`: o dinheiro entra só para sair.
 São compras de outras pessoas que caem no cartão e são reembolsadas, então o
 painel tira as duas pontas de todas as contas:
 
-- **entradas** R$ 20.773,83 − R$ 2.087,80 = **R$ 18.686,03**
-- **contas** R$ 19.749,51 − R$ 2.087,80 = **R$ 17.661,71**
+- **entradas** R$ 20.988,72 − R$ 2.087,80 = **R$ 18.900,92**
+- **contas** R$ 20.292,06 − R$ 2.087,80 = **R$ 18.204,26**
 - **saldo real** não muda, porque os dois lados se cancelam
 
 O bloco do veredito mostra as duas linhas do abatimento, para reconciliar com
