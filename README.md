@@ -18,6 +18,7 @@ Basta abrir no navegador. Funciona em tema claro e escuro.
 | Quando o caixa vira no mês? | Seção "Quando o dinheiro acaba" |
 | O que mudou em relação ao mês corrente? | Seção "O que mudou de agosto para setembro" |
 | Quanto ainda cabe em cada teto de gasto diário? | Seção "Quanto ainda cabe em cada teto" |
+| Com quanto o mês seguinte já começa? | Seção "Com quanto novembro já começa" |
 
 ## As duas leituras do saldo
 
@@ -76,3 +77,18 @@ painel tira as duas pontas de todas as contas:
 O bloco do veredito mostra as duas linhas do abatimento, para reconciliar com
 `E4` e `I2` da planilha. Setembro não tem repasses, então a comparação entre os
 dois meses continua direta.
+
+## Os fixos
+
+Na aba `Ganhos Mensais` cada bloco tem o nome do **mês de recebimento**, e o
+apanhado abaixo dele é do **mês de fechamento**. O bloco `Novembro` traz o
+"Apanhado de outubro": é o que se fecha em outubro e cai em novembro.
+
+Hoje são seis contratos somando R$ 9.618,00: Murilo, Samuel, BeLLACASA, Olhar
+da Diversidade, Cassandra e Gladys. O painel compara esse valor com a queima no
+modo essencial (R$ 8.801,13) e com a queima no padrão atual (R$ 18.299,77), que
+são as mesmas bases da seção de sobrevivência.
+
+O "anualizado" do painel é os fixos do mês vezes 12. A célula `C126` da aba tem
+o rótulo *ARR* mas soma os totais gerais de todos os meses do ano, receita
+recorrente e pontual juntas, então o painel não a usa.

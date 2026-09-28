@@ -331,6 +331,12 @@
   .rank-bar i{display:block; height:100%; border-radius:var(--r-bar); min-width:3px}
   .rank-row .rval{font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:.8125rem; color:var(--ink); white-space:nowrap}
   @media (max-width:560px){ .rank-row{grid-template-columns:minmax(90px,1fr) minmax(0,2fr) auto; font-size:.8125rem} }
+  /* nomes de cliente são mais longos que os de conta */
+  .rank.fixos .rank-row{grid-template-columns:minmax(150px,1.4fr) minmax(0,2fr) auto}
+  @media (max-width:560px){
+    .rank.fixos .rank-row{grid-template-columns:minmax(96px,1fr) minmax(0,1.4fr) auto}
+    .rank.fixos .rname{white-space:normal; line-height:1.25}
+  }
 
   /* ---------- chart ---------- */
   .chart-figure{display:flex; flex-direction:column; gap:var(--s3)}
@@ -396,7 +402,7 @@
       <span>Fonte: aba <strong>Out.</strong> da planilha</span>
       <span class="stamp">
         Atualizado em
-        <time datetime="2026-09-28T13:02:00-03:00"><strong class="num">28/09/2026</strong> às <strong class="num">13:02</strong></time>
+        <time datetime="2026-09-28T14:10:00-03:00"><strong class="num">28/09/2026</strong> às <strong class="num">14:10</strong></time>
       </span>
     </div>
   </div>
@@ -884,11 +890,78 @@
     </div>
   </section>
 
+  <!-- ================= FIXOS ================= -->
+  <section aria-labelledby="s-fixos">
+    <div class="sec-head">
+      <span class="sec-tag">Fixos</span>
+      <h2 id="s-fixos">Com quanto novembro já começa</h2>
+      <p>Os contratos que se repetem todo mês, da aba <em>Ganhos Mensais</em>. O que é fechado em outubro cai em novembro, então essa é a base que já está de pé antes de vender qualquer projeto novo.</p>
+    </div>
+
+    <div class="grid g-32">
+      <div class="card t-sage" style="display:flex; flex-direction:column; gap:var(--s5); justify-content:space-between">
+        <div class="super-head">
+          <div class="super-figs">
+            <span class="eyebrow">Fechado em outubro, cai em novembro</span>
+            <span class="super-val num pos">R$&nbsp;9.618,00</span>
+          </div>
+          <span class="status status-ok">6 contratos</span>
+        </div>
+        <div class="rank fixos" id="fixosList"></div>
+
+        <div class="super-split">
+          <div class="split-row">
+            <span class="lbl">Média dos três últimos meses</span>
+            <span class="val num">R$&nbsp;9.015,04</span>
+          </div>
+          <div class="split-row">
+            <span class="lbl">Novembro, já fechado</span>
+            <span class="val num">R$&nbsp;9.746,00</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card t-blush">
+        <p class="eyebrow" style="margin-bottom:var(--s4)">Os fixos mês a mês em 2026</p>
+        <div class="hist" id="fixosHist"></div>
+        <div class="legend" style="margin-top:var(--s4)">
+          <span class="item"><i class="swatch" style="background:var(--c1)"></i> Fixos do mês</span>
+          <span class="item"><i style="width:2px; height:14px; background:var(--ink-2); display:inline-block"></i> O modo essencial, R$&nbsp;8.801,13</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="note flag insight">
+      <div class="insight-stats">
+        <div>
+          <span class="eyebrow">Cobre do modo essencial</span>
+          <b class="num pos">109%</b>
+        </div>
+        <div>
+          <span class="eyebrow">Cobre do padrão atual</span>
+          <b class="num">53%</b>
+        </div>
+        <div>
+          <span class="eyebrow">Anualizado, se nada mudar</span>
+          <b class="num">R$&nbsp;115.416,00</b>
+        </div>
+      </div>
+      <p>
+        <b>Os fixos sozinhos já pagam o modo essencial.</b> São R$&nbsp;9.618,00 contra
+        R$&nbsp;8.801,13 de queima essencial, e desde janeiro só julho tinha conseguido isso.
+        Do padrão de vida atual eles cobrem pouco mais da metade, então o resto do mês ainda
+        depende de projeto, mentoria e fotografia. Murilo e Samuel sozinhos são
+        <span class="num">63%</span> da base, que é a concentração a ficar de olho. Novembro
+        já tem R$&nbsp;9.746,00 fechados, com BeLLACASA subindo para R$&nbsp;1.280,00.
+      </p>
+    </div>
+  </section>
+
   <footer>
     Painel gerado a partir da planilha <em>ganhos e gastos mensais [@karol e @tai], 2026</em>, aba <code>Out.</code>.
     Valores em reais, projetados: em outubro nenhuma conta está marcada como paga, então tudo aqui é previsão, não realizado.
     Repasses e INSS Gladys ficam fora dos dois lados, R$&nbsp;2.087,80 que caem no cartão mas pertencem a outras pessoas.
-    Metas 50 / 30 / 20 lidas da aba <code>Início</code>.
+    Metas 50 / 30 / 20 lidas da aba <code>Início</code>. Os fixos vêm da aba <code>Ganhos Mensais</code>, bloco <code>Novembro</code>, que é o que se fecha em outubro.
   </footer>
 </div>
 
@@ -1129,6 +1202,62 @@
     row.appendChild(bar);
     row.appendChild(el("span","rval", BRL.format(c.val)));
     rank.appendChild(row);
+  });
+
+  /* ---------- fixos, da aba Ganhos Mensais ---------- */
+  var FIXOS_TOTAL = 9618;
+  var fixos = [
+    {nome:"Murilo",               val:3600},
+    {nome:"Samuel",               val:2500},
+    {nome:"BeLLACASA",            val:1152},
+    {nome:"Olhar da Diversidade", val:1066},
+    {nome:"Cassandra",            val:800},
+    {nome:"Gladys",               val:500}
+  ];
+  var fxBox = document.getElementById("fixosList");
+  var fxMax = fixos.reduce(function(m,c){ return Math.max(m,c.val); },0);
+  fixos.forEach(function(c){
+    var row = el("div","rank-row");
+    row.appendChild(el("span","rname", c.nome));
+    var bar = el("div","rank-bar");
+    var fill = el("i");
+    fill.style.width = (c.val / fxMax * 100) + "%";
+    fill.style.background = "var(--c1)";
+    fill.setAttribute("data-tip", c.nome + " · " + BRL.format(c.val) + " · " +
+      PCT(c.val/FIXOS_TOTAL*100) + " da base fixa");
+    bar.appendChild(fill);
+    row.appendChild(bar);
+    row.appendChild(el("span","rval", BRL.format(c.val)));
+    fxBox.appendChild(row);
+  });
+
+  // o mês é o do fechamento, o dinheiro cai no mês seguinte
+  var ESSENCIAL_MES = 8801.13;
+  var fixosHist = [
+    {mes:"jan", val:17800},    {mes:"fev", val:7345.45}, {mes:"mar", val:4800},
+    {mes:"abr", val:3800},     {mes:"mai", val:3800},    {mes:"jun", val:6500},
+    {mes:"jul", val:10432.42}, {mes:"ago", val:8961.13}, {mes:"set", val:8466},
+    {mes:"out", val:9618}
+  ];
+  var fhBox = document.getElementById("fixosHist");
+  var fhMax = fixosHist.reduce(function(m,c){ return Math.max(m,c.val); },0);
+  fixosHist.forEach(function(h){
+    var row = el("div","hist-row");
+    row.appendChild(el("span","hm", h.mes));
+    var track = el("div","hist-track");
+    var bar = el("i");
+    bar.style.width = (h.val / fhMax * 100) + "%";
+    bar.style.background = "var(--c1)";
+    bar.setAttribute("data-tip", "Fechado em " + h.mes + " · " + BRL.format(h.val) +
+      " · " + PCT(h.val/ESSENCIAL_MES*100) + " do modo essencial");
+    track.appendChild(bar);
+    var lim = el("span","lim");
+    lim.style.left = (ESSENCIAL_MES / fhMax * 100) + "%";
+    lim.setAttribute("data-tip", "Queima no modo essencial · R$ 8.801,13");
+    track.appendChild(lim);
+    row.appendChild(track);
+    row.appendChild(el("span","hv", BRL.format(h.val)));
+    fhBox.appendChild(row);
   });
 
   /* ---------- tooltip ---------- */
